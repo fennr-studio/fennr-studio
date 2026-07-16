@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mist: 180 8% 95%;
+  --paper: 0 0% 100%;
+  /* logo black — exact #101013 */
+  --ink: 240 8.6% 6.9%;
+  /* fennr yellow — exact #FFD21E */
+  --accent: 48 100% 55.9%;
+  /* soft yellow wash — #FFF3C2 */
+  --accent-soft: 48 100% 88%;
+  --slatey: 220 4% 50%;
+  --hairline: 200 5% 83%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body), var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  background-color: hsl(var(--mist));
+  color: hsl(var(--ink));
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: hsl(var(--ink));
+  color: hsl(var(--accent));
+}
+
+/* ---------- Type system ---------- */
+.display {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.018em;
+  line-height: 0.92;
+}
+
+.display-tight {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.012em;
+  line-height: 1;
+}
+
+.heading-md {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+
+.heading-italic {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.numeral {
+  font-family: var(--font-numeral), serif;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-display), Inter, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ---------- Layout ---------- */
+.container-px {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-px {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-px {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: hsl(var(--accent));
+  color: hsl(var(--ink));
+  font-weight: 500;
+  font-style: italic;
+  padding: 0.875rem 1.5rem;
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 4px;
+}
+
+.btn-accent:hover {
+  background: hsl(var(--ink));
+  color: hsl(var(--accent));
+}
+
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: hsl(var(--ink));
+  color: hsl(var(--accent));
+  font-weight: 500;
+  padding: 0.875rem 1.5rem;
+  border-radius: 4px;
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-ink:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--ink));
+}
+
+/* ---------- Yellow grow-underline links ---------- */
+.underline-accent {
+  background-image: linear-gradient(hsl(var(--accent)), hsl(var(--accent)));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 4px;
+  color: hsl(var(--accent));
+  padding-bottom: 0.05em;
+  transition: background-size 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.underline-accent:hover {
+  background-size: 100% 100%;
+  color: hsl(var(--ink));
+}
+
+/* ---------- № numeral with rule ---------- */
+.numeral-rule {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.9;
+}
+
+.numeral-rule::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: hsl(var(--ink));
+  width: 100%;
+  margin-top: 0.18em;
+}
+
+/* ---------- Torn polaroid card ---------- */
+.torn-card {
+  position: relative;
+  background: hsl(var(--paper));
+  border-radius: 0.75rem;
+  box-shadow:
+    0 30px 60px -22px hsl(var(--ink) / 0.2),
+    0 8px 18px -8px hsl(var(--ink) / 0.08);
+  transform: rotate(-1.2deg);
+  isolation: isolate;
+}
+
+.bw-photo {
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* ---------- Soft yellow aura glow ---------- */
+.aura-accent {
+  background: radial-gradient(closest-side, hsl(var(--accent-soft) / 0.55), transparent 70%);
+  filter: blur(40px);
+}
+
+/* ---------- Star rays behind cards ---------- */
+.star-rays {
+  background-image: conic-gradient(from 0deg,
+      transparent 0 14deg,
+      hsl(var(--accent) / 0.18) 14deg 16deg,
+      transparent 16deg 30deg,
+      hsl(var(--accent) / 0.16) 30deg 32deg,
+      transparent 32deg 46deg,
+      hsl(var(--accent) / 0.18) 46deg 48deg,
+      transparent 48deg 62deg,
+      hsl(var(--accent) / 0.14) 62deg 64deg,
+      transparent 64deg 360deg);
+  mask-image: radial-gradient(closest-side, white, transparent 70%);
+  -webkit-mask-image: radial-gradient(closest-side, white, transparent 70%);
+}
+
+/* ---------- Ink flecks around cards ---------- */
+.flecks::before,
+.flecks::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  background-repeat: no-repeat;
+}
+
+.flecks::before {
+  inset: -10% -8% auto auto;
+  width: 60%;
+  height: 60%;
+  background-image:
+    radial-gradient(circle 2px at 12% 18%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 1.5px at 70% 60%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 2.5px at 35% 80%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 1px at 90% 28%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 1.8px at 55% 12%, hsl(var(--ink)) 100%, transparent 100%);
+}
+
+.flecks::after {
+  inset: auto auto -8% -6%;
+  width: 55%;
+  height: 55%;
+  background-image:
+    radial-gradient(circle 2px at 22% 75%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 1.4px at 60% 40%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 2.6px at 85% 90%, hsl(var(--ink)) 100%, transparent 100%),
+    radial-gradient(circle 1.2px at 38% 22%, hsl(var(--ink)) 100%, transparent 100%);
+}
+
+/* ---------- Rules / dividers ---------- */
+.divider-rule {
+  height: 1px;
+  background: hsl(var(--ink) / 0.15);
+  width: 100%;
+}
+
+/* ---------- Flat input ---------- */
+.input-flat {
+  height: 56px;
+  padding: 0 1rem;
+  background: white;
+  color: hsl(var(--ink));
+  border: 1px solid transparent;
+  box-shadow: 0 8px 18px -10px hsl(var(--ink) / 0.18);
+  border-radius: 4px;
+  outline: none;
+  transition: all 200ms ease;
+  font-size: 0.95rem;
+}
+
+.input-flat::placeholder {
+  color: hsl(var(--slatey));
+}
+
+.input-flat:focus {
+  border-color: hsl(var(--accent));
+}
+
+/* ---------- Marquee edge fade ---------- */
+.mask-fade-x {
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+}
+
+/* ---------- Motion / shadows ---------- */
+.transition-smooth {
+  transition: all 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shadow-soft {
+  box-shadow:
+    0 1px 2px hsl(var(--ink) / 0.04),
+    0 8px 24px -8px hsl(var(--ink) / 0.1);
+}
+
+.shadow-elevated {
+  box-shadow:
+    0 4px 8px hsl(var(--ink) / 0.06),
+    0 30px 60px -16px hsl(var(--ink) / 0.18);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--mist));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--accent));
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--ink));
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
