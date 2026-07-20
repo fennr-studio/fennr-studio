@@ -3,7 +3,6 @@
 import { Menu, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
 
 const NAV = [
   { id: "approach", label: "Approach" },
@@ -38,8 +37,13 @@ export default function Header() {
     >
       <div className="container-px max-w-[1400px] mx-auto">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" aria-label="fennr — home" className="flex items-center">
-            <Logo size={30} />
+          <Link href="/" className="flex items-baseline gap-0.5">
+            <span className="display-tight text-lg md:text-xl text-ink leading-none tracking-[0.04em]">
+              FENNR STUDIO
+            </span>
+            <span className="numeral text-accent text-2xl leading-none -mb-1">
+              .*
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
