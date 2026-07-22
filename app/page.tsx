@@ -4,7 +4,7 @@ import IntroMarquee from "@/components/IntroMarquee";
 import ChoosingCard from "@/components/ChoosingCard";
 import Approach from "@/components/Approach";
 import Services from "@/components/Services";
-import FilmBlock from "@/components/FilmBlock";
+// import FilmBlock from "@/components/FilmBlock"; // temporarily hidden
 import Catalogue from "@/components/Catalogue";
 import Results from "@/components/Results";
 import Testimonials from "@/components/Testimonials";
@@ -21,7 +21,7 @@ export default function Home() {
       <ChoosingCard />
       <Approach />
       <Services />
-      <FilmBlock />
+      {/* <FilmBlock /> */}
       <Catalogue />
       <Results />
       <Testimonials />

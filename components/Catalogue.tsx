@@ -4,51 +4,65 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
-const PAGES = [
+type Card = {
+  tag: string;
+  category: string;
+  name: string;
+  desc: string;
+  image: string;
+};
+
+const PAGES: Card[][] = [
   [
     {
-      eyebrow: "For founders",
-      name: "Strategy on a Page",
       tag: "A4-1",
+      category: "Build",
+      name: "Web Development & Integration",
+      desc: "Website · WhatsApp · API · Payments",
       image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&h=800&q=80",
     },
     {
-      eyebrow: "For boards",
-      name: "Operating Cadence",
       tag: "A4-2",
+      category: "Branding",
+      name: "Logo & Identity Design",
+      desc: "Logo systems · brand boards",
       image:
-        "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1516131206008-dd041a9764fd?auto=format&fit=crop&w=600&h=800&q=80",
     },
     {
-      eyebrow: "For builders",
-      name: "Growth Playbook",
       tag: "A4-3",
+      category: "Growth",
+      name: "SEO & Visibility",
+      desc: "Search · analytics · rankings",
       image:
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=800&q=80",
     },
   ],
   [
     {
-      eyebrow: "For revenue",
-      name: "Pricing Reset",
       tag: "A4-4",
+      category: "Content",
+      name: "Professional Photography",
+      desc: "Product · food · spaces",
       image:
-        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=600&h=800&q=80",
     },
     {
-      eyebrow: "For product",
-      name: "Roadmap Surgery",
       tag: "A4-5",
+      category: "Creative",
+      name: "Graphic Design",
+      desc: "Social · print · campaigns",
       image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?auto=format&fit=crop&w=600&h=800&q=80",
     },
     {
-      eyebrow: "For ops",
-      name: "Org Re-shape",
       tag: "A4-6",
+      category: "Strategy",
+      name: "Brand Strategy & Ideation",
+      desc: "Positioning · naming · moodboards",
       image:
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&h=800&q=80",
+        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&h=800&q=80",
     },
   ],
 ];
@@ -64,14 +78,14 @@ export default function Catalogue() {
           <div className="lg:col-span-4 lg:sticky lg:top-28">
             <p className="eyebrow text-accent mb-4">The catalogue</p>
             <h2 className="display text-5xl md:text-6xl lg:text-[6vw] xl:text-[5.6rem] text-ink leading-[0.95]">
-              <span className="block">Our care</span>
-              <span className="block heading-italic text-accent not-italic">crystal</span>
-              <span className="block">advisory</span>
+              <span className="block">Everything</span>
+              <span className="block heading-italic text-accent">your brand</span>
+              <span className="block">needs.</span>
             </h2>
 
             <p className="mt-6 max-w-sm text-ink/75 leading-relaxed">
-              Six formulas, hand-mixed for the moment you&rsquo;re in.
-              Diagnostic call before any prescription.
+              Six core services, one studio — from your first website to a full
+              growth engine. A diagnostic call before any prescription.
             </p>
 
             <div className="mt-8 flex items-center gap-3">
@@ -113,7 +127,7 @@ export default function Catalogue() {
                     className="group relative bg-paper p-6 md:p-7 flex flex-col gap-5 hover:bg-mist transition-smooth"
                   >
                     <div className="flex items-start justify-between">
-                      <p className="eyebrow text-slatey">{item.eyebrow}</p>
+                      <p className="eyebrow text-accent">{item.category}</p>
                       <span className="numeral italic text-ink/55 text-base">
                         {item.tag}
                       </span>
@@ -134,9 +148,12 @@ export default function Catalogue() {
                     </div>
 
                     <div className="flex items-end justify-between gap-4">
-                      <h3 className="heading-italic text-xl text-ink leading-snug">
-                        {item.name}
-                      </h3>
+                      <div>
+                        <h3 className="heading-md text-lg text-ink leading-snug">
+                          {item.name}
+                        </h3>
+                        <p className="mt-1 text-xs text-slatey">{item.desc}</p>
+                      </div>
                       <button
                         onClick={() => {
                           const el = document.getElementById("contact");

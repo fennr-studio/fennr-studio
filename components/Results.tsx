@@ -5,29 +5,22 @@ import AnimatedCounter from "./AnimatedCounter";
 
 const STATS = [
   {
-    value: 12,
+    value: 5,
     suffix: "+",
-    label: "years",
-    note: "of senior practice — led by the founders, every engagement.",
+    label: "Years Experience",
+    note: "In the web development and design industry.",
   },
   {
-    value: 184,
-    suffix: "",
-    label: "engagements",
-    note: "delivered, from two-person founding teams to mid-market boards.",
+    value: 200,
+    suffix: "+",
+    label: "Projects Done",
+    note: "Delivered for clients around the world.",
   },
   {
-    value: 38,
+    value: 150,
     suffix: "%",
-    label: "avg. CAC drop",
-    note: "across twelve months of growth-track engagements.",
-  },
-  {
-    value: 4.9,
-    suffix: "/5",
-    decimals: 1,
-    label: "satisfaction",
-    note: "93% of clients renew within twelve months.",
+    label: "Satisfied Clients",
+    note: "With a great experience and real results.",
   },
 ];
 
@@ -43,19 +36,19 @@ export default function Results() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
         >
           <div>
-            <p className="eyebrow text-accent">Results · 2025</p>
+            <p className="eyebrow text-accent">By the numbers</p>
             <h2 className="mt-4 display text-5xl md:text-6xl lg:text-[5.4rem] text-ink leading-[0.95]">
               <span className="block">Quiet work.</span>
               <span className="block heading-italic text-accent">Loud outcomes.</span>
             </h2>
           </div>
           <p className="md:max-w-sm text-ink/75 leading-relaxed">
-            A snapshot from the last twelve months — measured the way you
-            would, not the way a deck would.
+            Five years of building brands and websites, in a few honest numbers
+            — measured the way you would, not the way a deck would.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline rounded-3xl overflow-hidden ring-1 ring-hairline shadow-soft">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-hairline rounded-3xl overflow-hidden ring-1 ring-hairline shadow-soft">
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}
@@ -71,13 +64,9 @@ export default function Results() {
 
               <div className="inline-flex items-stretch shadow-soft mb-6">
                 <span className="flex-none inline-flex items-center justify-center bg-ink text-accent display-tight w-20 h-20 text-3xl rounded-l-md">
-                  <AnimatedCounter
-                    value={s.value}
-                    suffix={s.suffix}
-                    decimals={s.decimals || 0}
-                  />
+                  <AnimatedCounter value={s.value} suffix={s.suffix} />
                 </span>
-                <span className="inline-flex items-center bg-paper text-ink font-medium h-20 px-5 text-sm rounded-r-md ring-1 ring-hairline">
+                <span className="inline-flex items-center bg-paper text-ink font-medium h-20 px-5 text-sm leading-tight rounded-r-md ring-1 ring-hairline max-w-[8rem]">
                   {s.label}
                 </span>
               </div>

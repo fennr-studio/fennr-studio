@@ -1,54 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const SERVICES = [
+type Service = {
+  no: string;
+  name: string;
+  audience: string;
+  promise: string;
+  tags: string[];
+  outcome: { from: string; to: string };
+  image: string;
+};
+
+const SERVICES: Service[] = [
   {
     no: "1",
-    title: "Strategy on a Page",
-    eyebrow: "For founders",
-    body: "A sharp, durable plan you can hold in your head. Pressure-tested with your team, your board and your customers — until it earns its keep.",
+    name: "Build",
+    audience: "For new businesses",
+    promise: "Everything you need to start selling.",
+    tags: ["Website", "WhatsApp", "Payments", "Logo"],
+    outcome: { from: "Restaurant menu", to: "WhatsApp orders in 3 weeks" },
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop",
-    quote: {
-      copy: "Six weeks with fennr replaced eighteen months of debate.",
-      author: "Emma Fenn",
-      role: "Founder",
-      avatar: "https://i.pravatar.cc/120?img=48",
-    },
+      "https://images.unsplash.com/photo-1618788372246-79faff0c3742?auto=format&fit=crop&w=1000&q=80",
   },
   {
     no: "2",
-    title: "New Formula for Operators",
-    eyebrow: "For operating teams",
-    body: "Re-orgs, replatforms and pivots — guided by an embedded operator who has done it before. Calm, decisive, somehow fun.",
+    name: "Brand",
+    audience: "For growing brands",
+    promise: "Look like the brand you're becoming.",
+    tags: ["Photography", "Graphic design", "Brand strategy"],
+    outcome: { from: "Home-grown label", to: "a shelf-ready identity" },
     image:
-      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000&auto=format&fit=crop",
-    quote: {
-      copy: "They turned our re-org into the smoothest quarter we’ve had.",
-      author: "Emma Fenn",
-      role: "Founder",
-      avatar: "https://i.pravatar.cc/120?img=48",
-    },
+      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1000&q=80",
   },
   {
     no: "3",
-    title: "Adding Shine to Growth",
-    eyebrow: "For revenue leaders",
-    body: "A weekly cadence that finds the leaks, doubles the wins, and keeps the team energised. We optimise the system, not the spreadsheet.",
+    name: "Grow",
+    audience: "For established businesses",
+    promise: "Turn the website into a revenue channel.",
+    tags: ["SEO", "Integrations", "Automation", "Retainers"],
+    outcome: { from: "A brochure site", to: "a measurable revenue channel" },
     image:
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=1000&auto=format&fit=crop",
-    quote: {
-      copy: "Lowered our CAC by 38% in a single quarter without burning the brand.",
-      author: "Emma Fenn",
-      role: "Founder",
-      avatar: "https://i.pravatar.cc/120?img=48",
-    },
+      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
-function ServiceCard({ data, index }: { data: (typeof SERVICES)[number]; index: number }) {
+function ServiceCard({ data, index }: { data: Service; index: number }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
@@ -70,7 +68,7 @@ function ServiceCard({ data, index }: { data: (typeof SERVICES)[number]; index: 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={data.image}
-            alt={data.title}
+            alt={data.name}
             className="w-full h-full object-cover bw-photo"
             loading="lazy"
           />
@@ -81,38 +79,33 @@ function ServiceCard({ data, index }: { data: (typeof SERVICES)[number]; index: 
       </div>
 
       <div className="px-2">
-        <p className="eyebrow text-accent">{data.eyebrow}</p>
-        <h3 className="mt-3 heading-md text-2xl md:text-[1.7rem] text-ink leading-snug">
-          {data.title}
+        <p className="eyebrow text-accent">{data.audience}</p>
+        <h3 className="mt-3 display text-3xl md:text-[2.1rem] text-ink leading-none">
+          {data.name}
         </h3>
-        <p className="mt-3 text-ink/75 leading-relaxed">{data.body}</p>
+        <p className="mt-3 heading-italic text-lg text-ink/90 leading-snug max-w-xs">
+          {data.promise}
+        </p>
 
-        <figure className="mt-6 flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={data.quote.avatar}
-            alt={data.quote.author}
-            className="w-10 h-10 rounded-full object-cover ring-2 ring-mist bw-photo"
-          />
-          <figcaption className="leading-tight">
-            <p className="display-tight text-sm text-ink">{data.quote.author}</p>
-            <p className="text-xs text-slatey">{data.quote.role}</p>
-          </figcaption>
-          <button
-            onClick={() => {
-              const el = document.getElementById("contact");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="ml-auto w-9 h-9 inline-flex items-center justify-center rounded-full bg-ink text-accent hover:bg-accent hover:text-ink transition-smooth"
-            aria-label={`Open ${data.title}`}
-          >
-            <ArrowUpRight className="w-4 h-4" strokeWidth={1.6} />
-          </button>
-        </figure>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {data.tags.map((t) => (
+            <span
+              key={t}
+              className="inline-flex items-center rounded-full ring-1 ring-hairline bg-paper px-3 py-1 display-tight text-[11px] tracking-[0.05em] text-ink/70"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
 
-        <blockquote className="mt-5 heading-italic text-base text-ink/90 leading-snug max-w-xs">
-          &ldquo;{data.quote.copy}&rdquo;
-        </blockquote>
+        <div className="mt-6 border-t border-ink/10 pt-5">
+          <p className="eyebrow text-slatey mb-2.5">In practice</p>
+          <p className="flex items-center gap-2.5 flex-wrap heading-italic text-base text-ink leading-snug">
+            <span>{data.outcome.from}</span>
+            <ArrowRight className="w-4 h-4 text-accent flex-none" strokeWidth={1.8} />
+            <span>{data.outcome.to}</span>
+          </p>
+        </div>
       </div>
     </motion.article>
   );
@@ -131,8 +124,9 @@ export default function Services() {
             </h2>
           </div>
           <p className="md:max-w-sm text-ink/75 leading-relaxed">
-            Three formulas for ambitious operators. Choose one, choose all, or
-            let us prescribe after the first call.
+            Three ways to work with us, matched to where your business is right
+            now. Choose one, choose all, or let us prescribe after the first
+            call.
           </p>
         </div>
 

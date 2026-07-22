@@ -4,42 +4,80 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
-const PILLARS = [
+type Tier = {
+  key: string;
+  no: string;
+  label: string;
+  name: string;
+  tagline: string;
+  carry: string | null;
+  items: string[];
+  swatch: string;
+  image: string;
+};
+
+const TIERS: Tier[] = [
   {
-    key: "clarity",
-    label: "Clarity Sprint",
-    eyebrow: "Care Crystal Sprint",
-    body: "A weekly cadence with the partners. We strip out the noise — slack pings, status decks, theatre — and leave you with a single, sharp story your team can run.",
-    cta: "Read more",
+    key: "launch",
+    no: "№1",
+    label: "Launch",
+    name: "Launch",
+    tagline: "Get online, look sharp, and start taking orders.",
+    carry: null,
+    items: [
+      "5-page website",
+      "Logo & core identity",
+      "Basic on-page SEO",
+      "WhatsApp click-to-chat",
+      "Payment link setup",
+    ],
     swatch: "bg-accent",
     image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=240&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=240&auto=format&fit=crop",
   },
   {
-    key: "momentum",
-    label: "Momentum Sprint",
-    eyebrow: "Embedded Operator Sprint",
-    body: "An embedded operator inside your weekly rituals — standups, leadership reviews, board prep — turning intent into shipped work. Calm head, clear plan.",
-    cta: "Read more",
+    key: "grow",
+    no: "№2",
+    label: "Grow",
+    name: "Grow",
+    tagline: "Build the brand and get found across your city.",
+    carry: "Everything in Launch, plus",
+    items: [
+      "Full brand kit",
+      "Product & office photoshoot",
+      "Social media design templates",
+      "Google Business Profile + local SEO",
+    ],
     swatch: "bg-[#5C84B0]",
     image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=240&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=240&auto=format&fit=crop",
   },
   {
-    key: "compound",
-    label: "Compound Sprint",
-    eyebrow: "Compound Playbook Sprint",
-    body: "You walk away with a documented playbook your team can run without us. Optional quarterly check-ins keep momentum honest, never co-dependent.",
-    cta: "Read more",
+    key: "scale",
+    no: "№3",
+    label: "Scale",
+    name: "Scale",
+    tagline: "Automate operations and compound the growth.",
+    carry: "Everything in Grow, plus",
+    items: [
+      "Custom web app & API integrations",
+      "WhatsApp Business API automation — catalog, orders, notifications",
+      "Monthly SEO + content retainer",
+    ],
     swatch: "bg-[#D7A1A1]",
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=240&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=240&auto=format&fit=crop",
   },
 ];
 
 export default function ChoosingCard() {
   const [active, setActive] = useState(0);
-  const item = PILLARS[active];
+  const item = TIERS[active];
+
+  const goToContact = () => {
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="about" className="relative bg-mist pt-12 md:pt-16 pb-24 md:pb-32">
@@ -65,13 +103,13 @@ export default function ChoosingCard() {
               </h2>
 
               <p className="mt-6 max-w-2xl text-ink/75 leading-relaxed">
-                Slow down, take a moment, and look at your business with new
-                eyes. We work with a small number of teams each year so we can
-                be in the room — not just on the call.
+                Three productized packages, built to meet you where you are —
+                from your first website to a fully automated, always-on brand.
+                Pick a tier, or let us prescribe one after the first call.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                {PILLARS.map((p, i) => (
+                {TIERS.map((p, i) => (
                   <button
                     key={p.key}
                     onClick={() => setActive(i)}
@@ -109,19 +147,75 @@ export default function ChoosingCard() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="rounded-2xl bg-mist ring-1 ring-hairline p-6 md:p-7"
                 >
-                  <h3 className="display-tight text-base text-ink mb-3 tracking-[0.06em]">
-                    {item.eyebrow}
-                  </h3>
-                  <p className="text-ink/75 leading-relaxed text-base max-w-md">
-                    {item.body}
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="display-tight text-xl text-ink tracking-[0.04em]">
+                      {item.name}
+                    </h3>
+                    <span className="numeral text-accent text-2xl leading-none">
+                      {item.no}
+                    </span>
+                  </div>
+
+                  <p className="mt-2 text-ink/75 leading-relaxed text-sm">
+                    {item.tagline}
                   </p>
-                  <button className="mt-6 inline-flex items-center gap-1.5 underline-accent display-tight text-sm tracking-[0.05em]">
-                    {item.cta}
+
+                  {item.carry && (
+                    <p className="mt-5 display-tight text-xs tracking-[0.05em] text-ink">
+                      {item.carry}
+                    </p>
+                  )}
+
+                  <ul className={`space-y-2.5 text-sm text-ink/85 ${item.carry ? "mt-3" : "mt-5"}`}>
+                    {item.items.map((d) => (
+                      <li key={d} className="flex items-start gap-2.5">
+                        <span className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-accent flex-none" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={goToContact}
+                    className="mt-7 inline-flex items-center gap-1.5 underline-accent display-tight text-sm tracking-[0.05em]"
+                  >
+                    Fixed scope · pricing on request
                     <ArrowUpRight className="w-4 h-4" strokeWidth={1.6} />
                   </button>
                 </motion.div>
               </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="mt-10 md:mt-12 rounded-2xl bg-accent/25 px-6 py-6 md:px-8 md:py-7 ring-1 ring-accent/50">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="display-tight text-lg md:text-xl text-ink tracking-[0.04em]">
+                Strategy &amp; Planning
+              </span>
+              <span className="inline-flex items-center rounded-full bg-ink text-accent display-tight text-[11px] tracking-[0.2em] px-3 py-1">
+                FREE
+              </span>
+            </div>
+            <p className="mt-3 max-w-3xl text-ink/80 leading-relaxed">
+              We start by understanding your vision and business goals. Through
+              in-depth research and strategic planning, we define the core
+              structure and key elements needed for your project —{" "}
+              <span className="font-semibold text-ink">completely free of cost.</span>
+            </p>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-ink/10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+              <p className="lg:col-span-3 eyebrow text-accent">How an engagement runs</p>
+              <p className="lg:col-span-9 max-w-2xl text-ink/75 leading-relaxed">
+                Every engagement opens with that free Strategy &amp; Planning
+                phase — no deck, no obligation. From there we agree on the tier
+                that fits, lock a fixed scope, and ship in focused weekly
+                sprints. You always know what&rsquo;s next, and everything we
+                build is yours to keep.
+              </p>
             </div>
           </div>
         </motion.div>

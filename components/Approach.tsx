@@ -5,42 +5,68 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import RotatingBadge from "./RotatingBadge";
 
-const STAGES = [
+type Deliverable = { text: string; free?: boolean };
+
+type Stage = {
+  no: string;
+  word: string;
+  label: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  deliverables: Deliverable[];
+  cta: string;
+  image: string;
+};
+
+const STAGES: Stage[] = [
   {
     no: "1",
     word: "Strategy",
-    label: "Strategy on a page",
-    eyebrow: "Diagnose · Design",
-    title: "A sharp plan you can hold in your head",
-    body: "Two weeks of deep listening, data review and stakeholder interviews. We surface the real constraint — not the loudest one — and shape a focused plan with three to five bets.",
-    deliverables: ["Strategy on a page", "Bet portfolio & sequencing", "Operating cadence"],
+    label: "Discover & Strategy",
+    eyebrow: "Step 01 · Discover",
+    title: "A sharp plan you can act on this week",
+    body: "We open with a free discovery call, then audit your brand and market to find the real constraint — not the loudest one. You walk away with a clear scope on a page.",
+    deliverables: [
+      { text: "Discovery call", free: true },
+      { text: "Brand & market audit" },
+      { text: "Scope on a page" },
+    ],
+    cta: "Start with a free discovery call",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    avatar: "https://i.pravatar.cc/120?img=48",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
   },
   {
     no: "2",
-    word: "Operating",
-    label: "Operating cadence",
-    eyebrow: "Deploy",
-    title: "A weekly rhythm leadership actually trusts",
-    body: "We embed in your weekly rituals — leadership reviews, board prep, stakeholder comms — turning intent into shipped outcomes. Cool head, warm room.",
-    deliverables: ["Embedded operator", "Weekly leadership review", "Stakeholder comms"],
+    word: "Design",
+    label: "Design & Build",
+    eyebrow: "Step 02 · Build",
+    title: "Identity and product, built to ship",
+    body: "We design the identity, UI and content, run the photography, and build your site with the integrations your business actually needs — nothing bolted on for show.",
+    deliverables: [
+      { text: "Brand identity & UI" },
+      { text: "Content & photography" },
+      { text: "Development & integrations" },
+    ],
+    cta: "See how we design & build",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
-    avatar: "https://i.pravatar.cc/120?img=48",
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop",
   },
   {
     no: "3",
     word: "Growth",
-    label: "Growth playbook",
-    eyebrow: "Compound",
-    title: "A growth model that compounds, quietly",
-    body: "We optimise the system, not the spreadsheet. The engagement ends with a documented playbook your team can run without us — or with us, quarterly.",
-    deliverables: ["Growth model", "Channel & pricing review", "Playbook handover"],
+    label: "Launch & Growth",
+    eyebrow: "Step 03 · Grow",
+    title: "A launch that keeps compounding",
+    body: "Once everything is tested and refined, we launch your project with precision. Post-launch, we provide ongoing support, updates, and strategies to help you scale and maximize results.",
+    deliverables: [
+      { text: "Tested, precision launch" },
+      { text: "Ongoing support & updates" },
+      { text: "Growth strategy to scale" },
+    ],
+    cta: "Plan your launch & growth",
     image:
-      "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=800&auto=format&fit=crop",
-    avatar: "https://i.pravatar.cc/120?img=48",
+      "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -93,7 +119,7 @@ export default function Approach() {
           <div>
             <p className="eyebrow text-accent">The approach</p>
             <p className="mt-1.5 display-tight text-sm md:text-base text-ink/65 tracking-[0.04em]">
-              Three states · Scroll to morph
+              Three steps · Scroll to morph
             </p>
           </div>
 
@@ -243,23 +269,26 @@ export default function Approach() {
 
                 <ul className="space-y-2 text-sm text-ink/85">
                   {data.deliverables.map((d) => (
-                    <li key={d} className="flex items-start gap-2.5">
+                    <li key={d.text} className="flex items-start gap-2.5">
                       <span className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-accent flex-none" />
-                      <span>{d}</span>
+                      <span className="flex items-center gap-2">
+                        {d.text}
+                        {d.free && (
+                          <span className="inline-flex items-center rounded-full bg-ink text-accent display-tight text-[9px] leading-none tracking-[0.18em] px-2 py-1">
+                            FREE
+                          </span>
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
                 <div className="flex items-center gap-3 pt-1">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={data.avatar}
-                    alt=""
-                    className="w-9 h-9 rounded-full object-cover ring-2 ring-mist bw-photo"
-                  />
                   <div className="leading-tight">
-                    <p className="display-tight text-sm text-ink">Emma Fenn</p>
-                    <p className="text-xs text-slatey">Founder &amp; Partner</p>
+                    <p className="display-tight text-sm text-ink tracking-[0.05em]">
+                      Step {data.no} of {STAGES.length}
+                    </p>
+                    <p className="text-xs text-slatey">{data.cta}</p>
                   </div>
                   <button
                     onClick={() => {
@@ -267,7 +296,7 @@ export default function Approach() {
                       if (el) el.scrollIntoView({ behavior: "smooth" });
                     }}
                     className="ml-auto w-9 h-9 inline-flex items-center justify-center rounded-full bg-ink text-accent hover:bg-accent hover:text-ink transition-smooth"
-                    aria-label="Book a working call"
+                    aria-label={data.cta}
                   >
                     <ArrowUpRight className="w-4 h-4" strokeWidth={1.6} />
                   </button>

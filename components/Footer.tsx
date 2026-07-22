@@ -101,7 +101,7 @@ export default function Footer() {
                   UK: +44 20 3100 0000
                 </a>
               </li>
-              <li className="text-ink/85">London, UK · Studio 04</li>
+              <li className="text-ink/85">Pune, India · Studio 04</li>
             </ul>
           </div>
         </div>

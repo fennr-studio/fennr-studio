@@ -140,7 +140,7 @@ export default function Hero() {
 
               <div className="px-2 pt-3 pb-1 flex items-center justify-between">
                 <span className="eyebrow text-ink/70">№ Studio 04</span>
-                <span className="numeral italic text-ink/70 text-base">London · est. 2014</span>
+                <span className="numeral italic text-ink/70 text-base">India · est. 2026</span>
               </div>
             </motion.div>
 

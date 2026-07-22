@@ -82,9 +82,9 @@ export default function Subscribe() {
                   <span className="numeral italic text-accent text-base">*</span>
                 </div>
                 <p className="leading-relaxed text-mist/80">
-                  18 Wells Street
+                  Shivaji Nagar
                   <br />
-                  London W1T 3PA · UK
+                  Pune 411007 · India
                 </p>
                 <a
                   href="mailto:hello@fennr.studio"
