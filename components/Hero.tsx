@@ -56,7 +56,7 @@ export default function Hero() {
                 </sup>
               </span>
               <span className="block">Shipped</span>
-              <span className="block">Weekly.</span>
+              <span className="block">Everyday.</span>
             </motion.h1>
 
             <motion.div

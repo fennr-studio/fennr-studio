@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import Catalogue from "@/components/Catalogue";
 import Results from "@/components/Results";
 import Testimonials from "@/components/Testimonials";
+import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Subscribe from "@/components/Subscribe";
 import Footer from "@/components/Footer";
@@ -25,6 +26,7 @@ export default function Home() {
       <Catalogue />
       <Results />
       <Testimonials />
+      <About />
       <Faq />
       <Subscribe />
       <Footer />

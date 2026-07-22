@@ -94,14 +94,15 @@ export default function Header() {
                 </button>
               ))}
               <div className="px-2 pt-2">
-                <button
-                  onClick={() =>
-                    scrollToSection("contact", () => setIsMobileMenuOpen(false))
-                  }
+                <a
+                  href="https://calendly.com/fennrstudio/15min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="btn-accent w-full"
                 >
                   Book a working call
-                </button>
+                </a>
               </div>
             </div>
           </nav>

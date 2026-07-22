@@ -68,7 +68,9 @@ export default function Subscribe() {
                   leave with at least one move you can make this week.
                 </p>
                 <a
-                  href="mailto:hello@fennr.studio?subject=Working%20call"
+                  href="https://calendly.com/fennrstudio/15min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 inline-flex btn-ink"
                 >
                   Book a working call

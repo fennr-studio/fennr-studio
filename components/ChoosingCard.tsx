@@ -80,7 +80,7 @@ export default function ChoosingCard() {
   };
 
   return (
-    <section id="about" className="relative bg-mist pt-12 md:pt-16 pb-24 md:pb-32">
+    <section id="packages" className="relative bg-mist pt-12 md:pt-16 pb-24 md:pb-32">
       <div className="container-px max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
