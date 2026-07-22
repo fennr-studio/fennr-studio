@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check, MapPin } from "lucide-react";
+import { ArrowUpRight, Check, Loader2, MapPin } from "lucide-react";
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "919765190702";
@@ -66,30 +66,34 @@ export default function ContactMain() {
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [picked, setPicked] = useState<string[]>([]);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const toggle = (s: string) =>
     setPicked((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `New enquiry${name ? ` from ${name}` : ""}`,
-    );
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        company ? `Company / website: ${company}` : null,
-        picked.length ? `Interested in: ${picked.join(", ")}` : null,
-        "",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
-    window.location.href = `mailto:hello@fennr.studio?subject=${subject}&body=${body}`;
-    setSent(true);
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, interests: picked, message }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Something went wrong.");
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setCompany("");
+      setMessage("");
+      setPicked([]);
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+    }
   };
 
   return (
@@ -261,15 +265,34 @@ export default function ContactMain() {
                 <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-4">
                   <button
                     type="submit"
-                    className="btn-accent h-[56px] px-8 text-base flex-none"
+                    disabled={status === "loading"}
+                    className="btn-accent h-[56px] px-8 text-base flex-none disabled:opacity-60"
                   >
-                    <span className="font-medium italic">Send brief</span>
-                    <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span className="font-medium italic">Sending</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="font-medium italic">Send brief</span>
+                        <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
+                      </>
+                    )}
                   </button>
-                  {sent ? (
+
+                  {status === "sent" ? (
                     <span className="inline-flex items-center gap-2 text-sm text-ink">
                       <Check className="w-4 h-4 text-accent" strokeWidth={2.4} />
-                      Opening your email app. Prefer WhatsApp? Message us anytime.
+                      Thanks — your message is on its way. We&rsquo;ll reply within a day.
+                    </span>
+                  ) : status === "error" ? (
+                    <span className="text-sm text-ink/80">
+                      {errorMsg} Email{" "}
+                      <a href="mailto:hello@fennr.studio" className="underline-accent">
+                        hello@fennr.studio
+                      </a>{" "}
+                      or WhatsApp us above.
                     </span>
                   ) : (
                     <span className="text-xs text-slatey">
