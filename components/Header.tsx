@@ -39,10 +39,10 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" className="flex items-baseline gap-0.5">
             <span className="display-tight text-lg md:text-xl text-ink leading-none tracking-[0.04em]">
-              FENNR STUDIO
+              FENNR<span className="text-accent">.</span>STUDIO
             </span>
             <span className="numeral text-accent text-2xl leading-none -mb-1">
-              .*
+              *
             </span>
           </Link>
 

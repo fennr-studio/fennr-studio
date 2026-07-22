@@ -24,10 +24,10 @@ export default function Footer() {
           <div className="md:col-span-5">
             <div className="flex items-baseline gap-0.5 mb-6">
               <span className="display-tight text-2xl text-ink tracking-[0.04em]">
-                FENNR STUDIO
+                FENNR<span className="text-accent">.</span>STUDIO
               </span>
               <span className="numeral text-accent text-3xl leading-none -mb-1.5">
-                .*
+                *
               </span>
             </div>
 
