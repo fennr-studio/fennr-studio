@@ -50,13 +50,13 @@ export default function Hero() {
               className="display text-[14vw] md:text-[10vw] lg:text-[8.4vw] xl:text-[8.6rem] text-ink"
             >
               <span className="block">
-                Brands{" "}
+                Ideas{" "}
                 <sup className="numeral text-accent text-[0.35em] font-medium align-super -ml-1">
                   100
                 </sup>
               </span>
-              <span className="block">Built</span>
-              <span className="block">Different.</span>
+              <span className="block">Shipped</span>
+              <span className="block">Weekly.</span>
             </motion.h1>
 
             <motion.div
