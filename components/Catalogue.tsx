@@ -78,7 +78,7 @@ export default function Catalogue() {
           <div className="lg:col-span-4 lg:sticky lg:top-28">
             <p className="eyebrow text-accent mb-4">The catalogue</p>
             <h2 className="display text-5xl md:text-6xl lg:text-[6vw] xl:text-[5.6rem] text-ink leading-[0.95]">
-              <span className="block">Everything</span>
+              <span className="block">All</span>
               <span className="block heading-italic text-accent">your brand</span>
               <span className="block">needs.</span>
             </h2>
