@@ -33,7 +33,7 @@ const TIERS: Tier[] = [
     ],
     swatch: "bg-accent",
     image:
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=240&auto=format&fit=crop",
+      "/img/1467232004-a2e6fa.jpg",
   },
   {
     key: "grow",
@@ -50,7 +50,7 @@ const TIERS: Tier[] = [
     ],
     swatch: "bg-[#5C84B0]",
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=240&auto=format&fit=crop",
+      "/img/1600880292-67ed94.jpg",
   },
   {
     key: "scale",
@@ -66,7 +66,7 @@ const TIERS: Tier[] = [
     ],
     swatch: "bg-[#D7A1A1]",
     image:
-      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=240&auto=format&fit=crop",
+      "/img/1517180102-d1b32e.jpg",
   },
 ];
 

@@ -22,7 +22,7 @@ const SERVICES: Service[] = [
     tags: ["Website", "WhatsApp", "Payments", "Logo"],
     outcome: { from: "Restaurant menu", to: "WhatsApp orders in 3 weeks" },
     image:
-      "https://images.unsplash.com/photo-1618788372246-79faff0c3742?auto=format&fit=crop&w=1000&q=80",
+      "/img/1618788372-c35ac7.jpg",
   },
   {
     no: "2",
@@ -32,7 +32,7 @@ const SERVICES: Service[] = [
     tags: ["Photography", "Graphic design", "Brand strategy"],
     outcome: { from: "Home-grown label", to: "a shelf-ready identity" },
     image:
-      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1000&q=80",
+      "/img/1542038784-ae6a7d.jpg",
   },
   {
     no: "3",
@@ -42,7 +42,7 @@ const SERVICES: Service[] = [
     tags: ["SEO", "Integrations", "Automation", "Retainers"],
     outcome: { from: "A brochure site", to: "a measurable revenue channel" },
     image:
-      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=1000&q=80",
+      "/img/1560179707-ec6c25.jpg",
   },
 ];
 

@@ -79,9 +79,9 @@ export default function Hero() {
             >
               <div className="flex -space-x-2">
                 {[
-                  "https://images.unsplash.com/photo-1592621385612-4d7129426394?w=80&h=80&fit=crop&crop=faces",
-                  "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=80&h=80&fit=crop&crop=faces",
-                  "https://images.unsplash.com/photo-1595152452543-e5fc28ebc2b8?w=80&h=80&fit=crop&crop=faces",
+                  "/img/1592621385-7232f3.jpg",
+                  "/img/1600180758-8128a6.jpg",
+                  "/img/1595152452-bd3929.jpg",
                 ].map((src, i) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -116,7 +116,7 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-md">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80"
+                  src="/img/1499750310-7e0941.jpg"
                   alt="The fennr studio workspace"
                   className="w-full h-[26rem] md:h-[32rem] object-cover bw-photo"
                   loading="eager"

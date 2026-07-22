@@ -11,9 +11,9 @@ const TESTIMONIALS = [
     author: "Maya Okafor",
     role: "CEO",
     company: "Northwind",
-    avatar: "https://i.pravatar.cc/160?img=32",
+    avatar: "/img/img-645d14.jpg",
     image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=900&auto=format&fit=crop",
+      "/img/1522071820-3c18b9.jpg",
   },
   {
     quote:
@@ -21,9 +21,9 @@ const TESTIMONIALS = [
     author: "Daniel Reyes",
     role: "COO",
     company: "Meridian",
-    avatar: "https://i.pravatar.cc/160?img=12",
+    avatar: "/img/img-7c18db.jpg",
     image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900&auto=format&fit=crop",
+      "/img/1497366216-576951.jpg",
   },
   {
     quote:
@@ -31,9 +31,9 @@ const TESTIMONIALS = [
     author: "Aisha Patel",
     role: "Founder",
     company: "Solène",
-    avatar: "https://i.pravatar.cc/160?img=45",
+    avatar: "/img/img-02a043.jpg",
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop",
+      "/img/1497366754-011230.jpg",
   },
 ];
 

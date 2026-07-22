@@ -25,7 +25,7 @@ export default function FilmBlock() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=2000&q=80"
+            src="/img/1505142468-cc9b44.jpg"
             alt="fennr studio film still"
             className="w-full h-[24rem] md:h-[32rem] object-cover bw-photo opacity-80"
             loading="lazy"

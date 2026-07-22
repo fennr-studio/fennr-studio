@@ -20,7 +20,7 @@ const PAGES: Card[][] = [
       name: "Web Development & Integration",
       desc: "Website · WhatsApp · API · Payments",
       image:
-        "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1547658719-5606a6.jpg",
     },
     {
       tag: "A4-2",
@@ -28,7 +28,7 @@ const PAGES: Card[][] = [
       name: "Logo & Identity Design",
       desc: "Logo systems · brand boards",
       image:
-        "https://images.unsplash.com/photo-1516131206008-dd041a9764fd?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1516131206-318aac.jpg",
     },
     {
       tag: "A4-3",
@@ -36,7 +36,7 @@ const PAGES: Card[][] = [
       name: "SEO & Visibility",
       desc: "Search · analytics · rankings",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1551288049-54e812.jpg",
     },
   ],
   [
@@ -46,7 +46,7 @@ const PAGES: Card[][] = [
       name: "Professional Photography",
       desc: "Product · food · spaces",
       image:
-        "https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1560343090-5559bc.jpg",
     },
     {
       tag: "A4-5",
@@ -54,7 +54,7 @@ const PAGES: Card[][] = [
       name: "Graphic Design",
       desc: "Social · print · campaigns",
       image:
-        "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1609921212-c99db0.jpg",
     },
     {
       tag: "A4-6",
@@ -62,7 +62,7 @@ const PAGES: Card[][] = [
       name: "Brand Strategy & Ideation",
       desc: "Positioning · naming · moodboards",
       image:
-        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&h=800&q=80",
+        "/img/1531403009-7c8d1e.jpg",
     },
   ],
 ];

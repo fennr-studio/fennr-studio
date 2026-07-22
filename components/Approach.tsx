@@ -34,7 +34,7 @@ const STAGES: Stage[] = [
     ],
     cta: "Start with a free discovery call",
     image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+      "/img/1454165804-87abe2.jpg",
   },
   {
     no: "2",
@@ -50,7 +50,7 @@ const STAGES: Stage[] = [
     ],
     cta: "See how we design & build",
     image:
-      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop",
+      "/img/1581291518-0b6212.jpg",
   },
   {
     no: "3",
@@ -66,7 +66,7 @@ const STAGES: Stage[] = [
     ],
     cta: "Plan your launch & growth",
     image:
-      "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=800&auto=format&fit=crop",
+      "/img/1543286386-cf8eee.jpg",
   },
 ];
 
