@@ -1,14 +1,11 @@
 const CLIENTS = [
-  "NORTHWIND",
-  "ATELIÉR",
-  "OAKMONT",
-  "HALCYON",
-  "MERIDIAN",
-  "SOLÈNE",
-  "KINFOLK",
-  "BLACKBIRD",
-  "LUMIÈRE",
-  "STILLWATER",
+  "BRAND STRATEGY",
+  "VISUAL IDENTITY",
+  "WEBSITES",
+  "AI AUTOMATION",
+  "CUSTOM SOFTWARES",
+  "PHOTOGRAPHY",
+  "SEO",
 ];
 
 export default function IntroMarquee() {

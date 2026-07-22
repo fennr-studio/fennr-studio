@@ -50,13 +50,13 @@ export default function Hero() {
               className="display text-[14vw] md:text-[10vw] lg:text-[8.4vw] xl:text-[8.6rem] text-ink"
             >
               <span className="block">
-                Growth{" "}
+                Brands{" "}
                 <sup className="numeral text-accent text-[0.35em] font-medium align-super -ml-1">
                   100
                 </sup>
               </span>
-              <span className="block">Level</span>
-              <span className="block">Activated.</span>
+              <span className="block">Built</span>
+              <span className="block">Different.</span>
             </motion.h1>
 
             <motion.div
@@ -79,9 +79,9 @@ export default function Hero() {
             >
               <div className="flex -space-x-2">
                 {[
-                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=faces",
-                  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces",
-                  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&h=80&fit=crop&crop=faces",
+                  "https://images.unsplash.com/photo-1592621385612-4d7129426394?w=80&h=80&fit=crop&crop=faces",
+                  "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=80&h=80&fit=crop&crop=faces",
+                  "https://images.unsplash.com/photo-1595152452543-e5fc28ebc2b8?w=80&h=80&fit=crop&crop=faces",
                 ].map((src, i) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -94,9 +94,9 @@ export default function Hero() {
                 ))}
               </div>
               <p className="text-sm text-slatey leading-snug">
-                Trusted by <span className="text-ink font-medium">2,847</span> founders &amp; operators
+                Crafting <span className="text-ink font-medium">digital experiences</span> for brands across 
                 <br />
-                across <span className="text-ink">London · NY · Berlin</span>
+                across <span className="text-ink">India</span>
               </p>
             </motion.div>
           </div>
@@ -116,8 +116,8 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-md">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?auto=format&fit=crop&w=900&q=80"
-                  alt="Founder in the fennr studio"
+                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80"
+                  alt="The fennr studio workspace"
                   className="w-full h-[26rem] md:h-[32rem] object-cover bw-photo"
                   loading="eager"
                 />
@@ -168,10 +168,9 @@ export default function Hero() {
 
         <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
           <p className="md:col-span-7 max-w-xl text-base md:text-lg text-ink/80 leading-relaxed">
-            fennr<span className="text-accent">.*</span> is a premium digital
-            growth studio shaping{" "}
-            <span className="heading-italic">strategy, transformation</span> and{" "}
-            <span className="heading-italic">growth</span> for founders who
+            fennr<span className="text-accent">.*</span> is a design and technology studio building brands through{" "}
+            <span className="heading-italic">identity, digital experiences</span> and{" "}
+            <span className="heading-italic">thoughtful execution</span> for founders who
             refuse to coast.
           </p>
 
