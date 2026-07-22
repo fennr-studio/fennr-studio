@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,10 @@ function scrollToSection(sectionId: string, after?: () => void) {
   const element = document.getElementById(sectionId);
   if (element) {
     element.scrollIntoView({ behavior: "smooth" });
+    after?.();
+  } else {
+    // not on the home page — navigate home to the section
+    window.location.href = `/#${sectionId}`;
     after?.();
   }
 }
@@ -59,13 +63,13 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
-            <button
-              onClick={() => scrollToSection("contact")}
+            <Link
+              href="/contact"
               className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth flex items-center gap-1.5"
             >
-              <ShoppingBag className="w-4 h-4" strokeWidth={1.6} />
-              <span>Brief (0)</span>
-            </button>
+              <Mail className="w-4 h-4" strokeWidth={1.6} />
+              <span>Contact</span>
+            </Link>
           </div>
 
           <button

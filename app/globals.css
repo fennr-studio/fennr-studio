@@ -274,6 +274,30 @@ body {
   border-color: hsl(var(--accent));
 }
 
+/* ---------- Flat textarea (contact) ---------- */
+.textarea-flat {
+  min-height: 150px;
+  padding: 0.9rem 1rem;
+  background: white;
+  color: hsl(var(--ink));
+  border: 1px solid transparent;
+  box-shadow: 0 8px 18px -10px hsl(var(--ink) / 0.18);
+  border-radius: 4px;
+  outline: none;
+  transition: all 200ms ease;
+  font-size: 0.95rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.textarea-flat::placeholder {
+  color: hsl(var(--slatey));
+}
+
+.textarea-flat:focus {
+  border-color: hsl(var(--accent));
+}
+
 /* ---------- Marquee edge fade ---------- */
 .mask-fade-x {
   mask-image: linear-gradient(to right,
