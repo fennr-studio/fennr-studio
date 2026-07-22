@@ -33,7 +33,9 @@ export default function About() {
               />
               <div className="leading-tight">
                 <p className="display-tight text-xl">Gurnoor Singh</p>
-                <p className="text-sm text-mist/70">Founder, fennr</p>
+                <p className="text-sm text-mist/70">
+                  Founder, fennr<span className="text-accent">.*</span>
+                </p>
               </div>
             </div>
             <p className="mt-6 text-mist/80 leading-relaxed">
