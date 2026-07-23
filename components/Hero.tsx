@@ -131,6 +131,7 @@ export default function Hero() {
                   alt="The fennr studio workspace"
                   className="w-full h-[26rem] md:h-[32rem] object-cover bw-photo"
                   loading="eager"
+                  fetchPriority="high"
                 />
               </div>
 
