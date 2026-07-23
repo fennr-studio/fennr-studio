@@ -29,8 +29,8 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "fennr.* — Web, Brand & Growth Studio for Small Businesses",
-    template: "%s · fennr.*",
+    default: "Fennr Studio | Web & Brand Design for D2C Businesses",
+    template: "%s · Fennr Studio",
   },
   description: DESCRIPTION,
   keywords: [
