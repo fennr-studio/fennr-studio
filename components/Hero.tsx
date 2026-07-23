@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import EmailSignupForm from "./EmailSignupForm";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import RotatingBadge from "./RotatingBadge";
 
 const fadeUp = {
@@ -64,10 +65,20 @@ export default function Hero() {
               animate="show"
               variants={fadeUp}
               custom={2}
-              className="mt-9 max-w-md"
+              className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4"
             >
-              <p className="eyebrow text-ink mb-3">Get the catalogue</p>
-              <EmailSignupForm placeholder="Enter your e-mail" cta="Sign Up" />
+              <Link href="/brief" className="btn-accent h-[56px] px-8 text-base">
+                <span className="font-semibold not-italic">Start a project</span>
+                <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
+              </Link>
+              <a
+                href="https://calendly.com/fennrstudio/15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 underline-accent display-tight text-sm tracking-[0.05em]"
+              >
+                or book a free call
+              </a>
             </motion.div>
 
             <motion.div

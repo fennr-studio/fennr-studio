@@ -7,7 +7,8 @@ import Services from "@/components/Services";
 // import FilmBlock from "@/components/FilmBlock"; // temporarily hidden
 import Catalogue from "@/components/Catalogue";
 import Results from "@/components/Results";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials"; // parked — bring back when real client quotes exist
+import Work from "@/components/Work";
 import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Subscribe from "@/components/Subscribe";
@@ -25,7 +26,7 @@ export default function Home() {
       {/* <FilmBlock /> */}
       <Catalogue />
       <Results />
-      <Testimonials />
+      <Work />
       <About />
       <Faq />
       <Subscribe />
