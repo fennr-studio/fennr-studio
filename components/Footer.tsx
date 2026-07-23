@@ -1,15 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import EmailSignupForm from "./EmailSignupForm";
 
-const SITEMAP = [
+const SITEMAP: { label: string; id?: string; href?: string }[] = [
   { id: "services", label: "Services" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
   { id: "contact", label: "Brief" },
+  { href: "/brief", label: "Start a project" },
 ];
 
-const SOCIALS = ["LinkedIn", "Twitter", "Instagram", "Dribbble", "Behance"];
+const SOCIALS: { label: string; href: string }[] = [
+  { label: "LinkedIn", href: "#" },
+  { label: "Twitter", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/fennr.studio/" },
+];
 
 function scrollTo(id: string) {
   const el = document.getElementById(id);
@@ -32,7 +38,7 @@ export default function Footer() {
             </div>
 
             <h3 className="display-tight text-2xl text-ink mb-5">
-              Subscribe to field notes
+              Growth notes, monthly
             </h3>
 
             <EmailSignupForm
@@ -42,8 +48,8 @@ export default function Footer() {
             />
 
             <p className="mt-4 text-sm text-slatey max-w-sm leading-relaxed">
-              One letter a month. The plays we&rsquo;d run if we were running
-              your company.
+              Practical growth tips for small business owners. One email a
+              month, no spam.
             </p>
           </div>
 
@@ -52,16 +58,27 @@ export default function Footer() {
               WEBSITE MAP
             </h3>
             <ul className="grid grid-cols-2 gap-y-2.5 gap-x-6 text-ink/85">
-              {SITEMAP.map((s) => (
-                <li key={s.id}>
-                  <button
-                    onClick={() => scrollTo(s.id)}
-                    className="hover:text-accent transition-smooth"
-                  >
-                    {s.label}
-                  </button>
-                </li>
-              ))}
+              {SITEMAP.map((s) =>
+                s.href ? (
+                  <li key={s.label}>
+                    <Link
+                      href={s.href}
+                      className="hover:text-accent transition-smooth"
+                    >
+                      {s.label}
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={s.label}>
+                    <button
+                      onClick={() => scrollTo(s.id!)}
+                      className="hover:text-accent transition-smooth"
+                    >
+                      {s.label}
+                    </button>
+                  </li>
+                ),
+              )}
             </ul>
 
             <h3 className="display-tight text-base text-ink mt-9 mb-5 tracking-[0.04em]">
@@ -69,9 +86,15 @@ export default function Footer() {
             </h3>
             <ul className="grid grid-cols-2 gap-y-2.5 gap-x-6 text-ink/85">
               {SOCIALS.map((s) => (
-                <li key={s}>
-                  <a href="#" className="hover:text-accent transition-smooth">
-                    {s}
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    {...(s.href !== "#"
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="hover:text-accent transition-smooth"
+                  >
+                    {s.label}
                   </a>
                 </li>
               ))}
@@ -85,20 +108,28 @@ export default function Footer() {
             <ul className="grid grid-cols-1 gap-y-2.5 text-ink/85">
               <li>
                 <a
-                  href="mailto:hello@fennr.studio"
+                  href="mailto:fennr.studio@gmail.com"
                   className="hover:text-accent transition-smooth"
                 >
-                  hello@fennr.studio
+                  fennr.studio@gmail.com
                 </a>
               </li>
               <li>
-                <a href="https://fennr.studio" className="hover:text-accent transition-smooth">
-                  www.fennr.studio
+                <a
+                  href="https://www.fennr.studio.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-smooth"
+                >
+                  www.fennr.studio.com
                 </a>
               </li>
               <li>
-                <a href="tel:+442031000000" className="hover:text-accent transition-smooth">
-                  UK: +44 20 3100 0000
+                <a
+                  href="tel:+919765190702"
+                  className="hover:text-accent transition-smooth"
+                >
+                  IN: +91-9765190702
                 </a>
               </li>
               <li className="text-ink/85">Pune, India · Studio 04</li>
@@ -118,12 +149,15 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             {SOCIALS.map((s) => (
               <a
-                key={s}
-                href="#"
-                aria-label={s}
+                key={s.label}
+                href={s.href}
+                {...(s.href !== "#"
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                aria-label={s.label}
                 className="w-8 h-8 inline-flex items-center justify-center border border-hairline rounded-sm text-ink/70 hover:text-accent hover:border-accent transition-smooth text-[10px] tracking-[0.08em]"
               >
-                {s.slice(0, 2).toUpperCase()}
+                {s.label.slice(0, 2).toUpperCase()}
               </a>
             ))}
           </div>

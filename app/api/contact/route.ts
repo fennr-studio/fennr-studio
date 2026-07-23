@@ -1,21 +1,28 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "hello@fennr.studio";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "fennr.studio@gmail.com";
 // Must be an address on a domain you've verified in Resend.
 // For quick testing without a verified domain, use "fennr <onboarding@resend.dev>"
 // (that can only deliver to the email you signed up to Resend with).
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "fennr <onboarding@resend.dev>";
+const FROM_EMAIL =
+  process.env.CONTACT_FROM_EMAIL || "fennr <onboarding@resend.dev>";
 
 const escapeHtml = (s: string) =>
-  s.replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string,
+  s.replace(
+    /[&<>"']/g,
+    (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        c
+      ] as string,
   );
 
 export async function POST(req: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
-      { error: "Email is not configured yet. Add RESEND_API_KEY to .env.local." },
+      {
+        error: "Email is not configured yet. Add RESEND_API_KEY to .env.local.",
+      },
       { status: 500 },
     );
   }
@@ -47,7 +54,9 @@ export async function POST(req: Request) {
   // A valid submission needs a name, a good email, and either a message or picked services.
   if (!name || !emailOk || (!message && interests.length === 0)) {
     return NextResponse.json(
-      { error: "Please provide your name, a valid email, and a little detail." },
+      {
+        error: "Please provide your name, a valid email, and a little detail.",
+      },
       { status: 400 },
     );
   }
@@ -105,6 +114,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Contact route error:", err);
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong." },
+      { status: 500 },
+    );
   }
 }

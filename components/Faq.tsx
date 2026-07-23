@@ -43,7 +43,11 @@ function FAQItem({
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.5, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.04,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="border-b border-ink/15 last:border-b-0"
     >
       <button
@@ -113,8 +117,11 @@ export default function Faq() {
               — write to us. A partner reads every email.
             </p>
 
-            <a href="mailto:hello@fennr.studio" className="mt-8 inline-flex btn-ink">
-              hello@fennr.studio
+            <a
+              href="mailto:fennr.studio@gmail.com"
+              className="mt-8 inline-flex btn-ink"
+            >
+              fennr.studio@gmail.com
             </a>
           </div>
 

@@ -23,15 +23,37 @@ const WHATSAPP_URL =
 const CALENDLY_URL = "https://calendly.com/fennrstudio/15min";
 
 const SERVICES = [
-  { name: "Web Development", desc: "Site, WhatsApp, payments, API", Icon: Code2 },
-  { name: "Logo & Identity", desc: "Logo systems, brand boards", Icon: Palette },
-  { name: "SEO & Visibility", desc: "Search, analytics, rankings", Icon: TrendingUp },
+  {
+    name: "Web Development",
+    desc: "Site, WhatsApp, payments, API",
+    Icon: Code2,
+  },
+  {
+    name: "Logo & Identity",
+    desc: "Logo systems, brand boards",
+    Icon: Palette,
+  },
+  {
+    name: "SEO & Visibility",
+    desc: "Search, analytics, rankings",
+    Icon: TrendingUp,
+  },
   { name: "Photography", desc: "Product, food, spaces", Icon: Camera },
   { name: "Graphic Design", desc: "Social, print, campaigns", Icon: PenTool },
-  { name: "Brand Strategy", desc: "Positioning, naming, moodboards", Icon: Compass },
+  {
+    name: "Brand Strategy",
+    desc: "Positioning, naming, moodboards",
+    Icon: Compass,
+  },
 ];
 
-const BUDGETS = ["Under ₹50k", "₹50k – ₹1L", "₹1L – ₹3L", "₹3L+", "Not sure yet"];
+const BUDGETS = [
+  "Under ₹50k",
+  "₹50k – ₹1L",
+  "₹1L – ₹3L",
+  "₹3L+",
+  "Not sure yet",
+];
 const TIMELINES = ["ASAP", "1–3 months", "3–6 months", "Just exploring"];
 
 const STEPS = ["Services", "Scope", "Details"];
@@ -45,14 +67,17 @@ export default function BriefBuilder() {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">(
+    "idle",
+  );
   const [errorMsg, setErrorMsg] = useState("");
 
   const toggleService = (s: string) =>
     setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const canNext = step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
+  const canNext =
+    step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
   const canSubmit = name.trim() !== "" && emailOk;
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
@@ -109,7 +134,9 @@ export default function BriefBuilder() {
             </div>
             <h1 className="display text-ink text-[11vw] sm:text-5xl lg:text-[3.6rem] leading-[0.98]">
               Build your{" "}
-              <span className="heading-italic text-accent normal-case">brief.</span>
+              <span className="heading-italic text-accent normal-case">
+                brief.
+              </span>
             </h1>
             <p className="mt-4 max-w-lg text-ink/75 leading-relaxed">
               Three quick steps. No obligation, and the first Strategy &amp;
@@ -158,7 +185,10 @@ export default function BriefBuilder() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {step === 0 && (
-                    <StepServices selected={services} onToggle={toggleService} />
+                    <StepServices
+                      selected={services}
+                      onToggle={toggleService}
+                    />
                   )}
                   {step === 1 && (
                     <StepScope
@@ -241,8 +271,11 @@ export default function BriefBuilder() {
             {status === "error" && (
               <p className="mt-5 text-sm text-ink/80 text-right">
                 {errorMsg} Email{" "}
-                <a href="mailto:hello@fennr.studio" className="underline-accent">
-                  hello@fennr.studio
+                <a
+                  href="mailto:fennr.studio@gmail.com"
+                  className="underline-accent"
+                >
+                  fennr.studio@gmail.com
                 </a>{" "}
                 or WhatsApp us.
               </p>
@@ -264,8 +297,12 @@ function StepServices({
 }) {
   return (
     <div>
-      <h2 className="heading-md text-2xl md:text-3xl text-ink">What do you need?</h2>
-      <p className="mt-2 text-ink/70">Pick everything that applies — one, a few, or all.</p>
+      <h2 className="heading-md text-2xl md:text-3xl text-ink">
+        What do you need?
+      </h2>
+      <p className="mt-2 text-ink/70">
+        Pick everything that applies — one, a few, or all.
+      </p>
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {SERVICES.map(({ name, desc, Icon }) => {
@@ -304,7 +341,9 @@ function StepServices({
               >
                 {name}
               </p>
-              <p className={`mt-1 text-xs ${on ? "text-mist/70" : "text-slatey"}`}>
+              <p
+                className={`mt-1 text-xs ${on ? "text-mist/70" : "text-slatey"}`}
+              >
                 {desc}
               </p>
             </button>
@@ -331,7 +370,9 @@ function Chip({
       onClick={onClick}
       aria-pressed={on}
       className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 display-tight text-xs tracking-[0.04em] transition-smooth ring-1 ${
-        on ? "bg-ink text-accent ring-ink" : "bg-paper text-ink/75 ring-hairline hover:ring-ink"
+        on
+          ? "bg-ink text-accent ring-ink"
+          : "bg-paper text-ink/75 ring-hairline hover:ring-ink"
       }`}
     >
       {on && <Check className="w-3 h-3" strokeWidth={2.6} />}
@@ -353,7 +394,9 @@ function StepScope({
 }) {
   return (
     <div>
-      <h2 className="heading-md text-2xl md:text-3xl text-ink">Scope &amp; timing</h2>
+      <h2 className="heading-md text-2xl md:text-3xl text-ink">
+        Scope &amp; timing
+      </h2>
       <p className="mt-2 text-ink/70">
         A rough range is fine — it just helps us prescribe the right tier.
       </p>
@@ -362,7 +405,12 @@ function StepScope({
         <p className="eyebrow text-slatey mb-3">Budget</p>
         <div className="flex flex-wrap gap-2.5">
           {BUDGETS.map((b) => (
-            <Chip key={b} label={b} on={budget === b} onClick={() => setBudget(b)} />
+            <Chip
+              key={b}
+              label={b}
+              on={budget === b}
+              onClick={() => setBudget(b)}
+            />
           ))}
         </div>
       </div>
@@ -371,7 +419,12 @@ function StepScope({
         <p className="eyebrow text-slatey mb-3">Timeline</p>
         <div className="flex flex-wrap gap-2.5">
           {TIMELINES.map((t) => (
-            <Chip key={t} label={t} on={timeline === t} onClick={() => setTimeline(t)} />
+            <Chip
+              key={t}
+              label={t}
+              on={timeline === t}
+              onClick={() => setTimeline(t)}
+            />
           ))}
         </div>
       </div>
@@ -413,7 +466,9 @@ function StepDetails({
 
   return (
     <div>
-      <h2 className="heading-md text-2xl md:text-3xl text-ink">Almost there.</h2>
+      <h2 className="heading-md text-2xl md:text-3xl text-ink">
+        Almost there.
+      </h2>
       <p className="mt-2 text-ink/70">
         Where should we send the plan? A partner reads every brief.
       </p>
@@ -431,7 +486,10 @@ function StepDetails({
         </div>
       )}
 
-      <form className="mt-7 flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+      <form
+        className="mt-7 flex flex-col gap-4"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="text"
@@ -486,12 +544,14 @@ function Confirmation() {
       </span>
       <h1 className="mt-8 display text-ink text-5xl md:text-6xl leading-[0.95]">
         Brief{" "}
-        <span className="heading-italic text-accent normal-case">received.</span>
+        <span className="heading-italic text-accent normal-case">
+          received.
+        </span>
       </h1>
       <p className="mt-5 text-ink/75 leading-relaxed text-lg">
         Thank you. A partner will read it and reply within a day, usually with a
-        first thought or two and a link to book your free Strategy &amp; Planning
-        call.
+        first thought or two and a link to book your free Strategy &amp;
+        Planning call.
       </p>
 
       <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
