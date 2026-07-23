@@ -25,6 +25,8 @@ export async function POST(req: Request) {
     email?: string;
     company?: string;
     interests?: string[];
+    budget?: string;
+    timeline?: string;
     message?: string;
   };
   try {
@@ -37,12 +39,15 @@ export async function POST(req: Request) {
   const email = (data.email || "").trim();
   const company = (data.company || "").trim();
   const interests = Array.isArray(data.interests) ? data.interests : [];
+  const budget = (data.budget || "").trim();
+  const timeline = (data.timeline || "").trim();
   const message = (data.message || "").trim();
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if (!name || !emailOk || !message) {
+  // A valid submission needs a name, a good email, and either a message or picked services.
+  if (!name || !emailOk || (!message && interests.length === 0)) {
     return NextResponse.json(
-      { error: "Please provide your name, a valid email, and a message." },
+      { error: "Please provide your name, a valid email, and a little detail." },
       { status: 400 },
     );
   }
@@ -51,19 +56,30 @@ export async function POST(req: Request) {
     `Name: ${name}`,
     `Email: ${email}`,
     company ? `Company / website: ${company}` : null,
-    interests.length ? `Interested in: ${interests.join(", ")}` : null,
-    "",
-    message,
-  ].filter(Boolean) as string[];
+    interests.length ? `Services: ${interests.join(", ")}` : null,
+    budget ? `Budget: ${budget}` : null,
+    timeline ? `Timeline: ${timeline}` : null,
+    message ? "" : null,
+    message || null,
+  ].filter((l) => l !== null) as string[];
+
+  const row = (label: string, value: string) =>
+    `<p style="margin:0 0 4px"><strong>${label}:</strong> ${escapeHtml(value)}</p>`;
 
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;color:#101013;line-height:1.6;font-size:15px">
-      <h2 style="margin:0 0 12px">New enquiry from ${escapeHtml(name)}</h2>
-      <p style="margin:0"><strong>Email:</strong> ${escapeHtml(email)}</p>
-      ${company ? `<p style="margin:0"><strong>Company / website:</strong> ${escapeHtml(company)}</p>` : ""}
-      ${interests.length ? `<p style="margin:0"><strong>Interested in:</strong> ${escapeHtml(interests.join(", "))}</p>` : ""}
-      <hr style="border:none;border-top:1px solid #e0e2df;margin:16px 0" />
-      <p style="margin:0;white-space:pre-wrap">${escapeHtml(message)}</p>
+      <h2 style="margin:0 0 14px">New brief from ${escapeHtml(name)}</h2>
+      ${row("Email", email)}
+      ${company ? row("Company / website", company) : ""}
+      ${interests.length ? row("Services", interests.join(", ")) : ""}
+      ${budget ? row("Budget", budget) : ""}
+      ${timeline ? row("Timeline", timeline) : ""}
+      ${
+        message
+          ? `<hr style="border:none;border-top:1px solid #e0e2df;margin:16px 0" />
+             <p style="margin:0;white-space:pre-wrap">${escapeHtml(message)}</p>`
+          : ""
+      }
     </div>`;
 
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -73,7 +89,7 @@ export async function POST(req: Request) {
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: email,
-      subject: `New enquiry from ${name}`,
+      subject: `${interests.length ? "New brief" : "New enquiry"} from ${name}`,
       text: lines.join("\n"),
       html,
     });

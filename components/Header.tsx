@@ -1,11 +1,11 @@
 "use client";
 
-import { Mail, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NAV = [
-  { id: "approach", label: "Approach" },
+  { id: "services", label: "Services" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
 ];
@@ -62,13 +62,13 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center">
             <Link
-              href="/contact"
-              className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth flex items-center gap-1.5"
+              href="/brief"
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-accent px-5 py-2.5 display-tight text-[12px] tracking-[0.06em] hover:bg-accent hover:text-ink transition-smooth"
             >
-              <Mail className="w-4 h-4" strokeWidth={1.6} />
-              <span>Contact</span>
+              Start a project
+              <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.8} />
             </Link>
           </div>
 
@@ -98,15 +98,13 @@ export default function Header() {
                 </button>
               ))}
               <div className="px-2 pt-2">
-                <a
-                  href="https://calendly.com/fennrstudio/15min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/brief"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="btn-accent w-full"
                 >
-                  Book a working call
-                </a>
+                  Start a project
+                </Link>
               </div>
             </div>
           </nav>

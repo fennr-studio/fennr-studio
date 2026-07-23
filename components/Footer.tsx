@@ -3,7 +3,7 @@
 import EmailSignupForm from "./EmailSignupForm";
 
 const SITEMAP = [
-  { id: "approach", label: "Approach" },
+  { id: "services", label: "Services" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
   { id: "contact", label: "Brief" },
