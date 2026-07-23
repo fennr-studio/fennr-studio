@@ -116,12 +116,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.fennr.studio.com"
+                  href="https://www.fennrstudio.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-accent transition-smooth"
                 >
-                  www.fennr.studio.com
+                  www.fennrstudio.com
                 </a>
               </li>
               <li>

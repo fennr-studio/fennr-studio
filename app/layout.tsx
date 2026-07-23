@@ -22,7 +22,7 @@ const numeral = Cormorant_Garamond({
   variable: "--font-numeral",
 });
 
-const SITE_URL = "https://www.fennr.studio.com";
+const SITE_URL = "https://www.fennrstudio.com";
 const DESCRIPTION =
   "fennr is a design & technology studio in Pune building websites, brands and growth for cafés, villas, clinics, photographers and D2C businesses. Start with a free strategy call.";
 
