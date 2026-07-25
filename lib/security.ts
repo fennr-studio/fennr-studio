@@ -48,9 +48,9 @@ export function rateLimit(key: string, max: number, windowMs: number): boolean {
   hits.set(key, arr);
   // occasional cleanup
   if (hits.size > 5000) {
-    for (const [k, v] of hits) {
+    Array.from(hits.entries()).forEach(([k, v]) => {
       if (v.every((t) => now - t > windowMs)) hits.delete(k);
-    }
+    });
   }
   return true;
 }
