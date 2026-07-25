@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type Lead = {
   id: string;
@@ -39,55 +41,42 @@ function daysAgo(iso: string): number {
 }
 
 export default function AdminPage() {
-  const [pass, setPass] = useState("");
-  const [authed, setAuthed] = useState(false);
+  const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [showAdd, setShowAdd] = useState(false);
 
-  const authFetch = (url: string, init: RequestInit = {}) =>
-    fetch(url, {
-      ...init,
-      headers: { ...(init.headers || {}), "x-admin-password": pass },
-    });
+  // Session cookie carries auth automatically — no headers needed.
+  const authFetch = (url: string, init: RequestInit = {}) => fetch(url, init);
 
-  const load = async (password: string) => {
+  const load = async () => {
     setLoading(true);
-    setError("");
     try {
-      const res = await fetch("/api/admin/leads", {
-        headers: { "x-admin-password": password },
-      });
-      if (res.status === 401) throw new Error("Wrong password.");
-      if (!res.ok) throw new Error((await res.json()).error || "Failed to load.");
+      const res = await fetch("/api/admin/leads");
+      if (res.status === 401) {
+        router.replace("/admin/login");
+        return;
+      }
       const data = await res.json();
       setLeads(data.leads || []);
-      setAuthed(true);
-      localStorage.setItem("fennr_admin", password);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed.");
-      setAuthed(false);
+    } catch {
+      /* ignore */
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const saved = localStorage.getItem("fennr_admin");
-    if (saved) {
-      setPass(saved);
-      load(saved);
-    }
+    load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem("fennr_admin");
-    setPass("");
-    setAuthed(false);
+  const logout = async () => {
+    const supabase = createSupabaseBrowserClient();
+    await supabase.auth.signOut();
+    router.replace("/admin/login");
   };
 
   const patch = async (id: string, body: Record<string, unknown>) => {
@@ -172,36 +161,11 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   };
 
-  // ---------- login gate ----------
-  if (!authed) {
+  // Loading (middleware guarantees only allowed users get here).
+  if (loading && leads.length === 0) {
     return (
-      <main className="min-h-screen bg-mist grid place-items-center container-px">
-        <div className="w-full max-w-sm">
-          <p className="eyebrow text-accent mb-3">Fennr admin</p>
-          <h1 className="display text-3xl text-ink mb-6">Leads dashboard</h1>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              load(pass);
-            }}
-            className="flex flex-col gap-3"
-          >
-            <input
-              type="password"
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-              placeholder="Admin password"
-              className="input-flat"
-              autoFocus
-            />
-            <button className="btn-accent h-[52px]" disabled={loading}>
-              <span className="font-semibold not-italic">
-                {loading ? "Checking…" : "Enter"}
-              </span>
-            </button>
-            {error && <p className="text-sm text-red-600">{error}</p>}
-          </form>
-        </div>
+      <main className="min-h-screen bg-mist grid place-items-center">
+        <p className="text-ink/50">Loading leads…</p>
       </main>
     );
   }
@@ -224,7 +188,7 @@ export default function AdminPage() {
           <button onClick={exportCsv} className="btn-ink h-[44px] text-sm">
             Export CSV
           </button>
-          <button onClick={() => load(pass)} className="h-[44px] px-4 rounded-md ring-1 ring-hairline bg-paper text-ink text-sm hover:ring-ink transition-smooth" disabled={loading}>
+          <button onClick={() => load()} className="h-[44px] px-4 rounded-md ring-1 ring-hairline bg-paper text-ink text-sm hover:ring-ink transition-smooth" disabled={loading}>
             {loading ? "…" : "↻"}
           </button>
           <button onClick={logout} className="h-[44px] px-4 rounded-md ring-1 ring-hairline bg-paper text-ink/60 text-sm hover:ring-ink transition-smooth">
@@ -294,7 +258,7 @@ export default function AdminPage() {
               body: JSON.stringify(data),
             });
             setShowAdd(false);
-            load(pass);
+            load();
           }}
         />
       )}

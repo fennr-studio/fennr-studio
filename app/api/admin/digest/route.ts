@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getSupabaseAdmin, type Lead } from "@/lib/supabase";
+import { safeEqual } from "@/lib/security";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "fennr.studio@gmail.com";
 const FROM_EMAIL =
@@ -9,18 +10,14 @@ const SITE_URL = process.env.SITE_URL || "https://www.fennrstudio.com";
 
 const DAY = 86400000;
 
-// Allow the request if it carries the cron secret (Vercel cron) or the admin password.
+// Cron endpoint — authorised by the CRON_SECRET only (Vercel cron sends it as
+// an Authorization: Bearer header; ?secret= also works for manual runs).
 function allowed(req: Request): boolean {
   const cron = process.env.CRON_SECRET;
+  if (!cron) return false;
   const auth = req.headers.get("authorization");
-  if (cron && auth === `Bearer ${cron}`) return true;
-  const url = new URL(req.url);
-  if (cron && url.searchParams.get("secret") === cron) return true;
-  if (
-    process.env.ADMIN_PASSWORD &&
-    req.headers.get("x-admin-password") === process.env.ADMIN_PASSWORD
-  )
-    return true;
+  if (safeEqual(auth, `Bearer ${cron}`)) return true;
+  if (safeEqual(new URL(req.url).searchParams.get("secret"), cron)) return true;
   return false;
 }
 

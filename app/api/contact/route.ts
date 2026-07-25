@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { LIMITS, capped, clientIp, rateLimit } from "@/lib/security";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "fennr.studio@gmail.com";
 const FROM_EMAIL =
@@ -16,11 +17,19 @@ const escapeHtml = (s: string) =>
   );
 
 export async function POST(req: Request) {
+  // Rate limit: max 5 submissions per minute per IP.
+  if (!rateLimit(`contact:${clientIp(req)}`, 5, 60_000)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429 },
+    );
+  }
+
   let data: {
     name?: string;
     email?: string;
     company?: string;
-    interests?: string[];
+    interests?: unknown;
     budget?: string;
     timeline?: string;
     message?: string;
@@ -32,14 +41,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  const name = (data.name || "").trim();
-  const email = (data.email || "").trim();
-  const company = (data.company || "").trim();
-  const interests = Array.isArray(data.interests) ? data.interests : [];
-  const budget = (data.budget || "").trim();
-  const timeline = (data.timeline || "").trim();
-  const message = (data.message || "").trim();
-  const source = (data.source || "contact").trim();
+  const name = capped(data.name, LIMITS.name);
+  const email = capped(data.email, LIMITS.email);
+  const company = capped(data.company, LIMITS.company);
+  const interests = (Array.isArray(data.interests) ? data.interests : [])
+    .slice(0, LIMITS.maxInterests)
+    .map((i) => capped(i, LIMITS.interest))
+    .filter(Boolean);
+  const budget = capped(data.budget, LIMITS.budget);
+  const timeline = capped(data.timeline, LIMITS.timeline);
+  const message = capped(data.message, LIMITS.message);
+  const source = capped(data.source, LIMITS.source) || "contact";
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!name || !emailOk || (!message && interests.length === 0)) {

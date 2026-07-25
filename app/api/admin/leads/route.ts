@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { getSessionEmail } from "@/lib/supabase/server";
+import { isAllowedEmail } from "@/lib/supabase/auth";
 
-function authorized(req: Request): boolean {
-  const pass = process.env.ADMIN_PASSWORD;
-  if (!pass) return false;
-  return req.headers.get("x-admin-password") === pass;
-}
-
-function guard(req: Request) {
-  if (!authorized(req)) {
+// Verify the signed-in user is on the allowlist, then return the service client.
+// (Middleware already blocks unauthorised requests; this is defense-in-depth.)
+async function guard() {
+  const email = await getSessionEmail();
+  if (!isAllowedEmail(email)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();
@@ -21,8 +20,8 @@ function guard(req: Request) {
 const VALID = ["new", "contacted", "quoted", "won", "lost"];
 
 // List all leads (newest first)
-export async function GET(req: Request) {
-  const supabase = guard(req);
+export async function GET() {
+  const supabase = await guard();
   if (supabase instanceof NextResponse) return supabase;
   const { data, error } = await supabase
     .from("leads")
@@ -34,7 +33,7 @@ export async function GET(req: Request) {
 
 // Manually add a lead
 export async function POST(req: Request) {
-  const supabase = guard(req);
+  const supabase = await guard();
   if (supabase instanceof NextResponse) return supabase;
   let b: Record<string, unknown>;
   try {
@@ -63,7 +62,7 @@ export async function POST(req: Request) {
 
 // Update status and/or notes
 export async function PATCH(req: Request) {
-  const supabase = guard(req);
+  const supabase = await guard();
   if (supabase instanceof NextResponse) return supabase;
   let b: { id?: string; status?: string; notes?: string };
   try {
@@ -92,7 +91,7 @@ export async function PATCH(req: Request) {
 
 // Delete a lead
 export async function DELETE(req: Request) {
-  const supabase = guard(req);
+  const supabase = await guard();
   if (supabase instanceof NextResponse) return supabase;
   const id = new URL(req.url).searchParams.get("id");
   if (!id) return NextResponse.json({ error: "Missing id." }, { status: 400 });
