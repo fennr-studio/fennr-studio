@@ -1,0 +1,102 @@
+import { NextResponse } from "next/server";
+import { getSupabaseAdmin } from "@/lib/supabase";
+
+function authorized(req: Request): boolean {
+  const pass = process.env.ADMIN_PASSWORD;
+  if (!pass) return false;
+  return req.headers.get("x-admin-password") === pass;
+}
+
+function guard(req: Request) {
+  if (!authorized(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    return NextResponse.json({ error: "Supabase not configured." }, { status: 500 });
+  }
+  return supabase;
+}
+
+const VALID = ["new", "contacted", "quoted", "won", "lost"];
+
+// List all leads (newest first)
+export async function GET(req: Request) {
+  const supabase = guard(req);
+  if (supabase instanceof NextResponse) return supabase;
+  const { data, error } = await supabase
+    .from("leads")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ leads: data });
+}
+
+// Manually add a lead
+export async function POST(req: Request) {
+  const supabase = guard(req);
+  if (supabase instanceof NextResponse) return supabase;
+  let b: Record<string, unknown>;
+  try {
+    b = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+  const name = String(b.name || "").trim();
+  if (!name) {
+    return NextResponse.json({ error: "Name is required." }, { status: 400 });
+  }
+  const { error } = await supabase.from("leads").insert({
+    name,
+    email: String(b.email || "").trim() || "—",
+    phone: String(b.phone || "").trim() || null,
+    company: String(b.company || "").trim() || null,
+    interests: Array.isArray(b.interests) && b.interests.length ? b.interests : null,
+    budget: String(b.budget || "").trim() || null,
+    message: String(b.message || "").trim() || null,
+    source: String(b.source || "manual").trim(),
+    status: "new",
+  });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ ok: true });
+}
+
+// Update status and/or notes
+export async function PATCH(req: Request) {
+  const supabase = guard(req);
+  if (supabase instanceof NextResponse) return supabase;
+  let b: { id?: string; status?: string; notes?: string };
+  try {
+    b = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+  if (!b.id) return NextResponse.json({ error: "Missing id." }, { status: 400 });
+
+  const patch: Record<string, unknown> = {};
+  if (b.status !== undefined) {
+    if (!VALID.includes(b.status)) {
+      return NextResponse.json({ error: "Bad status." }, { status: 400 });
+    }
+    patch.status = b.status;
+  }
+  if (b.notes !== undefined) patch.notes = b.notes;
+  if (Object.keys(patch).length === 0) {
+    return NextResponse.json({ error: "Nothing to update." }, { status: 400 });
+  }
+
+  const { error } = await supabase.from("leads").update(patch).eq("id", b.id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ ok: true });
+}
+
+// Delete a lead
+export async function DELETE(req: Request) {
+  const supabase = guard(req);
+  if (supabase instanceof NextResponse) return supabase;
+  const id = new URL(req.url).searchParams.get("id");
+  if (!id) return NextResponse.json({ error: "Missing id." }, { status: 400 });
+  const { error } = await supabase.from("leads").delete().eq("id", id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ ok: true });
+}
