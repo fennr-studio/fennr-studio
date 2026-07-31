@@ -5,6 +5,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  BrainCircuit,
   Camera,
   Check,
   Code2,
@@ -44,6 +45,11 @@ const SERVICES = [
     name: "Brand Strategy",
     desc: "Positioning, naming, moodboards",
     Icon: Compass,
+  },
+  {
+    name: "AI & Strategy",
+    desc: "AI solutions, predictive analytics, automation, research",
+    Icon: BrainCircuit,
   },
 ];
 
