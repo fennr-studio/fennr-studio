@@ -278,10 +278,10 @@ export default function BriefBuilder() {
               <p className="mt-5 text-sm text-ink/80 text-right">
                 {errorMsg} Email{" "}
                 <a
-                  href="mailto:fennr.studio@gmail.com"
+                  href="mailto:hello@fennrstudio.com"
                   className="underline-accent"
                 >
-                  fennr.studio@gmail.com
+                  hello@fennrstudio.com
                 </a>{" "}
                 or WhatsApp us.
               </p>

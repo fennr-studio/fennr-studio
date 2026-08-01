@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { getSupabaseAdmin, type Lead } from "@/lib/supabase";
 import { safeEqual } from "@/lib/security";
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "fennr.studio@gmail.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "hello@fennrstudio.com";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL || "fennr <onboarding@resend.dev>";
 const SITE_URL = process.env.SITE_URL || "https://www.fennrstudio.com";

@@ -108,10 +108,10 @@ export default function Footer() {
             <ul className="grid grid-cols-1 gap-y-2.5 text-ink/85">
               <li>
                 <a
-                  href="mailto:fennr.studio@gmail.com"
+                  href="mailto:hello@fennrstudio.com"
                   className="hover:text-accent transition-smooth"
                 >
-                  fennr.studio@gmail.com
+                  hello@fennrstudio.com
                 </a>
               </li>
               <li>

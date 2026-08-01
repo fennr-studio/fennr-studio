@@ -118,10 +118,10 @@ export default function Faq() {
             </p>
 
             <a
-              href="mailto:fennr.studio@gmail.com"
+              href="mailto:hello@fennrstudio.com"
               className="mt-8 inline-flex btn-ink"
             >
-              fennr.studio@gmail.com
+              hello@fennrstudio.com
             </a>
           </div>
 

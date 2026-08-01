@@ -124,10 +124,10 @@ export default function Subscribe() {
                   Pune 411007 · India
                 </p>
                 <a
-                  href="mailto:fennr.studio@gmail.com"
+                  href="mailto:hello@fennrstudio.com"
                   className="mt-4 inline-block underline-accent heading-italic text-lg"
                 >
-                  fennr.studio@gmail.com
+                  hello@fennrstudio.com
                 </a>
               </div>
             </div>

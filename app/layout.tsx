@@ -82,7 +82,7 @@ const jsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/icon.png`,
   image: `${SITE_URL}/icon.png`,
-  email: "fennr.studio@gmail.com",
+  email: "hello@fennrstudio.com",
   telephone: "+91-9765190702",
   description: DESCRIPTION,
   priceRange: "₹₹",

@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { LIMITS, capped, clientIp, rateLimit } from "@/lib/security";
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "fennr.studio@gmail.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "hello@fennrstudio.com";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL || "fennr <onboarding@resend.dev>";
 
