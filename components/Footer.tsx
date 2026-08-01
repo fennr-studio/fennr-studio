@@ -14,7 +14,7 @@ const SITEMAP: { label: string; id?: string; href?: string }[] = [
 const SOCIALS: { label: string; href: string }[] = [
   { label: "LinkedIn", href: "#" },
   { label: "Twitter", href: "#" },
-  { label: "Instagram", href: "https://www.instagram.com/fennr.studio/" },
+  { label: "Instagram", href: "https://www.instagram.com/fennrstudio/" },
 ];
 
 function scrollTo(id: string) {
@@ -163,15 +163,12 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-5 text-xs">
-            <a href="#privacy" className="hover:text-accent transition-smooth">
+            <Link href="/privacy" className="hover:text-accent transition-smooth">
               Privacy
-            </a>
-            <a href="#terms" className="hover:text-accent transition-smooth">
-              Terms
-            </a>
-            <a href="#cookies" className="hover:text-accent transition-smooth">
+            </Link>
+            <Link href="/privacy" className="hover:text-accent transition-smooth">
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -96,7 +96,7 @@ const jsonLd = {
   },
   areaServed: { "@type": "Country", name: "India" },
   founder: { "@type": "Person", name: "Gurnoor Singh" },
-  sameAs: ["https://www.instagram.com/fennr.studio/"],
+  sameAs: ["https://www.instagram.com/fennrstudio/"],
   knowsAbout: [
     "Web Development",
     "Logo & Identity Design",
