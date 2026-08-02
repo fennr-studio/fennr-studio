@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { fbTrack } from "@/lib/meta-pixel";
 
 const WHATSAPP_URL =
   "https://wa.me/919765190702?text=" +
@@ -110,6 +111,7 @@ export default function BriefBuilder() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Something went wrong.");
+      fbTrack("Lead", { content_name: "Brief", contents: services });
       setStatus("sent");
     } catch (err) {
       setStatus("error");

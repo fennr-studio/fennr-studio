@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { fbTrack } from "@/lib/meta-pixel";
 
 const WA_NUMBER = "919765190702";
 
@@ -50,6 +51,7 @@ export default function FreePreview() {
   // Log the request (name + email optional) before WhatsApp opens — fire and forget.
   const logLead = () => {
     const name = biz.trim();
+    fbTrack("Lead", { content_name: "Free preview" });
     if (!name) return;
     fetch("/api/contact", {
       method: "POST",

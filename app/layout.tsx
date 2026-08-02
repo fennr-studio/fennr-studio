@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Hanken_Grotesk, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 const GA_ID = "G-Q3RC6LY4LB";
@@ -27,7 +28,7 @@ const numeral = Cormorant_Garamond({
 
 const SITE_URL = "https://www.fennrstudio.com";
 const DESCRIPTION =
-  "fennr is a design & technology studio in Pune building websites, brands and growth for cafés, villas, clinics, photographers and D2C businesses. Start with a free strategy call.";
+  "Fennr is a design & technology studio building fast, beautiful websites, brands and growth for founders and small businesses. Start with a free strategy call.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -120,6 +121,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <MetaPixel />
       </body>
       <GoogleAnalytics gaId={GA_ID} />
     </html>
