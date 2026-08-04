@@ -22,6 +22,7 @@ export function capped(v: unknown, max: number): string {
 export const LIMITS = {
   name: 120,
   email: 200,
+  phone: 40,
   company: 200,
   budget: 60,
   timeline: 60,

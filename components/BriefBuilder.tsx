@@ -72,6 +72,7 @@ export default function BriefBuilder() {
   const [timeline, setTimeline] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">(
@@ -102,6 +103,7 @@ export default function BriefBuilder() {
         body: JSON.stringify({
           name,
           email,
+          phone,
           company,
           interests: services,
           budget,
@@ -212,6 +214,8 @@ export default function BriefBuilder() {
                       setName={setName}
                       email={email}
                       setEmail={setEmail}
+                      phone={phone}
+                      setPhone={setPhone}
                       company={company}
                       setCompany={setCompany}
                       message={message}
@@ -446,6 +450,8 @@ function StepDetails({
   setName,
   email,
   setEmail,
+  phone,
+  setPhone,
   company,
   setCompany,
   message,
@@ -458,6 +464,8 @@ function StepDetails({
   setName: (s: string) => void;
   email: string;
   setEmail: (s: string) => void;
+  phone: string;
+  setPhone: (s: string) => void;
   company: string;
   setCompany: (s: string) => void;
   message: string;
@@ -518,14 +526,25 @@ function StepDetails({
             className="input-flat"
           />
         </div>
-        <input
-          type="text"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company or website (optional)"
-          aria-label="Company or website"
-          className="input-flat"
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Phone / WhatsApp (optional)"
+            aria-label="Phone or WhatsApp number"
+            autoComplete="tel"
+            className="input-flat"
+          />
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Company or website (optional)"
+            aria-label="Company or website"
+            className="input-flat"
+          />
+        </div>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
