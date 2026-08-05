@@ -84,9 +84,10 @@ export default function BriefBuilder() {
     setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const phoneOk = phone.replace(/\D/g, "").length >= 7;
   const canNext =
     step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
-  const canSubmit = name.trim() !== "" && emailOk;
+  const canSubmit = name.trim() !== "" && emailOk && phoneOk;
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
@@ -529,9 +530,10 @@ function StepDetails({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="tel"
+            required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone / WhatsApp (optional)"
+            placeholder="Phone / WhatsApp"
             aria-label="Phone or WhatsApp number"
             autoComplete="tel"
             className="input-flat"

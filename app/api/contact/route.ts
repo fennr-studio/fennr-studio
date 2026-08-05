@@ -56,10 +56,21 @@ export async function POST(req: Request) {
   const source = capped(data.source, LIMITS.source) || "contact";
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if (!name || !emailOk || (!message && interests.length === 0)) {
+  // Phone is mandatory for the brief/contact form; the free-preview flow
+  // (one-tap WhatsApp) intentionally doesn't collect one.
+  const requiresPhone = source !== "free-preview";
+  const phoneOk = phone.replace(/\D/g, "").length >= 7;
+  if (
+    !name ||
+    !emailOk ||
+    (requiresPhone && !phoneOk) ||
+    (!message && interests.length === 0)
+  ) {
     return NextResponse.json(
       {
-        error: "Please provide your name, a valid email, and a little detail.",
+        error: requiresPhone
+          ? "Please provide your name, a valid email, a phone number, and a little detail."
+          : "Please provide your name, a valid email, and a little detail.",
       },
       { status: 400 },
     );
