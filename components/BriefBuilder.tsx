@@ -75,6 +75,8 @@ export default function BriefBuilder() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
+  // Honeypot — hidden from humans; only bots fill it.
+  const [hp, setHp] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">(
     "idle",
   );
@@ -106,6 +108,7 @@ export default function BriefBuilder() {
           email,
           phone,
           company,
+          hp,
           interests: services,
           budget,
           timeline,
@@ -219,6 +222,8 @@ export default function BriefBuilder() {
                       setPhone={setPhone}
                       company={company}
                       setCompany={setCompany}
+                      hp={hp}
+                      setHp={setHp}
                       message={message}
                       setMessage={setMessage}
                       services={services}
@@ -455,6 +460,8 @@ function StepDetails({
   setPhone,
   company,
   setCompany,
+  hp,
+  setHp,
   message,
   setMessage,
   services,
@@ -469,6 +476,8 @@ function StepDetails({
   setPhone: (s: string) => void;
   company: string;
   setCompany: (s: string) => void;
+  hp: string;
+  setHp: (s: string) => void;
   message: string;
   setMessage: (s: string) => void;
   services: string[];
@@ -507,6 +516,18 @@ function StepDetails({
         className="mt-7 flex flex-col gap-4"
         onSubmit={(e) => e.preventDefault()}
       >
+        {/* Honeypot: hidden from humans, tempting to bots. Never fill this. */}
+        <input
+          type="text"
+          name="company_website"
+          id="company_website"
+          value={hp}
+          onChange={(e) => setHp(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute -left-[9999px] top-0 h-px w-px opacity-0 pointer-events-none"
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="text"

@@ -35,11 +35,18 @@ export async function POST(req: Request) {
     timeline?: string;
     message?: string;
     source?: string;
+    hp?: string;
   };
   try {
     data = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+
+  // Honeypot: a hidden field no human sees. If it's filled, it's a bot —
+  // pretend success and silently drop it (no save, no email).
+  if (capped(data.hp, 100)) {
+    return NextResponse.json({ ok: true });
   }
 
   const name = capped(data.name, LIMITS.name);
@@ -54,6 +61,13 @@ export async function POST(req: Request) {
   const timeline = capped(data.timeline, LIMITS.timeline);
   const message = capped(data.message, LIMITS.message);
   const source = capped(data.source, LIMITS.source) || "contact";
+
+  // Junk filter: bots often mash the same string into every field
+  // (e.g. name = company = message = "asdfasdf"). Drop those silently.
+  const lc = (s: string) => s.trim().toLowerCase();
+  if (name && lc(name) === lc(company) && lc(company) === lc(message)) {
+    return NextResponse.json({ ok: true });
+  }
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   // Phone is mandatory for the brief/contact form; the free-preview flow
