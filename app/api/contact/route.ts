@@ -73,7 +73,8 @@ export async function POST(req: Request) {
   // Phone is mandatory for the brief/contact form; the free-preview flow
   // (one-tap WhatsApp) intentionally doesn't collect one.
   const requiresPhone = source !== "free-preview";
-  const phoneOk = phone.replace(/\D/g, "").length >= 7;
+  const phoneDigits = phone.replace(/\D/g, "");
+  const phoneOk = phoneDigits.length >= 10 && phoneDigits.length <= 15;
   if (
     !name ||
     !emailOk ||
@@ -83,7 +84,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error: requiresPhone
-          ? "Please provide your name, a valid email, a phone number, and a little detail."
+          ? "Please provide your name, a valid email, a full phone number (at least 10 digits), and a little detail."
           : "Please provide your name, a valid email, and a little detail.",
       },
       { status: 400 },

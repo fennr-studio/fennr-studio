@@ -86,7 +86,9 @@ export default function BriefBuilder() {
     setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const phoneOk = phone.replace(/\D/g, "").length >= 7;
+  // Require a plausible phone: 10–15 digits (covers local + intl country codes).
+  const phoneDigits = phone.replace(/\D/g, "");
+  const phoneOk = phoneDigits.length >= 10 && phoneDigits.length <= 15;
   const canNext =
     step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
   const canSubmit = name.trim() !== "" && emailOk && phoneOk;
@@ -549,16 +551,24 @@ function StepDetails({
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="tel"
-            required
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone / WhatsApp"
-            aria-label="Phone or WhatsApp number"
-            autoComplete="tel"
-            className="input-flat"
-          />
+          <div>
+            <input
+              type="tel"
+              required
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Phone / WhatsApp"
+              aria-label="Phone or WhatsApp number"
+              autoComplete="tel"
+              className="input-flat w-full"
+            />
+            {phone.trim() !== "" &&
+              phone.replace(/\D/g, "").length < 10 && (
+                <p className="mt-1.5 text-xs text-ink/60">
+                  Please enter a full number (at least 10 digits).
+                </p>
+              )}
+          </div>
           <input
             type="text"
             value={company}
