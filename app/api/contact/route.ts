@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { LIMITS, capped, clientIp, rateLimit } from "@/lib/security";
+import { isValidPhone } from "@/lib/phone";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "hello@fennrstudio.com";
 const FROM_EMAIL =
@@ -73,8 +74,7 @@ export async function POST(req: Request) {
   // Phone is mandatory for the brief/contact form; the free-preview flow
   // (one-tap WhatsApp) intentionally doesn't collect one.
   const requiresPhone = source !== "free-preview";
-  const phoneDigits = phone.replace(/\D/g, "");
-  const phoneOk = phoneDigits.length >= 10 && phoneDigits.length <= 15;
+  const phoneOk = isValidPhone(phone);
   if (
     !name ||
     !emailOk ||

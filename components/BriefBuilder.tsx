@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fbTrack } from "@/lib/meta-pixel";
+import { isValidPhone } from "@/lib/phone";
 
 const WHATSAPP_URL =
   "https://wa.me/919765190702?text=" +
@@ -87,9 +88,8 @@ export default function BriefBuilder() {
     setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  // Require a plausible phone: 10–15 digits (covers local + intl country codes).
-  const phoneDigits = phone.replace(/\D/g, "");
-  const phoneOk = phoneDigits.length >= 10 && phoneDigits.length <= 15;
+  // Validate the real phone format (not just digit count).
+  const phoneOk = isValidPhone(phone);
   const canNext =
     step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
   // Note: phone is NOT gated here — we let people click Send and then
@@ -112,7 +112,7 @@ export default function BriefBuilder() {
       setPhoneError(
         phone.trim() === ""
           ? "Please add your phone number so we can reach you."
-          : "Please add a valid phone number (at least 10 digits).",
+          : "That number doesn't look complete — please add a valid phone number (with country code if outside India).",
       );
       return;
     }
@@ -584,12 +584,12 @@ function StepDetails({
               autoComplete="tel"
               className="input-flat w-full"
             />
-            {phone.trim() !== "" &&
-              phone.replace(/\D/g, "").length < 10 && (
-                <p className="mt-1.5 text-xs text-ink/60">
-                  Please enter a full number (at least 10 digits).
-                </p>
-              )}
+            {phone.trim() !== "" && !isValidPhone(phone) && (
+              <p className="mt-1.5 text-xs text-ink/60">
+                Please enter a valid number (add country code if outside
+                India).
+              </p>
+            )}
           </div>
           <input
             type="text"
