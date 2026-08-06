@@ -16,7 +16,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fbTrack } from "@/lib/meta-pixel";
 
 const WHATSAPP_URL =
@@ -81,6 +81,7 @@ export default function BriefBuilder() {
     "idle",
   );
   const [errorMsg, setErrorMsg] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const toggleService = (s: string) =>
     setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
@@ -91,7 +92,14 @@ export default function BriefBuilder() {
   const phoneOk = phoneDigits.length >= 10 && phoneDigits.length <= 15;
   const canNext =
     step === 0 ? services.length > 0 : step === 1 ? !!budget : true;
-  const canSubmit = name.trim() !== "" && emailOk && phoneOk;
+  // Note: phone is NOT gated here — we let people click Send and then
+  // gently ask them to add a valid number, rather than blocking silently.
+  const canSubmit = name.trim() !== "" && emailOk;
+
+  // Clear the phone prompt as soon as the number becomes valid.
+  useEffect(() => {
+    if (phoneOk && phoneError) setPhoneError("");
+  }, [phoneOk, phoneError]);
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
@@ -99,6 +107,16 @@ export default function BriefBuilder() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
+    // Ask (don't block) for a valid phone before sending.
+    if (!phoneOk) {
+      setPhoneError(
+        phone.trim() === ""
+          ? "Please add your phone number so we can reach you."
+          : "Please add a valid phone number (at least 10 digits).",
+      );
+      return;
+    }
+    setPhoneError("");
     setStatus("loading");
     setErrorMsg("");
     try {
@@ -287,6 +305,10 @@ export default function BriefBuilder() {
                 </button>
               )}
             </div>
+
+            {phoneError && status !== "error" && (
+              <p className="mt-4 text-sm text-ink text-right">{phoneError}</p>
+            )}
 
             {status === "error" && (
               <p className="mt-5 text-sm text-ink/80 text-right">
