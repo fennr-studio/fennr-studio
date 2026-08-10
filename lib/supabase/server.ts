@@ -9,8 +9,8 @@ import {
  * Supabase client bound to the request's cookies — used in Server Components
  * and Route Handlers to read the signed-in user.
  */
-export function createSupabaseServerClient() {
-  const cookieStore = cookies();
+export async function createSupabaseServerClient() {
+  const cookieStore = await cookies();
   return createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
@@ -31,7 +31,7 @@ export function createSupabaseServerClient() {
 
 /** Returns the signed-in user's email, or null. */
 export async function getSessionEmail(): Promise<string | null> {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

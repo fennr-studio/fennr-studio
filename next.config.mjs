@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Pin the Turbopack workspace root — without this it walks up and picks the
+  // home directory (which has its own lockfile), breaking module resolution.
+  turbopack: {
+    root: import.meta.dirname,
+  },
+
   // Latency / hardening
   compress: true,
   poweredByHeader: false,
