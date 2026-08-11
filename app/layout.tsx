@@ -49,24 +49,24 @@ export const metadata: Metadata = {
     "clinic website",
     "fennr studio",
   ],
-  applicationName: "fennr.*",
+  applicationName: "Fennr Studio",
   authors: [{ name: "Gurnoor Singh" }],
-  creator: "fennr studio",
-  publisher: "fennr studio",
+  creator: "Fennr Studio",
+  publisher: "Fennr Studio",
   // NOTE: no `alternates.canonical` or `openGraph.url` here on purpose.
   // Metadata is inherited down the segment tree, so setting them at the root
   // makes every child page canonicalise to the homepage. Each page sets its
   // own — relative paths resolve against `metadataBase`.
   openGraph: {
     type: "website",
-    siteName: "fennr.*",
-    title: "fennr.* — Web, Brand & Growth Studio",
+    siteName: "Fennr Studio",
+    title: "Fennr Studio — Web, Brand & Growth Studio",
     description: DESCRIPTION,
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "fennr.* — Web, Brand & Growth Studio",
+    title: "Fennr Studio — Web, Brand & Growth Studio",
     description: DESCRIPTION,
   },
   robots: {
@@ -86,8 +86,9 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "fennr",
-  alternateName: "fennr studio",
+  "@id": `${SITE_URL}/#studio`,
+  name: "Fennr Studio",
+  alternateName: ["fennr", "fennr.*", "fennr studio"],
   url: SITE_URL,
   logo: `${SITE_URL}/icon.png`,
   image: `${SITE_URL}/icon.png`,
@@ -114,6 +115,48 @@ const jsonLd = {
     "Graphic Design",
     "Brand Strategy",
   ],
+  // Mirrors the six offerings in the on-page catalogue. Kept here rather than
+  // generated from the component so the markup stays untouched.
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services",
+    itemListElement: [
+      [
+        "Web Development & Integration",
+        "Websites and web apps with WhatsApp, payments and API integrations.",
+      ],
+      [
+        "Logo & Identity Design",
+        "Logo systems, brand boards and the identity that goes around them.",
+      ],
+      [
+        "SEO & Visibility",
+        "Technical and local SEO, analytics and search visibility.",
+      ],
+      [
+        "Professional Photography",
+        "Product, food and interior photography for web and print.",
+      ],
+      [
+        "Graphic Design",
+        "Social, print and campaign design built on the brand system.",
+      ],
+      [
+        "Brand Strategy & Ideation",
+        "Positioning, naming and moodboards before anything gets designed.",
+      ],
+    ].map(([name, description]) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name,
+        description,
+        serviceType: name,
+        provider: { "@id": `${SITE_URL}/#studio` },
+        areaServed: { "@type": "Country", name: "India" },
+      },
+    })),
+  },
 };
 
 export default function RootLayout({

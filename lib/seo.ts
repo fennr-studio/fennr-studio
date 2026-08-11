@@ -28,7 +28,7 @@ export function pageMetadata({
     alternates: { canonical: path },
     openGraph: {
       type: "website",
-      siteName: "fennr.*",
+      siteName: "Fennr Studio",
       locale: "en_IN",
       url: path,
       title,

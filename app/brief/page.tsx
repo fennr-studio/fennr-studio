@@ -5,7 +5,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   path: "/brief",
-  title: "Start a project — fennr.* studio",
+  // The root layout appends " · Fennr Studio" via title.template, so the
+  // studio name must not be repeated here.
+  title: "Start a Project",
   description:
     "Build your brief in three quick steps: pick services, set a budget and timeline, and send it over. The first Strategy & Planning call is free.",
 });
