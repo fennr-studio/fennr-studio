@@ -44,7 +44,10 @@ export default function Hero() {
               <span className="eyebrow text-ink">2026 · Field Notes</span>
             </motion.div>
 
-            <motion.h1
+            {/* The display line is the visual hero but carries no topical
+                signal, so it is a <p>; the descriptive line below is the h1.
+                Renders identically — h1 is semantics, not size. */}
+            <motion.p
               initial="hidden"
               animate="show"
               variants={fadeUp}
@@ -59,7 +62,7 @@ export default function Hero() {
               </span>
               <span className="block">Shipped</span>
               <span className="block">Everyday.</span>
-            </motion.h1>
+            </motion.p>
 
             <motion.div
               initial="hidden"
@@ -72,13 +75,19 @@ export default function Hero() {
                 <span className="font-semibold not-italic">Start a project</span>
                 <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
               </Link>
+              <Link
+                href="/free-preview"
+                className="inline-flex items-center gap-1.5 underline-accent display-tight text-sm tracking-[0.05em]"
+              >
+                or get a free website preview
+              </Link>
               <a
                 href="https://calendly.com/fennrstudio/15min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 underline-accent display-tight text-sm tracking-[0.05em]"
+                className="inline-flex items-center gap-1.5 display-tight text-sm tracking-[0.05em] text-slatey hover:text-ink transition-smooth"
               >
-                or book a free call
+                book a free call
               </a>
             </motion.div>
 
@@ -105,11 +114,12 @@ export default function Hero() {
                   />
                 ))}
               </div>
-              <p className="min-w-0 max-w-sm text-sm text-slatey leading-snug">
-                Crafting{" "}
-                <span className="text-ink font-medium">digital experiences</span>{" "}
-                for brands across <span className="text-ink">India</span>
-              </p>
+              <h1 className="min-w-0 max-w-sm text-sm text-slatey leading-snug font-normal">
+                <span className="text-ink font-medium">
+                  Web design, branding and growth
+                </span>{" "}
+                for businesses across <span className="text-ink">India</span>
+              </h1>
             </motion.div>
           </div>
 

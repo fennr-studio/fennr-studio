@@ -4,28 +4,40 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const NAV: { id?: string; href?: string; label: string }[] = [
-  { id: "services", label: "Services" },
+// Every entry is a real href so crawlers see links and the URLs are
+// shareable. Same-page section links keep the smooth scroll via onClick.
+const NAV: { href: string; label: string }[] = [
+  { href: "/#services", label: "Services" },
   { href: "/who-we-help", label: "Who we help" },
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
 ];
 
-function scrollToSection(sectionId: string, after?: () => void) {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
+/**
+ * Smooth-scroll only when the target section is on the current page —
+ * otherwise let the browser follow the href and load /#section normally.
+ */
+function useSectionScroll(after?: () => void) {
+  return (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const id = href.startsWith("/#") ? href.slice(2) : null;
+    if (!id) {
+      after?.();
+      return;
+    }
+    const el = document.getElementById(id);
+    if (!el) return; // not on this page — the href does the work
+    event.preventDefault();
+    el.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(null, "", href);
     after?.();
-  } else {
-    // not on the home page — navigate home to the section
-    window.location.href = `/#${sectionId}`;
-    after?.();
-  }
+  };
 }
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const onSectionClick = useSectionScroll();
+  const onMobileSectionClick = useSectionScroll(() => setIsMobileMenuOpen(false));
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 8);
@@ -43,7 +55,11 @@ export default function Header() {
       <div className="container-px max-w-[1400px] mx-auto">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" className="flex items-baseline gap-0.5">
-            <span className="display-tight text-lg md:text-xl text-ink leading-none tracking-[0.04em]">
+            <span className="sr-only">Fennr Studio — home</span>
+            <span
+              aria-hidden="true"
+              className="display-tight text-lg md:text-xl text-ink leading-none tracking-[0.04em]"
+            >
               FENNR<span className="text-accent">.</span>STUDIO
             </span>
             <span className="numeral text-accent text-2xl leading-none -mb-1">
@@ -52,25 +68,16 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
-            {NAV.map((item) =>
-              item.href ? (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <button
-                  key={item.label}
-                  onClick={() => scrollToSection(item.id!)}
-                  className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
-                >
-                  {item.label}
-                </button>
-              ),
-            )}
+            {NAV.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={(e) => onSectionClick(e, item.href)}
+                className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center">
@@ -97,28 +104,16 @@ export default function Header() {
         {isMobileMenuOpen && (
           <nav className="md:hidden pb-4 pt-2">
             <div className="flex flex-col bg-paper rounded-md p-2 shadow-soft">
-              {NAV.map((item) =>
-                item.href ? (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.label}
-                    onClick={() =>
-                      scrollToSection(item.id!, () => setIsMobileMenuOpen(false))
-                    }
-                    className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
-                  >
-                    {item.label}
-                  </button>
-                ),
-              )}
+              {NAV.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => onMobileSectionClick(e, item.href)}
+                  className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <div className="px-2 pt-2">
                 <Link
                   href="/brief"

@@ -3,25 +3,39 @@
 import Link from "next/link";
 import EmailSignupForm from "./EmailSignupForm";
 
-const SITEMAP: { label: string; id?: string; href?: string }[] = [
-  { id: "services", label: "Services" },
+// Real hrefs throughout — a block labelled "website map" made of buttons is
+// invisible to crawlers and its entries cannot be shared or deep-linked.
+const SITEMAP: { label: string; href: string }[] = [
+  { href: "/#services", label: "Services" },
   { href: "/who-we-help", label: "Who we help" },
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Brief" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Brief" },
   { href: "/free-preview", label: "Free preview" },
   { href: "/brief", label: "Start a project" },
 ];
 
-const SOCIALS: { label: string; href: string }[] = [
-  { label: "LinkedIn", href: "#" },
-  { label: "Twitter", href: "#" },
-  { label: "Instagram", href: "https://www.instagram.com/fennrstudio/" },
+// Only profiles that actually exist. A placeholder `href="#"` is a dead link
+// to a crawler and a trap for keyboard users — add entries back with real URLs.
+const SOCIALS: { label: string; short: string; href: string }[] = [
+  {
+    label: "Instagram",
+    short: "IG",
+    href: "https://www.instagram.com/fennrstudio/",
+  },
 ];
 
-function scrollTo(id: string) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+/** Smooth-scroll same-page sections; let real routes navigate normally. */
+function handleSectionClick(
+  event: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+) {
+  if (!href.startsWith("/#")) return;
+  const el = document.getElementById(href.slice(2));
+  if (!el) return; // not on this page — follow the href
+  event.preventDefault();
+  el.scrollIntoView({ behavior: "smooth" });
+  window.history.replaceState(null, "", href);
 }
 
 export default function Footer() {
@@ -60,27 +74,17 @@ export default function Footer() {
               WEBSITE MAP
             </h3>
             <ul className="grid grid-cols-2 gap-y-2.5 gap-x-6 text-ink/85">
-              {SITEMAP.map((s) =>
-                s.href ? (
-                  <li key={s.label}>
-                    <Link
-                      href={s.href}
-                      className="hover:text-accent transition-smooth"
-                    >
-                      {s.label}
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={s.label}>
-                    <button
-                      onClick={() => scrollTo(s.id!)}
-                      className="hover:text-accent transition-smooth"
-                    >
-                      {s.label}
-                    </button>
-                  </li>
-                ),
-              )}
+              {SITEMAP.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    onClick={(e) => handleSectionClick(e, s.href)}
+                    className="hover:text-accent transition-smooth"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
             <h3 className="display-tight text-base text-ink mt-9 mb-5 tracking-[0.04em]">
@@ -91,9 +95,8 @@ export default function Footer() {
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    {...(s.href !== "#"
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-accent transition-smooth"
                   >
                     {s.label}
@@ -117,14 +120,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://www.fennrstudio.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent transition-smooth"
-                >
+                <Link href="/" className="hover:text-accent transition-smooth">
                   www.fennrstudio.com
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -153,20 +151,25 @@ export default function Footer() {
               <a
                 key={s.label}
                 href={s.href}
-                {...(s.href !== "#"
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={s.label}
                 className="w-8 h-8 inline-flex items-center justify-center border border-hairline rounded-sm text-ink/70 hover:text-accent hover:border-accent transition-smooth text-[10px] tracking-[0.08em]"
               >
-                {s.label.slice(0, 2).toUpperCase()}
+                <span aria-hidden="true">{s.short}</span>
               </a>
             ))}
           </div>
 
           <div className="flex gap-5 text-xs">
             <Link href="/privacy" className="hover:text-accent transition-smooth">
-              Privacy &amp; cookies
+              Privacy
+            </Link>
+            <Link
+              href="/privacy#cookies"
+              className="hover:text-accent transition-smooth"
+            >
+              Cookies
             </Link>
           </div>
         </div>
