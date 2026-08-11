@@ -4,8 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const NAV = [
+const NAV: { id?: string; href?: string; label: string }[] = [
   { id: "services", label: "Services" },
+  { href: "/who-we-help", label: "Who we help" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
 ];
@@ -51,15 +52,25 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
-            {NAV.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
-              >
-                {item.label}
-              </button>
-            ))}
+            {NAV.map((item) =>
+              item.href ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.id!)}
+                  className="display-tight text-[13px] tracking-[0.06em] text-ink/85 hover:text-accent transition-smooth"
+                >
+                  {item.label}
+                </button>
+              ),
+            )}
           </nav>
 
           <div className="hidden md:flex items-center">
@@ -86,17 +97,28 @@ export default function Header() {
         {isMobileMenuOpen && (
           <nav className="md:hidden pb-4 pt-2">
             <div className="flex flex-col bg-paper rounded-md p-2 shadow-soft">
-              {NAV.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() =>
-                    scrollToSection(item.id, () => setIsMobileMenuOpen(false))
-                  }
-                  className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
-                >
-                  {item.label}
-                </button>
-              ))}
+              {NAV.map((item) =>
+                item.href ? (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    onClick={() =>
+                      scrollToSection(item.id!, () => setIsMobileMenuOpen(false))
+                    }
+                    className="text-left px-4 py-3 display-tight text-sm tracking-[0.06em] text-ink hover:text-accent transition-smooth"
+                  >
+                    {item.label}
+                  </button>
+                ),
+              )}
               <div className="px-2 pt-2">
                 <Link
                   href="/brief"

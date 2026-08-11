@@ -5,6 +5,7 @@ import EmailSignupForm from "./EmailSignupForm";
 
 const SITEMAP: { label: string; id?: string; href?: string }[] = [
   { id: "services", label: "Services" },
+  { href: "/who-we-help", label: "Who we help" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
   { id: "contact", label: "Brief" },
