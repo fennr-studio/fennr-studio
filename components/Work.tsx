@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Project = {
@@ -129,13 +130,13 @@ export default function Work() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="relative rounded-xl overflow-hidden shadow-elevated ring-1 ring-ink/10"
               >
-                <div className="aspect-[16/10] bg-mist">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative aspect-[16/10] bg-mist">
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover bw-photo"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover bw-photo"
                   />
                 </div>
                 {p.tag && (

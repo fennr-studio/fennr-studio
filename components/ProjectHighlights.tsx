@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Highlight = {
   src: string;
   label: string;
@@ -30,12 +32,12 @@ function Card({ item }: { item: Highlight }) {
       }`}
     >
       <div className="relative h-[190px] md:h-[260px] lg:h-[300px] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={item.src}
           alt={item.label}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
+          fill
+          sizes={item.shape === "wide" ? "480px" : "270px"}
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
           draggable={false}
         />
         <span

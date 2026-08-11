@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section id="about" className="relative bg-mist py-24 md:py-32 overflow-hidden">
@@ -25,10 +27,11 @@ export default function About() {
           <div className="lg:col-span-5 bg-ink text-mist rounded-3xl p-8 md:p-10 flex flex-col">
             <p className="eyebrow text-accent">Founder</p>
             <div className="mt-6 flex items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/founder.jpg"
                 alt="Gurnoor Singh"
+                width={80}
+                height={80}
                 className="flex-none w-20 h-20 rounded-full object-cover bw-photo ring-2 ring-accent"
               />
               <div className="leading-tight">

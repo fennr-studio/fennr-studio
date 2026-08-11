@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 type Service = {
   no: string;
@@ -65,12 +66,12 @@ function ServiceCard({ data, index }: { data: Service; index: number }) {
           className="absolute -inset-8 -z-10 star-rays opacity-80"
         />
         <div className="relative overflow-hidden rounded-md aspect-[4/5]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={data.image}
             alt={data.name}
-            className="w-full h-full object-cover bw-photo"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 100vw, 24rem"
+            className="object-cover bw-photo"
           />
         </div>
         <span className="absolute top-4 left-4 numeral text-4xl text-ink/85">

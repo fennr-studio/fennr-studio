@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 type Tier = {
@@ -121,11 +122,12 @@ export default function ChoosingCard() {
                     }`}
                   >
                     <span className="relative w-12 h-12 rounded-md overflow-hidden ring-1 ring-hairline">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={p.image}
                         alt=""
-                        className="w-full h-full object-cover bw-photo"
+                        fill
+                        sizes="48px"
+                        className="object-cover bw-photo"
                       />
                       <span
                         className={`absolute inset-0 mix-blend-multiply opacity-70 ${p.swatch}`}

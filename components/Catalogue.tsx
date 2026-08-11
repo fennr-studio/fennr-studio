@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 type Card = {
@@ -134,12 +135,12 @@ export default function Catalogue() {
                     </div>
 
                     <div className="relative overflow-hidden rounded-md aspect-[3/4] bg-mist">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover bw-photo group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 25vw"
+                        className="object-cover bw-photo group-hover:scale-105 transition-transform duration-700"
                       />
                       <span
                         aria-hidden="true"

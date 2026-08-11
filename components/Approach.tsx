@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import RotatingBadge from "./RotatingBadge";
 
@@ -237,12 +238,12 @@ export default function Approach() {
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0 torn-card p-2 flecks"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={data.image}
                     alt={data.label}
-                    className="w-full h-full object-cover rounded-md bw-photo"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 11rem, 16rem"
+                    className="object-cover rounded-md bw-photo"
                   />
                 </motion.div>
               </AnimatePresence>

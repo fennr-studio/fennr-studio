@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import RotatingBadge from "./RotatingBadge";
 
@@ -86,28 +87,28 @@ export default function Hero() {
               animate="show"
               variants={fadeUp}
               custom={3}
-              className="mt-10 flex items-center gap-5"
+              className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3"
             >
-              <div className="flex -space-x-2">
+              <div className="flex -space-x-2 flex-none">
                 {[
                   "/img/1592621385-7232f3.jpg",
                   "/img/1600180758-8128a6.jpg",
                   "/img/1595152452-bd3929.jpg",
                 ].map((src, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     key={i}
                     src={src}
                     alt=""
+                    width={32}
+                    height={32}
                     className="w-8 h-8 rounded-full ring-2 ring-mist object-cover bw-photo"
-                    loading="lazy"
                   />
                 ))}
               </div>
-              <p className="text-sm text-slatey leading-snug">
-                Crafting <span className="text-ink font-medium">digital experiences</span> for brands across 
-                <br />
-                across <span className="text-ink">India</span>
+              <p className="min-w-0 max-w-sm text-sm text-slatey leading-snug">
+                Crafting{" "}
+                <span className="text-ink font-medium">digital experiences</span>{" "}
+                for brands across <span className="text-ink">India</span>
               </p>
             </motion.div>
           </div>
@@ -124,14 +125,15 @@ export default function Hero() {
                 className="absolute -inset-12 -z-10 star-rays opacity-90"
               />
 
-              <div className="relative overflow-hidden rounded-md">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative overflow-hidden rounded-md h-[26rem] md:h-[32rem]">
+                <Image
                   src="/img/1499750310-7e0941.jpg"
                   alt="The fennr studio workspace"
-                  className="w-full h-[26rem] md:h-[32rem] object-cover bw-photo"
-                  loading="eager"
-                  fetchPriority="high"
+                  fill
+                  // LCP element — `priority` preloads it and sets fetchpriority
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover bw-photo"
                 />
               </div>
 

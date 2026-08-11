@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalPage from "@/components/LegalPage";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/privacy",
   title: "Privacy Policy",
   description:
     "How Fennr Studio collects, uses, and protects the information you share with us.",
-};
+});
 
 export default function PrivacyPage() {
   return (

@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Hanken_Grotesk, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import MetaPixel from "@/components/MetaPixel";
+import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const GA_ID = "G-Q3RC6LY4LB";
@@ -26,7 +27,6 @@ const numeral = Cormorant_Garamond({
   variable: "--font-numeral",
 });
 
-const SITE_URL = "https://www.fennrstudio.com";
 const DESCRIPTION =
   "Fennr is a design & technology studio building fast, beautiful websites, brands and growth for founders and small businesses. Start with a free strategy call.";
 
@@ -53,10 +53,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Gurnoor Singh" }],
   creator: "fennr studio",
   publisher: "fennr studio",
-  alternates: { canonical: SITE_URL },
+  // NOTE: no `alternates.canonical` or `openGraph.url` here on purpose.
+  // Metadata is inherited down the segment tree, so setting them at the root
+  // makes every child page canonicalise to the homepage. Each page sets its
+  // own — relative paths resolve against `metadataBase`.
   openGraph: {
     type: "website",
-    url: SITE_URL,
     siteName: "fennr.*",
     title: "fennr.* — Web, Brand & Growth Studio",
     description: DESCRIPTION,
@@ -73,6 +75,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   category: "technology",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#101013",
 };
 
 const jsonLd = {
@@ -122,8 +130,8 @@ export default function RootLayout({
         />
         {children}
         <MetaPixel />
+        <GoogleAnalytics gaId={GA_ID} />
       </body>
-      <GoogleAnalytics gaId={GA_ID} />
     </html>
   );
 }

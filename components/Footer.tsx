@@ -9,6 +9,7 @@ const SITEMAP: { label: string; id?: string; href?: string }[] = [
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
   { id: "contact", label: "Brief" },
+  { href: "/free-preview", label: "Free preview" },
   { href: "/brief", label: "Start a project" },
 ];
 
@@ -165,10 +166,7 @@ export default function Footer() {
 
           <div className="flex gap-5 text-xs">
             <Link href="/privacy" className="hover:text-accent transition-smooth">
-              Privacy
-            </Link>
-            <Link href="/privacy" className="hover:text-accent transition-smooth">
-              Cookies
+              Privacy &amp; cookies
             </Link>
           </div>
         </div>

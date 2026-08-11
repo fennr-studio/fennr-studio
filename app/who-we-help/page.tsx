@@ -1,31 +1,17 @@
-import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhoWeHelp from "@/components/WhoWeHelp";
 import { PERSONAS } from "@/lib/personas";
+import { SITE_URL, pageMetadata } from "@/lib/seo";
 
-const SITE_URL = "https://www.fennrstudio.com";
 const DESCRIPTION =
   "We partner with founders, product teams, and growth teams to build, launch, and improve websites, products, and conversion systems through focused sprints.";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/who-we-help",
   title: "Who We Help | Founders, Teams & Businesses",
   description: DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}/who-we-help` },
-  openGraph: {
-    type: "website",
-    url: `${SITE_URL}/who-we-help`,
-    siteName: "fennr.*",
-    title: "Who We Help — fennr studio",
-    description: DESCRIPTION,
-    locale: "en_IN",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Who We Help — fennr studio",
-    description: DESCRIPTION,
-  },
-};
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

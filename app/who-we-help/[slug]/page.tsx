@@ -4,8 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PersonaPage from "@/components/PersonaPage";
 import { PERSONAS, getPersona } from "@/lib/personas";
-
-const SITE_URL = "https://www.fennrstudio.com";
+import { SITE_URL, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return PERSONAS.map((p) => ({ slug: p.slug }));
@@ -20,27 +19,11 @@ export async function generateMetadata({
   const persona = getPersona(slug);
   if (!persona) return {};
 
-  const url = `${SITE_URL}/who-we-help/${persona.slug}`;
-  const title = `${persona.name} | Who We Help`;
-
-  return {
-    title,
+  return pageMetadata({
+    path: `/who-we-help/${persona.slug}`,
+    title: `${persona.name} | Who We Help`,
     description: persona.heroSub,
-    alternates: { canonical: url },
-    openGraph: {
-      type: "website",
-      url,
-      siteName: "fennr.*",
-      title: `${persona.name} — fennr studio`,
-      description: persona.heroSub,
-      locale: "en_IN",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${persona.name} — fennr studio`,
-      description: persona.heroSub,
-    },
-  };
+  });
 }
 
 export default async function Page({
