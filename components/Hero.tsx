@@ -118,7 +118,8 @@ export default function Hero() {
                 <span className="text-ink font-medium">
                   Web design, branding and growth
                 </span>{" "}
-                for businesses across <span className="text-ink">India</span>
+                for businesses <span className="text-ink">worldwide</span> —
+                remote-first
               </h1>
             </motion.div>
           </div>

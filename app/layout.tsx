@@ -104,7 +104,9 @@ const jsonLd = {
     addressRegion: "Maharashtra",
     addressCountry: "IN",
   },
-  areaServed: { "@type": "Country", name: "India" },
+  // Based in Pune, working remotely with clients anywhere — the postal
+  // address above stays because it is real and it is a local-SEO signal.
+  areaServed: "Worldwide",
   founder: { "@type": "Person", name: "Gurnoor Singh" },
   sameAs: ["https://www.instagram.com/fennrstudio/"],
   knowsAbout: [
@@ -153,7 +155,7 @@ const jsonLd = {
         description,
         serviceType: name,
         provider: { "@id": `${SITE_URL}/#studio` },
-        areaServed: { "@type": "Country", name: "India" },
+        areaServed: "Worldwide",
       },
     })),
   },
