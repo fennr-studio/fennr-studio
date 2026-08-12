@@ -39,7 +39,8 @@ export async function GET(req: Request) {
     .in("status", ["contacted", "quoted"])
     .order("updated_at", { ascending: true });
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("[admin/digest] query failed:", error.message);
+    return NextResponse.json({ error: "Digest failed." }, { status: 500 });
   }
 
   const now = Date.now();

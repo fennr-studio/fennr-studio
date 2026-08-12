@@ -16,8 +16,18 @@ function allowed(email: string | undefined | null): boolean {
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next({ request: req });
 
-  // If auth isn't configured yet, don't lock anything (dev-safe).
-  if (!SUPABASE_URL || !SUPABASE_ANON) return res;
+  // Auth not configured. In local dev, leave the app usable without Supabase.
+  // In production this must fail CLOSED — a missing env var should never be
+  // the reason /admin is publicly reachable.
+  if (!SUPABASE_URL || !SUPABASE_ANON) {
+    if (process.env.NODE_ENV !== "production") return res;
+    // The digest cron authorises itself with CRON_SECRET, not with Supabase,
+    // so it still needs to get through.
+    if (req.nextUrl.pathname.startsWith("/api/admin/digest")) return res;
+    return req.nextUrl.pathname.startsWith("/api/admin")
+      ? NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      : new NextResponse("Not found", { status: 404 });
+  }
 
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON, {
     cookies: {

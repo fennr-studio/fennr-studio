@@ -19,6 +19,19 @@ async function guard() {
 
 const VALID = ["new", "contacted", "quoted", "won", "lost"];
 
+/**
+ * Log the real database error server-side and return a generic one.
+ * Postgres messages leak column names, constraints and query shape — useful
+ * to an attacker who has got this far, useless to the person using the panel.
+ */
+function dbFailure(op: string, error: { message: string }) {
+  console.error(`[admin/leads] ${op} failed:`, error.message);
+  return NextResponse.json(
+    { error: "Something went wrong. Please try again." },
+    { status: 500 },
+  );
+}
+
 // List all leads (newest first)
 export async function GET() {
   const supabase = await guard();
@@ -27,7 +40,7 @@ export async function GET() {
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) return dbFailure("list", error);
   return NextResponse.json({ leads: data });
 }
 
@@ -56,7 +69,7 @@ export async function POST(req: Request) {
     source: String(b.source || "manual").trim(),
     status: "new",
   });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) return dbFailure("insert", error);
   return NextResponse.json({ ok: true });
 }
 
@@ -85,7 +98,7 @@ export async function PATCH(req: Request) {
   }
 
   const { error } = await supabase.from("leads").update(patch).eq("id", b.id);
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) return dbFailure("update", error);
   return NextResponse.json({ ok: true });
 }
 
@@ -96,6 +109,6 @@ export async function DELETE(req: Request) {
   const id = new URL(req.url).searchParams.get("id");
   if (!id) return NextResponse.json({ error: "Missing id." }, { status: 400 });
   const { error } = await supabase.from("leads").delete().eq("id", id);
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) return dbFailure("delete", error);
   return NextResponse.json({ ok: true });
 }
