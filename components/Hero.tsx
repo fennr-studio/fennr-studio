@@ -82,7 +82,7 @@ export default function Hero() {
                 or get a free website preview
               </Link>
               <a
-                href="https://calendly.com/fennrstudio/15min"
+                href="https://calendly.com/fennrstudio/new-meeting"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 display-tight text-sm tracking-[0.05em] text-slatey hover:text-ink transition-smooth"

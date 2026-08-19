@@ -91,7 +91,7 @@ export default function Subscribe() {
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <a
-                    href="https://calendly.com/fennrstudio/15min"
+                    href="https://calendly.com/fennrstudio/new-meeting"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex btn-ink"

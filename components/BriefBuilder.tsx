@@ -23,7 +23,7 @@ import { isValidPhone } from "@/lib/phone";
 const WHATSAPP_URL =
   "https://wa.me/919765190702?text=" +
   encodeURIComponent("Hi fennr, I'd like to talk about a project.");
-const CALENDLY_URL = "https://calendly.com/fennrstudio/15min";
+const CALENDLY_URL = "https://calendly.com/fennrstudio/new-meeting";
 
 const SERVICES = [
   {

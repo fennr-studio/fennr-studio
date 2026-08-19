@@ -49,7 +49,7 @@ export default function About() {
               at the State Gallery of Art, Hyderabad.
             </p>
             <a
-              href="https://calendly.com/fennrstudio/15min"
+              href="https://calendly.com/fennrstudio/new-meeting"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-auto pt-8 inline-flex underline-accent heading-italic text-lg"

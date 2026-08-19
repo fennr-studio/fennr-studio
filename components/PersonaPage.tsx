@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { PERSONAS, type Persona } from "@/lib/personas";
 
-const CALENDLY_URL = "https://calendly.com/fennrstudio/15min";
+const CALENDLY_URL = "https://calendly.com/fennrstudio/new-meeting";
 
 const TIERS = [
   {
