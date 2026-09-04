@@ -73,7 +73,7 @@ export default function Catalogue() {
   const items = PAGES[page];
 
   return (
-    <section id="work" className="relative bg-mist py-24 md:py-32">
+    <section id="catalogue" className="relative bg-mist py-24 md:py-32">
       <div className="container-px max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28">
