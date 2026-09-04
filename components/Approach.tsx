@@ -236,7 +236,10 @@ export default function Approach() {
                   animate={{ opacity: 1, scale: 1, rotate: -1.4, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96, rotate: 2, y: -18 }}
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 torn-card p-2 flecks"
+                  // `!absolute` because .torn-card sets position: relative and is
+                  // declared after @tailwind utilities, so it would otherwise win
+                  // and collapse this card to its padding.
+                  className="!absolute inset-0 torn-card p-2 flecks"
                 >
                   <Image
                     src={data.image}
