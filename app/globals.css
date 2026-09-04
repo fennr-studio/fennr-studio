@@ -79,6 +79,15 @@ body {
   font-size: 0.72rem;
 }
 
+.mono-label {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
 .text-balance {
   text-wrap: balance;
 }
