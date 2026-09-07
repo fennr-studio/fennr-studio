@@ -57,7 +57,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "photowalks",
     client: "Photowalks in Pune",
     title: "Photowalks in Pune: A Community Platform for Walks, Members & the Archive",
-    href: "https://photowalks-in-pune-gold.vercel.app",
+    href: "https://pwip.in",
     accent: "#E7E1D5",
     lightBlock: true,
     deliverables: [
