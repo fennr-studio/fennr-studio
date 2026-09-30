@@ -7,7 +7,6 @@ import Approach from "@/components/Approach";
 import Services from "@/components/Services";
 // import FilmBlock from "@/components/FilmBlock"; // temporarily hidden
 import Catalogue from "@/components/Catalogue";
-import Results from "@/components/Results";
 import Projects from "@/components/Projects";
 import ProjectHighlights from "@/components/ProjectHighlights";
 // import Testimonials from "@/components/Testimonials"; // parked — bring back when real client quotes exist
@@ -17,6 +16,8 @@ import Faq from "@/components/Faq";
 import Subscribe from "@/components/Subscribe";
 import Footer from "@/components/Footer";
 import { FAQ } from "@/lib/faq";
+import { ENTITY_DESCRIPTION } from "@/lib/site";
+import { ID, faqNode, jsonLdString, pageGraph } from "@/lib/schema";
 
 // Only the canonical — title, description and Open Graph come from the root
 // layout, which is written for the homepage.
@@ -26,22 +27,21 @@ export const metadata: Metadata = {
 
 // Emitted here rather than inside <Faq /> so it is rendered by the server and
 // stays in sync with the questions actually on the page.
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQ.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+const faqJsonLd = pageGraph({
+  path: "/",
+  name: "Fennr Studio — web design, development & branding studio in Pune",
+  description: ENTITY_DESCRIPTION,
+  crumbs: [{ name: "Home", path: "/" }],
+  main: { "@id": ID.studio },
+  extra: [faqNode(FAQ)],
+});
 
 export default function Home() {
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }}
       />
       <Header />
       <Hero />
@@ -52,7 +52,7 @@ export default function Home() {
       <Services />
       {/* <FilmBlock /> */}
       <Catalogue />
-      <Results />
+      {/* <Results /> removed: its figures were not verifiable. Bring back only with real numbers. */}
       <ProjectHighlights />
       <Work />
       <About />

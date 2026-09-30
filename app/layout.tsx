@@ -2,53 +2,50 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Hanken_Grotesk, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import MetaPixel from "@/components/MetaPixel";
-import { SITE_URL } from "@/lib/seo";
+import ConversionTracking from "@/components/ConversionTracking";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
+import { siteGraph, jsonLdString } from "@/lib/schema";
+import { SERVICES } from "@/lib/services";
 import "./globals.css";
 
 const GA_ID = "G-Q3RC6LY4LB";
 
 const display = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  // Variable font: one file per style covers every weight, instead of one
+  // file per weight × style (12 files before).
   style: ["normal", "italic"],
   variable: "--font-display",
 });
 
 const body = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
+  // Not preloaded: the LCP element on every page is display type (Hanken).
+  // Body text swaps in over a metric-matched fallback, so no layout shift.
+  preload: false,
 });
 
 const numeral = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  // Only used by .numeral, which is weight 500 (upright and italic).
+  weight: ["500"],
   style: ["normal", "italic"],
+  preload: false,
   variable: "--font-numeral",
 });
 
+const TITLE = "Fennr Studio | Web Design, Development & Branding in Pune";
 const DESCRIPTION =
-  "Fennr is a design & technology studio building fast, beautiful websites, brands and growth for founders and small businesses. Start with a free strategy call.";
+  "Fennr Studio is a Pune design and technology studio building websites, web apps, brands, photography, SEO and AI automation for businesses across India.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Fennr Studio | Web & Brand Design for D2C Businesses",
+    default: TITLE,
     template: "%s · Fennr Studio",
   },
   description: DESCRIPTION,
-  keywords: [
-    "web design Pune",
-    "website development Pune",
-    "branding studio India",
-    "logo & identity design",
-    "SEO for small business",
-    "D2C website",
-    "restaurant website",
-    "photography portfolio website",
-    "clinic website",
-    "fennr studio",
-  ],
   applicationName: "Fennr Studio",
   authors: [{ name: "Gurnoor Singh" }],
   creator: "Fennr Studio",
@@ -60,13 +57,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Fennr Studio",
-    title: "Fennr Studio — Web, Brand & Growth Studio",
+    title: TITLE,
     description: DESCRIPTION,
     locale: "en_IN",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fennr Studio — Web, Brand & Growth Studio",
+    title: TITLE,
     description: DESCRIPTION,
   },
   robots: {
@@ -83,98 +81,28 @@ export const viewport: Viewport = {
   themeColor: "#101013",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${SITE_URL}/#studio`,
-  name: "Fennr Studio",
-  alternateName: ["fennr", "fennr.*", "fennr studio"],
-  url: SITE_URL,
-  logo: `${SITE_URL}/icon.png`,
-  image: `${SITE_URL}/icon.png`,
-  email: "hello@fennrstudio.com",
-  telephone: "+91-9765190702",
-  description: DESCRIPTION,
-  priceRange: "₹₹",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Shivaji Nagar",
-    addressLocality: "Pune",
-    postalCode: "411007",
-    addressRegion: "Maharashtra",
-    addressCountry: "IN",
-  },
-  // Based in Pune, working remotely with clients anywhere — the postal
-  // address above stays because it is real and it is a local-SEO signal.
-  areaServed: "Worldwide",
-  founder: { "@type": "Person", name: "Gurnoor Singh" },
-  sameAs: ["https://www.instagram.com/fennrstudio/"],
-  knowsAbout: [
-    "Web Development",
-    "Logo & Identity Design",
-    "SEO",
-    "Photography",
-    "Graphic Design",
-    "Brand Strategy",
-  ],
-  // Mirrors the six offerings in the on-page catalogue. Kept here rather than
-  // generated from the component so the markup stays untouched.
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Services",
-    itemListElement: [
-      [
-        "Web Development & Integration",
-        "Websites and web apps with WhatsApp, payments and API integrations.",
-      ],
-      [
-        "Logo & Identity Design",
-        "Logo systems, brand boards and the identity that goes around them.",
-      ],
-      [
-        "SEO & Visibility",
-        "Technical and local SEO, analytics and search visibility.",
-      ],
-      [
-        "Professional Photography",
-        "Product, food and interior photography for web and print.",
-      ],
-      [
-        "Graphic Design",
-        "Social, print and campaign design built on the brand system.",
-      ],
-      [
-        "Brand Strategy & Ideation",
-        "Positioning, naming and moodboards before anything gets designed.",
-      ],
-    ].map(([name, description]) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name,
-        description,
-        serviceType: name,
-        provider: { "@id": `${SITE_URL}/#studio` },
-        areaServed: "Worldwide",
-      },
-    })),
-  },
-};
+// Sitewide entity graph — the studio, the website and the founder. Pages add
+// their own WebPage/Service/CreativeWork nodes and reference these by @id.
+const jsonLd = siteGraph(
+  ["Website design", "Web development", "Web applications", "Brand identity design", "Logo design", "Search engine optimisation", "Local SEO", "Commercial photography", "WhatsApp automation", "AI automation"],
+  SERVICES.map((s) => ({ name: s.name, path: `/services/${s.slug}` })),
+);
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body
         className={`${display.variable} ${body.variable} ${numeral.variable} min-h-screen bg-mist text-ink font-sans`}
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }}
         />
         {children}
         <MetaPixel />
+        <ConversionTracking />
         <GoogleAnalytics gaId={GA_ID} />
       </body>
     </html>

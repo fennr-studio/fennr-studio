@@ -432,3 +432,17 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* ---------- Hero LCP line ----------
+   Transform-only entrance: the element is fully opaque from the first frame,
+   so it is painted (and measured as LCP) immediately instead of after JS. */
+@keyframes hero-rise {
+  from { transform: translateY(24px); }
+  to { transform: translateY(0); }
+}
+.hero-rise {
+  animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+}

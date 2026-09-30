@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import PersonaPage from "@/components/PersonaPage";
 import { PERSONAS, getPersona } from "@/lib/personas";
 import { SITE_URL, pageMetadata } from "@/lib/seo";
+import { ID } from "@/lib/schema";
 
 export function generateStaticParams() {
   return PERSONAS.map((p) => ({ slug: p.slug }));
@@ -45,7 +46,7 @@ export default async function Page({
         name: persona.name,
         url,
         description: persona.heroSub,
-        isPartOf: { "@type": "WebSite", url: SITE_URL, name: "fennr studio" },
+        isPartOf: { "@id": ID.website },
         breadcrumb: {
           "@type": "BreadcrumbList",
           itemListElement: [

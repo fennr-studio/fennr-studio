@@ -47,13 +47,11 @@ export default function Hero() {
             {/* The display line is the visual hero but carries no topical
                 signal, so it is a <p>; the descriptive line below is the h1.
                 Renders identically — h1 is semantics, not size. */}
-            <motion.p
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              custom={1}
-              className="display text-[14vw] md:text-[10vw] lg:text-[8.4vw] xl:text-[8.6rem] text-ink"
-            >
+            {/* Plain element + CSS, not framer-motion: this line is the LCP
+                element, and a JS fade from opacity 0 held it back until
+                hydration (~5s on a throttled phone). The CSS rise animates
+                transform only, so it paints on the first frame. */}
+            <p className="hero-rise display text-[14vw] md:text-[10vw] lg:text-[8.4vw] xl:text-[8.6rem] text-ink">
               <span className="block">
                 Ideas{" "}
                 <sup className="numeral text-accent text-[0.35em] font-medium align-super -ml-1">
@@ -62,7 +60,7 @@ export default function Hero() {
               </span>
               <span className="block">Shipped</span>
               <span className="block">Everyday.</span>
-            </motion.p>
+            </p>
 
             <motion.div
               initial="hidden"
@@ -116,10 +114,10 @@ export default function Hero() {
               </div>
               <h1 className="min-w-0 max-w-sm text-sm text-slatey leading-snug font-normal">
                 <span className="text-ink font-medium">
-                  Web design, branding and growth
+                  Web design, development &amp; branding studio in Pune
                 </span>{" "}
-                for businesses <span className="text-ink">worldwide</span> —
-                remote-first
+                — building for businesses across{" "}
+                <span className="text-ink">India and worldwide</span>
               </h1>
             </motion.div>
           </div>

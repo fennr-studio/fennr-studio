@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { fbTrack } from "@/lib/meta-pixel";
+import { track } from "@/lib/analytics";
 import { isValidPhone } from "@/lib/phone";
 
 const WHATSAPP_URL =
@@ -101,7 +101,10 @@ export default function BriefBuilder() {
     if (phoneOk && phoneError) setPhoneError("");
   }, [phoneOk, phoneError]);
 
-  const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  const next = () => {
+    if (step === 0) track("brief_started", { services: services.join(", ") });
+    setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  };
   const back = () => setStep((s) => Math.max(s - 1, 0));
 
   const submit = async (e: React.FormEvent) => {
@@ -137,7 +140,8 @@ export default function BriefBuilder() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Something went wrong.");
-      fbTrack("Lead", { content_name: "Brief", contents: services });
+      track("generate_lead", { lead_source: "brief", services: services.join(", ") });
+      track("brief_completed");
       setStatus("sent");
     } catch (err) {
       setStatus("error");

@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import WhoWeHelp from "@/components/WhoWeHelp";
 import { PERSONAS } from "@/lib/personas";
 import { SITE_URL, pageMetadata } from "@/lib/seo";
+import { ID } from "@/lib/schema";
 
 const DESCRIPTION =
   "We partner with founders, product teams, and growth teams to build, launch, and improve websites, products, and conversion systems through focused sprints.";
@@ -19,7 +20,7 @@ const jsonLd = {
   name: "Who We Help",
   url: `${SITE_URL}/who-we-help`,
   description: DESCRIPTION,
-  isPartOf: { "@type": "WebSite", url: SITE_URL, name: "fennr studio" },
+  isPartOf: { "@id": ID.website },
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [

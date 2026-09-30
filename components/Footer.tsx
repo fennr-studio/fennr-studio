@@ -2,18 +2,25 @@
 
 import Link from "next/link";
 import EmailSignupForm from "./EmailSignupForm";
+import { SERVICES } from "@/lib/services";
+import { ADDRESS_LINE, BUSINESS } from "@/lib/site";
 
 // Real hrefs throughout — a block labelled "website map" made of buttons is
 // invisible to crawlers and its entries cannot be shared or deep-linked.
 const SITEMAP: { label: string; href: string }[] = [
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/industries", label: "Industries" },
   { href: "/who-we-help", label: "Who we help" },
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Brief" },
+  { href: "/locations/pune", label: "Pune studio" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
   { href: "/free-preview", label: "Free preview" },
   { href: "/brief", label: "Start a project" },
 ];
+
+// Useful, not a keyword block: one link per real service page.
+const SERVICE_LINKS = SERVICES.map((s) => ({ href: `/services/${s.slug}`, label: s.name }));
 
 // Only profiles that actually exist. A placeholder `href="#"` is a dead link
 // to a crawler and a trap for keyboard users — add entries back with real URLs.
@@ -23,6 +30,7 @@ const SOCIALS: { label: string; short: string; href: string }[] = [
     short: "IG",
     href: "https://www.instagram.com/fennrstudio/",
   },
+  { label: "GitHub", short: "GH", href: "https://github.com/fennr-studio" },
 ];
 
 /** Smooth-scroll same-page sections; let real routes navigate normally. */
@@ -88,6 +96,19 @@ export default function Footer() {
             </ul>
 
             <h3 className="display-tight text-base text-ink mt-9 mb-5 tracking-[0.04em]">
+              SERVICES
+            </h3>
+            <ul className="grid grid-cols-1 gap-y-2.5 text-ink/85">
+              {SERVICE_LINKS.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="hover:text-accent transition-smooth">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="display-tight text-base text-ink mt-9 mb-5 tracking-[0.04em]">
               SOCIAL
             </h3>
             <ul className="grid grid-cols-2 gap-y-2.5 gap-x-6 text-ink/85">
@@ -113,10 +134,10 @@ export default function Footer() {
             <ul className="grid grid-cols-1 gap-y-2.5 text-ink/85">
               <li>
                 <a
-                  href="mailto:hello@fennrstudio.com"
+                  href={`mailto:${BUSINESS.email}`}
                   className="hover:text-accent transition-smooth"
                 >
-                  hello@fennrstudio.com
+                  {BUSINESS.email}
                 </a>
               </li>
               <li>
@@ -126,13 +147,19 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+919765190702"
+                  href={`tel:${BUSINESS.phone}`}
                   className="hover:text-accent transition-smooth"
                 >
-                  IN: +91-9765190702
+                  {BUSINESS.phoneDisplay} · call or WhatsApp
                 </a>
               </li>
-              <li className="text-ink/85">Pune, India · Studio 04</li>
+              <li className="text-ink/85">
+                <address className="not-italic">
+                  <Link href="/locations/pune" className="hover:text-accent transition-smooth">
+                    {BUSINESS.name}, {ADDRESS_LINE}
+                  </Link>
+                </address>
+              </li>
             </ul>
           </div>
         </div>
@@ -143,7 +170,7 @@ export default function Footer() {
               aria-hidden="true"
               className="inline-block w-6 h-6 rounded-full bg-ink"
             />
-            <p>© {new Date().getFullYear()} fennr. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Fennr Studio. All rights reserved.</p>
           </div>
 
           <div className="flex items-center gap-2">

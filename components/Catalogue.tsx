@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 type Card = {
@@ -11,6 +12,7 @@ type Card = {
   name: string;
   desc: string;
   image: string;
+  href: string;
 };
 
 const PAGES: Card[][] = [
@@ -19,6 +21,7 @@ const PAGES: Card[][] = [
       tag: "A4-1",
       category: "Build",
       name: "Web Development & Integration",
+      href: "/services/web-development",
       desc: "Website · WhatsApp · API · Payments",
       image:
         "/img/1547658719-5606a6.jpg",
@@ -27,6 +30,7 @@ const PAGES: Card[][] = [
       tag: "A4-2",
       category: "Branding",
       name: "Logo & Identity Design",
+      href: "/services/branding",
       desc: "Logo systems · brand boards",
       image:
         "/img/1516131206-318aac.jpg",
@@ -35,6 +39,7 @@ const PAGES: Card[][] = [
       tag: "A4-3",
       category: "Growth",
       name: "SEO & Visibility",
+      href: "/services/seo",
       desc: "Search · analytics · rankings",
       image:
         "/img/1551288049-54e812.jpg",
@@ -45,6 +50,7 @@ const PAGES: Card[][] = [
       tag: "A4-4",
       category: "Content",
       name: "Professional Photography",
+      href: "/services/photography",
       desc: "Product · food · spaces",
       image:
         "/img/1560343090-5559bc.jpg",
@@ -53,6 +59,7 @@ const PAGES: Card[][] = [
       tag: "A4-5",
       category: "Creative",
       name: "Graphic Design",
+      href: "/services/branding",
       desc: "Social · print · campaigns",
       image:
         "/img/1609921212-c99db0.jpg",
@@ -61,6 +68,7 @@ const PAGES: Card[][] = [
       tag: "A4-6",
       category: "Strategy",
       name: "Brand Strategy & Ideation",
+      href: "/services/branding",
       desc: "Positioning · naming · moodboards",
       image:
         "/img/1531403009-7c8d1e.jpg",
@@ -88,6 +96,12 @@ export default function Catalogue() {
               Six core services, one studio — from your first website to a full
               growth engine. A diagnostic call before any prescription.
             </p>
+            <Link
+              href="/services"
+              className="mt-5 inline-flex underline-accent display-tight text-sm tracking-[0.05em]"
+            >
+              See all services, including AI automation
+            </Link>
 
             <div className="mt-8 flex items-center gap-3">
               <button
@@ -155,16 +169,13 @@ export default function Catalogue() {
                         </h3>
                         <p className="mt-1 text-xs text-slatey">{item.desc}</p>
                       </div>
-                      <button
-                        onClick={() => {
-                          const el = document.getElementById("contact");
-                          if (el) el.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="flex-none w-9 h-9 inline-flex items-center justify-center rounded-full bg-ink text-accent group-hover:bg-accent group-hover:text-ink transition-smooth"
+                      <Link
+                        href={item.href}
+                        className="flex-none w-9 h-9 inline-flex items-center justify-center rounded-full bg-ink text-accent group-hover:bg-accent group-hover:text-ink transition-smooth after:absolute after:inset-0"
                         aria-label={`More about ${item.name}`}
                       >
                         <ArrowUpRight className="w-4 h-4" strokeWidth={1.6} />
-                      </button>
+                      </Link>
                     </div>
                   </article>
                 ))}

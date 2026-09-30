@@ -2,6 +2,7 @@
 
 import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 
 type Props = {
   placeholder?: string;
@@ -17,9 +18,25 @@ export default function EmailSignupForm({
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
 
+  // Previously this only flipped to "sent" and discarded the address. It now
+  // posts to the same endpoint as every other lead (rate-limited, validated
+  // server-side) with source "newsletter".
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const value = email.trim();
+    if (!value) return;
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Newsletter subscriber",
+        email: value,
+        source: "newsletter",
+        message: "Growth notes signup",
+      }),
+    })
+      .then((r) => r.ok && track("newsletter_signup"))
+      .catch(() => {});
     setSent(true);
     setEmail("");
   };

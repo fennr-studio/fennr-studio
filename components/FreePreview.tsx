@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useState } from "react";
-import { fbTrack } from "@/lib/meta-pixel";
+import { track } from "@/lib/analytics";
 
 const WA_NUMBER = "919765190702";
 
@@ -51,7 +51,7 @@ export default function FreePreview() {
   // Log the request (name + email optional) before WhatsApp opens — fire and forget.
   const logLead = () => {
     const name = biz.trim();
-    fbTrack("Lead", { content_name: "Free preview" });
+    track("preview_request");
     if (!name) return;
     fetch("/api/contact", {
       method: "POST",
@@ -68,7 +68,7 @@ export default function FreePreview() {
   };
 
   return (
-    <main className="relative bg-mist overflow-hidden">
+    <div className="relative bg-mist overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-40 top-24 w-[42rem] h-[42rem] rounded-full aura-accent"
@@ -198,6 +198,6 @@ export default function FreePreview() {
           Get my free preview
         </a>
       </section>
-    </main>
+    </div>
   );
 }

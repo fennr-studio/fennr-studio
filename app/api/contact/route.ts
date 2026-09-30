@@ -73,7 +73,8 @@ export async function POST(req: Request) {
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   // Phone is mandatory for the brief/contact form; the free-preview flow
   // (one-tap WhatsApp) intentionally doesn't collect one.
-  const requiresPhone = source !== "free-preview";
+  // Free-preview and newsletter signups are email-only by design.
+  const requiresPhone = source !== "free-preview" && source !== "newsletter";
   const phoneOk = isValidPhone(phone);
   if (
     !name ||

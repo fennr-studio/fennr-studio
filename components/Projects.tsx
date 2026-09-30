@@ -141,11 +141,17 @@ function Aside({ study }: { study: CaseStudy }) {
           <p className="mt-4 text-[1.02rem] leading-[1.62] text-ink/85">
             {aside.text}
           </p>
+          <Link
+            href={`/work/${study.path}`}
+            className="mt-7 flex items-center gap-2 border-t border-hairline pt-5 mono-label text-ink transition-colors hover:text-ink/70"
+          >
+            Read the {study.client} case study
+          </Link>
           <a
             href={study.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link mt-7 flex items-center gap-2 border-t border-hairline pt-5 mono-label text-ink/60 transition-colors hover:text-ink"
+            className="group/link mt-3 flex items-center gap-2 mono-label text-ink/60 transition-colors hover:text-ink"
           >
             See it live
             <ArrowUpRight
@@ -181,14 +187,12 @@ function Row({ study }: { study: CaseStudy }) {
           <div className="lg:col-start-2 lg:row-start-1">
             <p className="mono-label text-ink/45">{study.client}</p>
             <h3 className="mt-4 heading-md text-[1.75rem] leading-[1.08] text-ink sm:text-[2.1rem] xl:text-[2.5rem]">
-              <a
-                href={study.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={`/work/${study.path}`}
                 className="transition-colors hover:text-ink/70"
               >
                 {study.title}
-              </a>
+              </Link>
             </h3>
           </div>
 

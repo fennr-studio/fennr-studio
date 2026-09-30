@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 // Every entry is a real href so crawlers see links and the URLs are
 // shareable. Same-page section links keep the smooth scroll via onClick.
 const NAV: { href: string; label: string }[] = [
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/industries", label: "Industries" },
   { href: "/who-we-help", label: "Who we help" },
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About" },
 ];
 
 /**
@@ -67,7 +68,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10">
+          <nav aria-label="Main" className="hidden md:flex items-center gap-7 lg:gap-10">
             {NAV.map((item) => (
               <Link
                 key={item.label}
@@ -93,7 +94,8 @@ export default function Header() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 -mr-2 text-ink"
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

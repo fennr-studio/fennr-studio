@@ -15,6 +15,18 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
 
+  async redirects() {
+    return [
+      // There is one location today; /locations is its parent in the URL but
+      // has no page of its own until a second, genuinely-served city exists.
+      { source: "/locations", destination: "/locations/pune", permanent: true },
+      // Section anchors people may have bookmarked or shared as paths.
+      { source: "/pune", destination: "/locations/pune", permanent: true },
+      { source: "/portfolio", destination: "/work", permanent: true },
+      { source: "/case-studies", destination: "/work", permanent: true },
+    ];
+  },
+
   async headers() {
     const oneYearImmutable = "public, max-age=31536000, immutable";
 
@@ -51,6 +63,9 @@ const nextConfig = {
         "https://www.facebook.com",
         "https://*.google-analytics.com https://www.googletagmanager.com",
         "https://www.google.com https://*.g.doubleclick.net",
+        // GA4 audience pings go to the visitor's regional Google domain —
+        // for this audience that is google.co.in (was blocked, console error).
+        "https://www.google.co.in",
       ].join(" "),
       "font-src 'self' data:",
       // Supabase auth from /admin, plus the analytics beacons. Note that a CSP

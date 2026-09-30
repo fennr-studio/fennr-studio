@@ -13,7 +13,7 @@ function allowed(email: string | undefined | null): boolean {
   return list.includes(email.toLowerCase());
 }
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const res = NextResponse.next({ request: req });
 
   // Auth not configured. In local dev, leave the app usable without Supabase.
