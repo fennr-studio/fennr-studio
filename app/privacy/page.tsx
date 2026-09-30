@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
         <h2>Who we are</h2>
         <p>
-          Fennr Studio is a design and technology studio based in Shivaji Nagar, Pune 411007,
+          Fennr Studio is a design and technology studio based in Shivajinagar, Pune 411005,
           India. For any question about your data, contact us at{" "}
           <a href="mailto:hello@fennrstudio.com">hello@fennrstudio.com</a>.
         </p>
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
         <p>
           Questions about this policy or your data? Email{" "}
           <a href="mailto:hello@fennrstudio.com">hello@fennrstudio.com</a> or write to us at Fennr
-          Studio, Shivaji Nagar, Pune 411007, India.
+          Studio, Shivajinagar, Pune 411005, India.
         </p>
       </LegalPage>
       <Footer />

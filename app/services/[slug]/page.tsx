@@ -154,7 +154,7 @@ export default async function ServicePage({
             }))}
           />
           <p className="mt-8 text-ink/75 leading-relaxed max-w-2xl">
-            Fennr Studio is based in Shivaji Nagar and works with businesses{" "}
+            Fennr Studio is based in Shivajinagar and works with businesses{" "}
             <Link
               href="/locations/pune"
               className="underline decoration-accent underline-offset-4"

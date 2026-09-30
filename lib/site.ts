@@ -23,14 +23,24 @@ export const BUSINESS = {
   phoneDisplay: "+91 97651 90702",
   whatsapp: "https://wa.me/919765190702",
   calendly: "https://calendly.com/fennrstudio/new-meeting",
+  /** Google Business Profile on Maps — for "Find us" links and reviews. */
+  maps: "https://maps.google.com/?cid=7499107552488342646",
+  /**
+   * Must match the Google Business Profile character for character:
+   * "Shivajinagar, Pune, Maharashtra 411005" (checked on Maps, 30 Sep 2026).
+   */
   address: {
-    street: "Shivaji Nagar",
+    street: "Shivajinagar",
     locality: "Pune",
     region: "Maharashtra",
-    postalCode: "411007",
+    postalCode: "411005",
     country: "IN",
     countryName: "India",
   },
+  /** The verified pin from the Business Profile — never an approximation. */
+  geo: { lat: 18.5226292, lng: 73.8482458 },
+  /** As listed on the Business Profile. Change both together. */
+  open24h: true,
   founder: {
     name: "Gurnoor Singh",
     role: "Founder",
@@ -41,16 +51,18 @@ export const BUSINESS = {
    * Public profiles that are the same entity. Google uses these to join the
    * website to the Business Profile and social accounts.
    *
-   * TODO(owner): paste the exact URLs for the Google Business Profile
-   * ("Share" → copy link from Maps) and the LinkedIn company page. They are
-   * confirmed to exist but the URLs are not recorded anywhere in the repo, and
-   * a guessed URL here is worse than none.
+   * The Business Profile is referenced by its Maps CID, the stable form of a
+   * listing URL (decoded from the owner's profile link, feature id
+   * 0x3bc2c1bd7adaf03b:0x68122e9646844476).
+   *
+   * TODO(owner): add the LinkedIn company page URL. It exists but is not
+   * recorded anywhere, and a guessed URL here is worse than none.
    */
   sameAs: [
     "https://www.instagram.com/fennrstudio/",
     "https://github.com/fennr-studio",
+    "https://maps.google.com/?cid=7499107552488342646",
     // "https://www.linkedin.com/company/<slug>/",
-    // "https://maps.app.goo.gl/<id>",
   ] as string[],
 } as const;
 

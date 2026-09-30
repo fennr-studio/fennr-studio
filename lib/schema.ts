@@ -73,8 +73,23 @@ export function siteGraph(knowsAbout: string[], services: { name: string; path: 
           addressRegion: a.region,
           addressCountry: a.country,
         },
-        // No `geo`: coordinates are only worth adding when they are the
-        // verified pin from the Business Profile, never an approximation.
+        // The verified Business Profile pin (lib/site.ts), not a geocode.
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: BUSINESS.geo.lat,
+          longitude: BUSINESS.geo.lng,
+        },
+        hasMap: BUSINESS.maps,
+        ...(BUSINESS.open24h
+          ? {
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                opens: "00:00",
+                closes: "23:59",
+              },
+            }
+          : {}),
         areaServed: [
           { "@type": "City", name: "Pune" },
           { "@type": "State", name: "Maharashtra" },

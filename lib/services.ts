@@ -128,7 +128,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Do you only work with businesses in Pune?",
-        a: "No. We're based in Shivaji Nagar, Pune, and a good share of our work is remote — calls, shared documents and staged previews you can review from anywhere. Photography is the one service that needs us on site.",
+        a: "No. We're based in Shivajinagar, Pune, and a good share of our work is remote — calls, shared documents and staged previews you can review from anywhere. Photography is the one service that needs us on site.",
       },
       {
         q: "Who owns the website and domain?",

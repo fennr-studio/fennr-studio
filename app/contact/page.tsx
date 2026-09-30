@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 import { ID, pageGraph } from "@/lib/schema";
 
 const DESCRIPTION =
-  "Contact Fennr Studio in Shivaji Nagar, Pune: call or WhatsApp +91 97651 90702, email hello@fennrstudio.com, book a free strategy call or send a project brief.";
+  "Contact Fennr Studio in Shivajinagar, Pune: call or WhatsApp +91 97651 90702, email hello@fennrstudio.com, book a free strategy call or send a project brief.";
 
 export const metadata = pageMetadata({
   path: "/contact",
@@ -88,6 +88,14 @@ export default function ContactPage() {
                 <p className="mt-3 display-tight text-2xl">{BUSINESS.name}</p>
                 <p className="mt-2 text-mist/80 leading-relaxed">{ADDRESS_LINE}</p>
                 <p className="mt-1 text-sm text-mist/60">Meetings by appointment.</p>
+                <a
+                  href={BUSINESS.maps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block text-sm underline-accent"
+                >
+                  View on Google Maps
+                </a>
               </div>
               <div>
                 <p className="eyebrow text-accent">Phone & WhatsApp</p>

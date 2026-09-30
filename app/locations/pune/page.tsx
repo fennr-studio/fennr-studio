@@ -21,7 +21,7 @@ import { ID, faqNode, pageGraph } from "@/lib/schema";
 
 const PATH = "/locations/pune";
 const DESCRIPTION =
-  "Fennr Studio is a design and technology studio in Shivaji Nagar, Pune: website design, development, branding, SEO, photography and AI automation.";
+  "Fennr Studio is a design and technology studio in Shivajinagar, Pune: website design, development, branding, SEO, photography and AI automation.";
 
 export const metadata = pageMetadata({
   path: PATH,
@@ -82,7 +82,7 @@ export default function PunePage() {
           intro={
             <>
               <p>
-                Fennr Studio is based in Shivaji Nagar, Pune. We design and build
+                Fennr Studio is based in Shivajinagar, Pune. We design and build
                 websites and web apps, create brands, shoot commercial photography, run
                 SEO and build AI and WhatsApp automation — for Pune businesses, and
                 remotely for clients across India.
@@ -200,7 +200,15 @@ export default function PunePage() {
             </p>
           </address>
           <p className="mt-6 text-ink/75">
-            Meetings are by appointment —{" "}
+            <a
+              href={BUSINESS.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-accent underline-offset-4"
+            >
+              View Fennr Studio on Google Maps
+            </a>
+            . Meetings are by appointment —{" "}
             <Link href="/contact" className="underline decoration-accent underline-offset-4">
               get in touch
             </Link>{" "}

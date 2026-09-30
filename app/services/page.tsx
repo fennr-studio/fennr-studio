@@ -51,7 +51,7 @@ export default function ServicesPage() {
           intro={
             <>
               <p>
-                Fennr Studio is a design and technology studio in Shivaji Nagar, Pune. We
+                Fennr Studio is a design and technology studio in Shivajinagar, Pune. We
                 build websites, web apps, brands, photography, search visibility and
                 automation for businesses in Pune and across India.
               </p>

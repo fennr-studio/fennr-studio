@@ -119,9 +119,9 @@ export default function Subscribe() {
                   </span>
                 </div>
                 <p className="leading-relaxed text-mist/80">
-                  Shivaji Nagar
+                  Shivajinagar
                   <br />
-                  Pune 411007 · India
+                  Pune 411005 · India
                 </p>
                 <a
                   href="mailto:hello@fennrstudio.com"
