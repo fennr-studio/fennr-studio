@@ -30,6 +30,11 @@ const SOCIALS: { label: string; short: string; href: string }[] = [
     short: "IG",
     href: "https://www.instagram.com/fennrstudio/",
   },
+  {
+    label: "LinkedIn",
+    short: "IN",
+    href: "https://www.linkedin.com/company/fennr-studio/",
+  },
   { label: "GitHub", short: "GH", href: "https://github.com/fennr-studio" },
 ];
 

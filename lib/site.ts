@@ -54,15 +54,13 @@ export const BUSINESS = {
    * The Business Profile is referenced by its Maps CID, the stable form of a
    * listing URL (decoded from the owner's profile link, feature id
    * 0x3bc2c1bd7adaf03b:0x68122e9646844476).
-   *
-   * TODO(owner): add the LinkedIn company page URL. It exists but is not
-   * recorded anywhere, and a guessed URL here is worse than none.
+   * LinkedIn uses the vanity URL, verified to resolve to company 138413906.
    */
   sameAs: [
     "https://www.instagram.com/fennrstudio/",
     "https://github.com/fennr-studio",
     "https://maps.google.com/?cid=7499107552488342646",
-    // "https://www.linkedin.com/company/<slug>/",
+    "https://www.linkedin.com/company/fennr-studio/",
   ] as string[],
 } as const;
 
