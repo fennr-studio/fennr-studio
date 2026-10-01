@@ -204,7 +204,7 @@ export default function Hero() {
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
               className="group inline-flex items-center gap-3"
-              aria-label="Scroll to approach"
+              aria-label="Scroll to see more"
             >
               <RotatingBadge
                 text="SCROLL TO SEE MORE * SCROLL TO SEE MORE * "

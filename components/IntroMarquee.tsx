@@ -21,7 +21,7 @@ export default function IntroMarquee() {
           {items.map((name, i) => (
             <span
               key={`${name}-${i}`}
-              className="select-none whitespace-nowrap display-tight text-base md:text-lg text-ink/55 hover:text-ink transition-smooth flex items-center gap-3 tracking-[0.08em]"
+              className="select-none whitespace-nowrap display-tight text-base md:text-lg text-ink/65 hover:text-ink transition-smooth flex items-center gap-3 tracking-[0.08em]"
             >
               {name}
               <span className="numeral text-accent text-base leading-none -translate-y-0.5">*</span>

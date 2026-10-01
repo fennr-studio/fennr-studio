@@ -130,7 +130,7 @@ export default function Approach() {
                 key={s.no}
                 onClick={() => goToStage(i)}
                 className={`numeral text-2xl transition-smooth ${
-                  i === stage ? "text-ink" : "text-ink/25 hover:text-ink/55"
+                  i === stage ? "text-ink" : "text-ink/25 hover:text-ink/65"
                 }`}
                 aria-label={`Go to stage ${i + 1}`}
               >
@@ -312,7 +312,7 @@ export default function Approach() {
 
         <div className="container-px max-w-[1400px] mx-auto w-full pb-6 relative z-10">
           <div className="flex items-center gap-4">
-            <span className="numeral text-base text-ink/55">
+            <span className="numeral text-base text-ink/65">
               {String(stage + 1).padStart(2, "0")}
             </span>
             <div className="flex-1 h-[3px] bg-ink/10 rounded-full overflow-hidden">
@@ -321,7 +321,7 @@ export default function Approach() {
                 style={{ scaleX: scrollYProgress }}
               />
             </div>
-            <span className="numeral text-base text-ink/55">
+            <span className="numeral text-base text-ink/65">
               {String(STAGES.length).padStart(2, "0")}
             </span>
           </div>

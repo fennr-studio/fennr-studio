@@ -58,7 +58,7 @@ export default function Results() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 }}
               className="relative bg-paper p-7 md:p-8 hover:bg-mist transition-smooth"
             >
-              <span className="absolute top-5 right-5 numeral text-base text-ink/45">
+              <span className="absolute top-5 right-5 numeral text-base text-ink/65">
                 №{i + 1}
               </span>
 

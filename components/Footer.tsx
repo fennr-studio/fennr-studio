@@ -3,6 +3,7 @@
 import Link from "next/link";
 import EmailSignupForm from "./EmailSignupForm";
 import { SERVICES } from "@/lib/services";
+import { publishedGuides } from "@/lib/guides";
 import { ADDRESS_LINE, BUSINESS } from "@/lib/site";
 
 // Real hrefs throughout — a block labelled "website map" made of buttons is
@@ -13,6 +14,7 @@ const SITEMAP: { label: string; href: string }[] = [
   { href: "/industries", label: "Industries" },
   { href: "/who-we-help", label: "Who we help" },
   { href: "/locations/pune", label: "Pune studio" },
+  ...(publishedGuides().length ? [{ href: "/guides", label: "Guides" }] : []),
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/free-preview", label: "Free preview" },
@@ -185,10 +187,11 @@ export default function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={s.label}
+                title={s.label}
                 className="w-8 h-8 inline-flex items-center justify-center border border-hairline rounded-sm text-ink/70 hover:text-accent hover:border-accent transition-smooth text-[10px] tracking-[0.08em]"
               >
-                <span aria-hidden="true">{s.short}</span>
+                {s.short}
+                <span className="sr-only"> {s.label}</span>
               </a>
             ))}
           </div>

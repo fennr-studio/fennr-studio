@@ -93,7 +93,7 @@ export default async function IndustryPage({
         <Section eyebrow="Features" title="What we build in" aside>
           <NumberedList items={ind.features} />
           <div className="mt-10">
-            <h3 className="eyebrow text-ink/60 mb-4">Integrations</h3>
+            <h3 className="eyebrow text-ink/70 mb-4">Integrations</h3>
             <Chips items={ind.integrations} />
           </div>
         </Section>

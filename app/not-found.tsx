@@ -24,7 +24,7 @@ export default function NotFound() {
       <Header />
       <main className="relative bg-mist overflow-hidden">
         <section className="container-px max-w-[1000px] mx-auto pt-36 md:pt-44 pb-24 md:pb-32">
-          <p className="eyebrow text-ink/60">Error 404</p>
+          <p className="eyebrow text-ink/70">Error 404</p>
           <h1 className="mt-4 display text-ink text-[12vw] md:text-7xl leading-[0.95]">
             This page doesn&rsquo;t exist.
           </h1>

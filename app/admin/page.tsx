@@ -165,7 +165,7 @@ export default function AdminPage() {
   if (loading && leads.length === 0) {
     return (
       <main className="min-h-screen bg-mist grid place-items-center">
-        <p className="text-ink/50">Loading leads…</p>
+        <p className="text-ink/65">Loading leads…</p>
       </main>
     );
   }

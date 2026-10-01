@@ -146,7 +146,7 @@ export function Section({
 }) {
   const heading = (
     <>
-      {eyebrow && <p className="eyebrow text-ink/60">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow text-ink/70">{eyebrow}</p>}
       <h2 className="mt-4 display text-3xl md:text-5xl lg:text-[3.2rem] text-ink leading-[0.98] text-balance">
         {title}
       </h2>
@@ -186,7 +186,7 @@ export function NumberedList({
         const t = typeof item === "string" ? { title: item, body: "" } : item;
         return (
           <li key={t.title} className="flex items-baseline gap-6 py-5 border-b border-ink/10">
-            <span aria-hidden="true" className="numeral text-ink/40 text-2xl w-10 flex-none">
+            <span aria-hidden="true" className="numeral text-ink/55 text-2xl w-10 flex-none">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>
@@ -247,7 +247,7 @@ export function LinkCards({ items, cols = 3 }: { items: LinkCard[]; cols?: 2 | 3
             href={c.href}
             className="group h-full p-7 md:p-8 flex flex-col hover:bg-mist transition-smooth"
           >
-            {c.eyebrow && <span className="eyebrow text-ink/55">{c.eyebrow}</span>}
+            {c.eyebrow && <span className="eyebrow text-ink/70">{c.eyebrow}</span>}
             <h3 className="mt-2 display-tight text-xl text-ink tracking-[0.02em] leading-tight group-hover:underline decoration-accent decoration-2 underline-offset-4">
               {c.title}
             </h3>
@@ -282,7 +282,7 @@ export function CaseCards({ studies }: { studies: CaseStudy[] }) {
               />
             </div>
             <div className="p-6">
-              <p className="eyebrow text-ink/55">
+              <p className="eyebrow text-ink/70">
                 {s.location ? `${s.industry} · ${s.location}` : s.industry}
               </p>
               <h3 className="mt-2 heading-md text-lg text-ink leading-snug">{s.client}</h3>

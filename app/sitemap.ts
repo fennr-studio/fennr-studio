@@ -3,6 +3,7 @@ import { PERSONAS } from "@/lib/personas";
 import { SERVICES } from "@/lib/services";
 import { INDUSTRIES } from "@/lib/industries";
 import { CASE_STUDIES } from "@/lib/case-studies";
+import { publishedGuides } from "@/lib/guides";
 import { SITE_URL } from "@/lib/seo";
 
 /**
@@ -25,6 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...CASE_STUDIES.map((c) => ({ path: `/work/${c.path}`, priority: 0.7 })),
     { path: "/industries", priority: 0.7 },
     ...INDUSTRIES.map((i) => ({ path: `/industries/${i.slug}`, priority: 0.8 })),
+    // Draft guides are excluded; the hub appears once one is published.
+    ...(publishedGuides().length
+      ? [
+          { path: "/guides", priority: 0.6 },
+          ...publishedGuides().map((g) => ({ path: `/guides/${g.slug}`, priority: 0.6 })),
+        ]
+      : []),
     { path: "/free-preview", priority: 0.8 },
     { path: "/brief", priority: 0.7 },
     { path: "/about", priority: 0.6 },

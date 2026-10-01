@@ -11,7 +11,11 @@
   --accent: 48 100% 55.9%;
   /* soft yellow wash — #FFF3C2 */
   --accent-soft: 48 100% 88%;
-  --slatey: 220 4% 50%;
+  /* Deep yellow for small text on light grounds (#806500, 5.1:1 on mist) —
+     brand yellow is 1.3:1 there and unreadable at eyebrow size. */
+  --accent-deep: 47 100% 25%;
+  /* Was 50% lightness (4.1:1 on mist); 44% clears 4.5:1. */
+  --slatey: 220 4% 44%;
   --hairline: 200 5% 83%;
 }
 
@@ -446,3 +450,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-rise { animation: none; }
 }
+
+/* Numbered steps inside guide prose: no bullet dot, no bullet indent. */
+.legal-prose ol.guide-steps li { padding-left: 0; }
+.legal-prose ol.guide-steps li::before { display: none; }
+.legal-prose section > ol:not(.guide-steps) { list-style: decimal; padding-left: 1.4rem; }
+
+/* Small yellow labels: deep yellow on light grounds, brand yellow on dark.
+   Large display words keep brand yellow — that is the design. */
+.eyebrow.text-accent,
+.mono-label.text-accent { color: hsl(var(--accent-deep)); }
+.bg-ink .eyebrow.text-accent,
+.bg-ink .mono-label.text-accent { color: hsl(var(--accent)); }

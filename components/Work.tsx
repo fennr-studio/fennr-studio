@@ -184,16 +184,21 @@ export default function Work() {
                     </a>
                   )}
 
-                  <div className="ml-auto flex items-center gap-1.5">
+                  <div className="ml-auto flex items-center">
                     {PROJECTS.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => setIndex(i)}
                         aria-label={`Go to project ${i + 1}`}
-                        className={`h-1.5 rounded-full transition-all ${
-                          i === index ? "w-8 bg-ink" : "w-3 bg-ink/20"
-                        }`}
-                      />
+                        className="group/dot py-2.5 px-1.5 min-w-6"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className={`block h-1.5 rounded-full transition-all ${
+                            i === index ? "w-8 bg-ink" : "w-3 bg-ink/20"
+                          }`}
+                        />
+                      </button>
                     ))}
                   </div>
                 </div>

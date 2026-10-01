@@ -55,8 +55,10 @@ export type ServiceSlug =
   | "web-development"
   | "branding"
   | "seo"
+  | "local-seo"
   | "photography"
-  | "ai-automation";
+  | "ai-automation"
+  | "custom-software";
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
@@ -131,7 +133,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     location: "Pune",
     industry: "Community & photography",
     industryPath: "/industries/photographers",
-    services: ["web-design", "web-development", "branding", "seo"],
+    services: ["web-design", "web-development", "custom-software", "branding", "seo"],
     summary:
       "A home for a Pune photo-walk community: walks calendar, member accounts, photographer pages and a credited photo archive.",
     context:
@@ -180,7 +182,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     path: "dentora",
     industry: "Dental clinic",
     industryPath: "/industries/clinics",
-    services: ["web-design", "web-development", "seo"],
+    services: ["web-design", "web-development", "local-seo"],
     summary:
       "A calm, booking-first dental clinic site where Book an Appointment is never more than one tap away.",
     context:
@@ -271,7 +273,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     path: "west-village-cafe",
     industry: "Café & restaurant",
     industryPath: "/industries/restaurants",
-    services: ["branding", "web-design", "web-development", "seo"],
+    services: ["branding", "web-design", "web-development", "local-seo"],
     summary:
       "A neighbourhood café's identity, website, self-editable menu and an ordering flow short enough to finish in the queue.",
     context:

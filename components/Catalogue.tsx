@@ -143,7 +143,7 @@ export default function Catalogue() {
                   >
                     <div className="flex items-start justify-between">
                       <p className="eyebrow text-accent">{item.category}</p>
-                      <span className="numeral italic text-ink/55 text-base">
+                      <span className="numeral italic text-ink/65 text-base">
                         {item.tag}
                       </span>
                     </div>

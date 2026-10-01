@@ -128,13 +128,13 @@ function Aside({ study }: { study: CaseStudy }) {
             />
             <div>
               <p className="heading-md text-[1.05rem] text-ink">{aside.name}</p>
-              <p className="mono-label mt-1 text-ink/45">{aside.role}</p>
+              <p className="mono-label mt-1 text-ink/65">{aside.role}</p>
             </div>
           </div>
         </>
       ) : (
         <>
-          <p className="mono-label flex items-center gap-2 text-ink/45">
+          <p className="mono-label flex items-center gap-2 text-ink/65">
             <FlagMark />
             The brief
           </p>
@@ -185,7 +185,7 @@ function Row({ study }: { study: CaseStudy }) {
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(13rem,19rem)] lg:gap-10 xl:gap-14">
           {/* Title block — first on mobile, top of the right column on desktop. */}
           <div className="lg:col-start-2 lg:row-start-1">
-            <p className="mono-label text-ink/45">{study.client}</p>
+            <p className="mono-label text-ink/65">{study.client}</p>
             <h3 className="mt-4 heading-md text-[1.75rem] leading-[1.08] text-ink sm:text-[2.1rem] xl:text-[2.5rem]">
               <Link
                 href={`/work/${study.path}`}
@@ -240,7 +240,7 @@ export default function Projects() {
         {/* Section head — same two-column rhythm as the rows below it. */}
         <div className="grid lg:grid-cols-[minmax(0,23rem)_minmax(0,1fr)]">
           <div className="pt-20 lg:flex lg:justify-end lg:pr-10 lg:pt-28 xl:pr-14">
-            <p className="mono-label flex items-center gap-2 text-ink/55">
+            <p className="mono-label flex items-center gap-2 text-ink/65">
               <FlagMark />
               Our projects
             </p>

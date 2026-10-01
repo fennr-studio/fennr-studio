@@ -73,7 +73,7 @@ export const INDUSTRIES: Industry[] = [
       "Pages for private dining, catering or events if you offer them",
       "Consistent name, address and phone across listings",
     ],
-    services: ["web-design", "branding", "photography", "seo"],
+    services: ["web-design", "branding", "photography", "local-seo"],
     work: ["cafe"],
     faqs: [
       {
@@ -136,7 +136,7 @@ export const INDUSTRIES: Industry[] = [
       "Clear, accurate medical content reviewed by the practitioner",
       "Consistent practice details across directories",
     ],
-    services: ["web-design", "web-development", "seo", "photography"],
+    services: ["web-design", "web-development", "local-seo", "photography"],
     work: ["dentora"],
     faqs: [
       {
@@ -256,7 +256,7 @@ export const INDUSTRIES: Industry[] = [
       "Series pages with real captions and context",
       "Fast Core Web Vitals despite heavy imagery",
     ],
-    services: ["web-design", "web-development", "seo"],
+    services: ["web-design", "custom-software", "seo"],
     work: ["portfolio", "photowalks"],
     faqs: [
       {

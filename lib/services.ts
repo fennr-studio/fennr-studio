@@ -142,36 +142,37 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "web-development",
-    name: "Web Development & Web Apps",
-    title: "Web Development Company in Pune",
+    name: "Website Development",
+    title: "Website Development Company in Pune",
     description:
-      "Web development in Pune: fast Next.js websites, web apps, dashboards and custom software with WhatsApp, payment and API integrations — owned by you.",
-    h1: "Web development, web apps and custom software from Pune",
-    eyebrow: "Service · Web development",
-    serviceType: "Web development",
+      "Website development in Pune: fast Next.js business sites with booking, ordering, WhatsApp and payment integrations, migrated off Wix or WordPress, owned by you.",
+    h1: "Website development in Pune: fast sites you own outright",
+    eyebrow: "Service · Website development",
+    serviceType: "Website development",
     cardBody:
-      "Production websites, web applications, dashboards and integrations — WhatsApp, payments, CRMs and APIs — engineered to be fast and cheap to run.",
+      "Fast, production-grade business websites with booking, ordering, WhatsApp and payment integrations, on a codebase you own.",
     intro: [
-      "Fennr Studio builds websites and web applications for businesses in Pune and across India — from a fast marketing site to member platforms, booking flows, internal dashboards and custom tools that run part of the business.",
-      "The founder is a software engineer by background, and the studio builds on the same modern stack used by product companies: statically generated where it can be, server-rendered where it must be, and wired into the tools you already use — WhatsApp, payment gateways, CRMs and third-party APIs.",
+      "Fennr Studio develops websites for businesses in Pune and across India: marketing sites, booking and ordering flows, menus and catalogues, and the integrations that make a site do real work, such as WhatsApp, payment gateways, CRMs and analytics.",
+      "The founder is a software engineer by background, so the studio builds on the same stack product companies use. Pages are statically generated wherever possible, so they load fast and cost almost nothing to host, and you get the code, the domain and the hosting in your own name.",
+      "Need something with accounts, dashboards or business logic rather than pages? That's custom software, which has its own page.",
     ],
     whoFor: [
       "Businesses whose website needs to take bookings, orders or payments",
-      "Communities and platforms that need accounts, profiles and member areas",
-      "Teams replacing spreadsheets with a custom dashboard or internal tool",
-      "Founders building an MVP or a first production version",
       "Companies moving off Wix, WordPress or a site builder they've outgrown",
+      "Sites that are slow, hard to update or invisible in search",
+      "Designers and agencies who need a reliable development partner",
+      "Founders who need a credible marketing site before launch",
     ],
     problems: [
       {
         problem: "The site is slow, and it's costing us visitors.",
         answer:
-          "We build with static generation, optimised images and minimal JavaScript, then measure real Core Web Vitals — not just a Lighthouse score on a fast laptop.",
+          "We build with static generation, optimised images and minimal JavaScript, then measure real Core Web Vitals, not just a Lighthouse score on a fast laptop.",
       },
       {
         problem: "We're stuck on a site builder we've outgrown.",
         answer:
-          "We migrate every page of content into a codebase you own, with clean URLs and redirects so existing search visibility carries over.",
+          "We migrate every page of content into a codebase you own, with clean URLs and redirects so existing search visibility carries over. Tekton Talent Solutions moved from Wix this way.",
       },
       {
         problem: "Orders and enquiries arrive in five different places.",
@@ -179,34 +180,34 @@ export const SERVICES: Service[] = [
           "We connect the site to WhatsApp, payments and your CRM so every lead and order lands in one place with the right details attached.",
       },
       {
-        problem: "We need software that fits how we actually work.",
+        problem: "Every small change needs a developer.",
         answer:
-          "Custom web apps and dashboards scoped to your process, shipped in weekly increments so you use it early and shape it as it's built.",
+          "Menus, timings, offers and galleries can be made editable, so day-to-day updates don't wait on anyone.",
       },
     ],
     process: STANDARD_PROCESS,
     deliverables: [
       "Marketing websites and landing pages",
-      "Web applications with accounts, roles and member areas",
       "Booking, ordering and enquiry flows",
       "Payment gateway integration (UPI, cards, net banking)",
-      "WhatsApp Business API and CRM integrations",
-      "Admin dashboards and internal tools",
-      "Migration from Wix, WordPress and site builders",
+      "WhatsApp click-to-chat and WhatsApp Business API integration",
+      "CRM and email integrations for leads",
+      "Editable menus, catalogues and galleries",
+      "Migration from Wix, WordPress and site builders, with redirects",
       "Hosting, domain, SSL, email and backups set up in your name",
       "Technical SEO, analytics and performance budgets",
     ],
-    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase / Postgres", "Vercel", "WhatsApp Cloud API", "Resend"],
+    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel", "Resend", "WhatsApp Cloud API"],
     industries: ["restaurants", "clinics", "hospitality", "photographers"],
-    related: ["web-design", "ai-automation", "seo"],
+    related: ["web-design", "custom-software", "seo"],
     faqs: [
       {
-        q: "What technology do you build with?",
-        a: "Mostly Next.js, React and TypeScript, with Supabase/Postgres when an app needs accounts or data, deployed on Vercel. We pick the simplest stack that does the job and that another developer could pick up later.",
+        q: "What technology do you build websites with?",
+        a: "Mostly Next.js, React and TypeScript, deployed on Vercel. We pick the simplest stack that does the job and that another developer could pick up later.",
       },
       {
-        q: "Can you build a custom web application, not just a website?",
-        a: "Yes — member platforms, booking systems, dashboards and internal tools. Photowalks in Pune, for example, has member accounts, photographer pages, walk registrations and a searchable photo archive.",
+        q: "Can you move my site off Wix or WordPress?",
+        a: "Yes. We migrate the content into a site you own and set up redirects from the old URLs, so links and search visibility carry over.",
       },
       {
         q: "Can you integrate WhatsApp and payments?",
@@ -214,11 +215,104 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Do you provide hosting and maintenance?",
-        a: "Yes, though ownership stays with you. Domain and hosting are billed at actual cost with no markup. Maintenance — updates, security patches, backups, monitoring and small changes — is optional and priced separately.",
+        a: "Yes, though ownership stays with you. Domain and hosting are billed at actual cost with no markup. Maintenance (updates, security patches, backups, monitoring and small changes) is optional and priced separately.",
+      },
+      {
+        q: "Do you build web apps too?",
+        a: "Yes. Member platforms, dashboards and internal tools are covered on the custom software page.",
+      },
+    ],
+  },
+  {
+    slug: "custom-software",
+    name: "Custom Software & Web Apps",
+    title: "Custom Software & Web App Development in Pune",
+    description:
+      "Custom software and web application development in Pune: member platforms, dashboards, internal tools and MVPs, built on Next.js and Postgres in weekly sprints.",
+    h1: "Custom software and web applications, built around how you work",
+    eyebrow: "Service · Custom software",
+    serviceType: "Custom software development",
+    cardBody:
+      "Web applications with accounts, data and business logic: member platforms, dashboards, internal tools and MVPs.",
+    intro: [
+      "Fennr Studio builds custom web applications for businesses and founders in Pune and across India. These are platforms with accounts and roles, dashboards that replace spreadsheets, internal tools, and first versions of new products.",
+      "It's the kind of software we run ourselves. This studio's own lead pipeline is a custom app: a protected admin dashboard over a Postgres database, a daily follow-up digest sent by a scheduled job, and a WhatsApp flow engine that captures leads into a CRM. Photowalks in Pune runs on the same foundations, with member accounts, photographer profiles, walk registrations and a searchable photo archive.",
+    ],
+    whoFor: [
+      "Communities and platforms that need accounts, profiles and member areas",
+      "Teams replacing spreadsheets and WhatsApp groups with a real tool",
+      "Founders building an MVP or a first production version",
+      "Businesses whose process doesn't fit off-the-shelf software",
+    ],
+    problems: [
+      {
+        problem: "The business runs on spreadsheets and group chats.",
+        answer:
+          "We turn the process into an app: one place for the data, the right people seeing the right things, and nothing lost in a chat thread.",
+      },
+      {
+        problem: "Off-the-shelf tools almost fit, but not quite.",
+        answer:
+          "We build the part that's specific to you and connect it to the tools you keep, rather than forcing a whole new system on the team.",
+      },
+      {
+        problem: "We need to test a product idea without a huge build.",
+        answer:
+          "We scope the smallest version that proves the idea and ship it in weekly sprints, so you're in front of real users in weeks, not months.",
+      },
+      {
+        problem: "Our last build was impossible to change.",
+        answer:
+          "A mainstream, typed stack (Next.js, TypeScript, Postgres) with code another developer can read. You own the repository from day one.",
+      },
+    ],
+    process: [
+      {
+        title: "Map the workflow",
+        body: "Who does what, with which data, and where it breaks today. The output is a one-page scope with the first version clearly marked.",
+      },
+      {
+        title: "Data model and flows",
+        body: "The tables, roles and permissions, and the screens each person needs. Agreed before code, so the build doesn't wander.",
+      },
+      {
+        title: "Weekly sprints",
+        body: "A working build every week on a staging URL you can use yourself. Priorities can change between sprints.",
+      },
+      {
+        title: "Launch and hand over",
+        body: "Production deployment, access control checked, backups and monitoring on, and documentation for whoever maintains it next.",
+      },
+    ],
+    deliverables: [
+      "Web applications with sign-up, login and roles",
+      "Member platforms and public profile pages",
+      "Admin dashboards and internal tools",
+      "MVPs and first production versions",
+      "Postgres data models with row-level security",
+      "Scheduled jobs: digests, reminders, syncs",
+      "Integrations with WhatsApp, CRMs, payments and email",
+      "Code in your own repository, with documentation",
+    ],
+    tools: ["Next.js", "React", "TypeScript", "Supabase / Postgres", "Supabase Auth", "Vercel Cron", "WhatsApp Cloud API", "Resend"],
+    industries: ["photographers", "clinics", "hospitality"],
+    related: ["web-development", "ai-automation", "web-design"],
+    faqs: [
+      {
+        q: "What's the difference between a website and a web app?",
+        a: "A website mostly presents information. A web app has accounts, data and logic: people sign in, do things, and the system remembers. If people need to log in, it's a web app.",
       },
       {
         q: "How fast can an MVP be live?",
         a: "A working MVP typically takes four to six weeks depending on scope. We work in weekly sprints, so you see progress every week rather than at the end.",
+      },
+      {
+        q: "Who owns the code?",
+        a: "You do. The repository, database and hosting accounts are in your name from the start.",
+      },
+      {
+        q: "Can you work on an existing app?",
+        a: "Often, yes. We review the codebase first and tell you plainly whether extending it or rebuilding parts of it is the better investment.",
       },
     ],
   },
@@ -313,7 +407,7 @@ export const SERVICES: Service[] = [
   {
     slug: "seo",
     name: "SEO & Local Search",
-    title: "SEO Services in Pune",
+    title: "SEO Services in Pune — Technical & On-Page SEO",
     description:
       "SEO from a Pune studio that builds websites: technical SEO, local SEO, Google Business Profile, content and analytics — measured by enquiries.",
     h1: "SEO services in Pune: be found by the people already searching for you",
@@ -383,7 +477,7 @@ export const SERVICES: Service[] = [
       "Monthly SEO report",
     ],
     industries: ["restaurants", "clinics", "hospitality", "photographers"],
-    related: ["web-development", "web-design", "branding"],
+    related: ["local-seo", "web-development", "web-design"],
     faqs: [
       {
         q: "Can you guarantee a #1 ranking on Google?",
@@ -404,6 +498,102 @@ export const SERVICES: Service[] = [
       {
         q: "Is SEO a one-time project or a retainer?",
         a: "Both are available. A one-time technical and local SEO setup suits many small businesses; a monthly retainer adds content, reporting and ongoing improvements.",
+      },
+    ],
+  },
+  {
+    slug: "local-seo",
+    name: "Local SEO & Google Business Profile",
+    title: "Local SEO & Google Maps Optimisation in Pune",
+    description:
+      "Local SEO for Pune businesses: Google Business Profile optimisation, consistent listings, local pages and honest reviews, so nearby customers find you on Maps.",
+    h1: "Local SEO in Pune: show up when people nearby search for you",
+    eyebrow: "Service · Local SEO",
+    serviceType: "Local search engine optimisation",
+    cardBody:
+      "Google Business Profile, consistent listings, local pages and reviews: the signals that decide who appears on Maps nearby.",
+    intro: [
+      "When someone in Pune searches \"café near me\", \"dentist in Kothrud\" or \"web designer Shivajinagar\", Google shows a map and three businesses before any website. Local SEO is the work of earning a place there.",
+      "Google says local results are decided mainly by relevance, distance and prominence. Distance you can't change. Fennr Studio works on the other two: a complete and accurate Business Profile, a website that confirms the same details, consistent listings across the web, and real reviews from real customers. We did the same for this studio, matching the website's address to its Business Profile character for character.",
+    ],
+    whoFor: [
+      "Cafés, restaurants and cloud kitchens",
+      "Clinics, dentists, salons and wellness practices",
+      "Shops, showrooms and service businesses with a Pune address",
+      "Businesses that serve customers across Pune from one base",
+    ],
+    problems: [
+      {
+        problem: "We don't appear on Google Maps when people search nearby.",
+        answer:
+          "We audit and complete the Business Profile: categories, services, hours, photos and description, all matching your website.",
+      },
+      {
+        problem: "Our address and phone are different on different sites.",
+        answer:
+          "We find every listing that mentions you and make the name, address and phone identical, because inconsistency weakens local trust signals.",
+      },
+      {
+        problem: "Competitors have hundreds of reviews and we have a handful.",
+        answer:
+          "A simple, compliant review-request routine after every job, with no incentives, no review gating and a reply to every review.",
+      },
+      {
+        problem: "Our website doesn't mention where we are.",
+        answer:
+          "Location and service pages that say clearly what you do and where, plus LocalBusiness structured data tied to your Maps listing.",
+      },
+    ],
+    process: [
+      {
+        title: "Local audit",
+        body: "Business Profile review, listings and citation check, and a look at who appears in the map pack for your key searches.",
+      },
+      {
+        title: "Fix the profile",
+        body: "Primary and secondary categories, services, description, hours, photos and attributes, all accurate and all matching the site.",
+      },
+      {
+        title: "Make the website agree",
+        body: "Name, address and phone everywhere, a location page, structured data with the verified map pin, and a link from the site to the profile.",
+      },
+      {
+        title: "Reviews and listings",
+        body: "A review-request template and routine, plus consistent listings on the directories that matter for your category.",
+      },
+      {
+        title: "Track",
+        body: "Business Profile insights (calls, direction requests, website clicks) and local search queries in Search Console, every month.",
+      },
+    ],
+    deliverables: [
+      "Google Business Profile audit and optimisation",
+      "Primary and secondary category selection",
+      "Services, description and photo plan for the profile",
+      "Name, address and phone consistency audit and fixes",
+      "Directory and citation clean-up",
+      "Location page and LocalBusiness structured data",
+      "Review-request template and routine",
+      "Monthly local visibility report",
+    ],
+    industries: ["restaurants", "clinics", "hospitality"],
+    related: ["seo", "web-design", "photography"],
+    faqs: [
+      {
+        q: "Can you get us into the top three on Google Maps?",
+        a: "Nobody can honestly guarantee that. Map rankings depend on distance from the searcher, which no one controls, as well as relevance and prominence. We build the signals that are in your control and report what changes.",
+      },
+      {
+        q: "We don't have a Google Business Profile yet. Can you set it up?",
+        a: "We can guide the setup and verification, which has to be done by the business owner, then optimise it fully.",
+      },
+      {
+        q: "Can you write reviews for us or buy them?",
+        a: "No. Fake or incentivised reviews break Google's policies and can get a profile suspended. We help you ask real customers properly.",
+      },
+      {
+        q: "How is local SEO different from regular SEO?",
+        a: "Regular SEO is about your website ranking in the main results. Local SEO is about appearing on Maps and in the local pack, which depends heavily on your Business Profile and listings.",
       },
     ],
   },
@@ -559,7 +749,7 @@ export const SERVICES: Service[] = [
     ],
     tools: ["WhatsApp Cloud API", "Next.js", "Supabase / Postgres", "EspoCRM", "Resend", "LLM APIs"],
     industries: ["restaurants", "clinics", "hospitality"],
-    related: ["web-development", "seo", "web-design"],
+    related: ["custom-software", "web-development", "seo"],
     faqs: [
       {
         q: "What can be automated on WhatsApp?",
@@ -582,3 +772,67 @@ export const SERVICES: Service[] = [
 ];
 
 export const getService = (slug: string) => SERVICES.find((s) => s.slug === slug);
+
+/**
+ * "Across India" section for each service page.
+ *
+ * Deliberately a section on the one authoritative page, not a separate
+ * /services/x/india page: the national version would share most of its
+ * content with the Pune version, and two near-identical pages compete with
+ * each other. What genuinely differs nationally (remote process, what does
+ * and doesn't travel, proof from outside Pune) lives here.
+ */
+export const INDIA: Record<ServiceSlug, { title: string; body: string[] }> = {
+  "web-design": {
+    title: "Website design for businesses across India",
+    body: [
+      "Design doesn't need us in the room. Clients outside Pune review staged previews on their own phones, give feedback over WhatsApp or a call, and sign off each stage in writing, the same process Pune clients follow.",
+      "Our work already spans cities: Tekton Talent Solutions is in Hyderabad and places engineers across India. If your customers are in a different city from you, we design for where they are.",
+    ],
+  },
+  "web-development": {
+    title: "Website development for clients anywhere in India",
+    body: [
+      "Development is fully remote by nature. You get a staging URL that updates as we build, code in a repository you own, and deployment to hosting in your own name, wherever you're based.",
+      "The sites we build are served from a global CDN, so a business in Pune, Delhi or Chennai gets the same load times its customers do.",
+    ],
+  },
+  "custom-software": {
+    title: "Custom software for teams across India",
+    body: [
+      "Weekly sprints work the same remotely: a demo on a call, a staging build you can use, and a shared list of what's next.",
+      "We build on infrastructure with Indian and global regions, and keep data in the region that suits your users and compliance needs.",
+    ],
+  },
+  branding: {
+    title: "Brand identity for businesses across India",
+    body: [
+      "Positioning workshops, moodboards and identity reviews all run well over video. The one thing that benefits from being local is photography for the brand, which we either plan a travel day for or art-direct a trusted local photographer.",
+    ],
+  },
+  seo: {
+    title: "SEO for businesses targeting all of India",
+    body: [
+      "National SEO is a different game from local SEO: there's no map pack to win and no distance advantage, so rankings come from depth of content, site quality and links from relevant sites. We're upfront about how long that takes.",
+      "Technical SEO, on-page work and reporting are entirely remote, so the city you're based in makes no difference to what we can do.",
+    ],
+  },
+  "local-seo": {
+    title: "Local SEO outside Pune",
+    body: [
+      "Local SEO works for any city: the signals Google uses (Business Profile, consistent listings, reviews, a website that confirms your details) are the same everywhere. We do this work remotely for businesses outside Pune, and the owner handles the parts Google requires them to, such as verification.",
+    ],
+  },
+  photography: {
+    title: "Photography outside Pune",
+    body: [
+      "Shoots need us on location. For clients elsewhere in India we either plan a travel day into the scope, or brief and art-direct a trusted local photographer so the images still match the brand.",
+    ],
+  },
+  "ai-automation": {
+    title: "Automation for businesses across India",
+    body: [
+      "WhatsApp is how most Indian customers prefer to talk to a business, which is why most of our automation starts there. Setup with Meta, flow design and CRM integration are all done remotely, for businesses in any city.",
+    ],
+  },
+};

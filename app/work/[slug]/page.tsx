@@ -123,12 +123,12 @@ export default async function CaseStudyPage({
             </a>
             <dl className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
               <div>
-                <dt className="eyebrow text-ink/55">Client</dt>
+                <dt className="eyebrow text-ink/65">Client</dt>
                 <dd className="text-ink">{c.client}</dd>
               </div>
               {c.location && (
                 <div>
-                  <dt className="eyebrow text-ink/55">Location</dt>
+                  <dt className="eyebrow text-ink/65">Location</dt>
                   <dd className="text-ink">{c.location}</dd>
                 </div>
               )}
@@ -188,11 +188,11 @@ export default async function CaseStudyPage({
         <Section eyebrow="What we built" title="Delivered" aside>
           <NumberedList items={c.built} />
           <div className="mt-10">
-            <h3 className="eyebrow text-ink/60 mb-4">Technology</h3>
+            <h3 className="eyebrow text-ink/70 mb-4">Technology</h3>
             <Chips items={c.stack} />
           </div>
           <div className="mt-8">
-            <h3 className="eyebrow text-ink/60 mb-4">Deliverables</h3>
+            <h3 className="eyebrow text-ink/70 mb-4">Deliverables</h3>
             <Chips items={c.deliverables} />
           </div>
         </Section>

@@ -1,5 +1,11 @@
 export type Persona = {
   slug: string;
+  /**
+   * <title> override when the persona name isn't what people search for.
+   * The founders page is the site's answer to "startup website / MVP
+   * development", so it says so instead of getting a separate startup page.
+   */
+  seoTitle?: string;
   /** Card + hero eyebrow, e.g. "Founders & Early-Stage Builders" */
   name: string;
   /** Audience line shown on the /who-we-help index card */
@@ -25,6 +31,7 @@ export type Persona = {
 export const PERSONAS: Persona[] = [
   {
     slug: "founders-and-early-stage-builders",
+    seoTitle: "Startup Website & MVP Development for Founders",
     name: "Founders & Early-Stage Builders",
     who: "Technical founders · Non-technical founders · PMs building side projects",
     cardCta: "Build your MVP",

@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   return pageMetadata({
     path: `/who-we-help/${persona.slug}`,
-    title: `${persona.name} | Who We Help`,
+    title: persona.seoTitle ?? `${persona.name} | Who We Help`,
     description: persona.heroSub,
   });
 }

@@ -16,9 +16,10 @@ import {
   ProblemList,
   Section,
 } from "@/components/page/Blocks";
-import { SERVICES, getService } from "@/lib/services";
+import { INDIA, SERVICES, getService } from "@/lib/services";
 import { INDUSTRIES } from "@/lib/industries";
 import { caseStudiesFor } from "@/lib/case-studies";
+import { publishedGuides } from "@/lib/guides";
 import { pageMetadata } from "@/lib/seo";
 import { faqNode, pageGraph, serviceNode } from "@/lib/schema";
 
@@ -57,6 +58,7 @@ export default async function ServicePage({
   const work = caseStudiesFor(s.slug).slice(0, 3);
   const industries = INDUSTRIES.filter((i) => s.industries.includes(i.slug));
   const related = s.related.map((r) => getService(r)!).filter(Boolean);
+  const guides = publishedGuides().filter((g) => g.services.includes(s.slug)).slice(0, 3);
 
   return (
     <>
@@ -100,7 +102,7 @@ export default async function ServicePage({
           <NumberedList items={s.deliverables} />
           {s.tools && (
             <div className="mt-10">
-              <h3 className="eyebrow text-ink/60 mb-4">Tools & technology</h3>
+              <h3 className="eyebrow text-ink/70 mb-4">Tools & technology</h3>
               <Chips items={s.tools} />
             </div>
           )}
@@ -140,9 +142,31 @@ export default async function ServicePage({
           />
         </Section>
 
+        <Section eyebrow="Across India" title={INDIA[s.slug].title} aside>
+          <div className="space-y-5 text-ink/80 leading-relaxed text-lg">
+            {INDIA[s.slug].body.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+          </div>
+        </Section>
+
         <Section eyebrow="Questions" title={`${s.name} FAQs`} aside>
           <Faqs items={s.faqs} />
         </Section>
+
+        {guides.length > 0 && (
+          <Section eyebrow="Guides" title="Read before you start">
+            <LinkCards
+              cols={guides.length === 2 ? 2 : 3}
+              items={guides.map((g) => ({
+                href: `/guides/${g.slug}`,
+                eyebrow: g.category,
+                title: g.title,
+                body: g.summary,
+              }))}
+            />
+          </Section>
+        )}
 
         <Section eyebrow="Related services" title="Often paired with">
           <LinkCards
